@@ -2,7 +2,7 @@
 using System;
 using System.Windows.Forms;
 
-namespace Game_Xuc_xac
+namespace Library
 {
 	/// <summary>
 	/// Class with program entry point.
@@ -17,7 +17,7 @@ namespace Game_Xuc_xac
 		{
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(new Server());
+			Application.Run(new ServerForm());
 		}
 		
 	}

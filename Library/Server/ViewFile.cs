@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Game_Xuc_xac
+namespace Library
 {
     public partial class ViewFile : Form
     {

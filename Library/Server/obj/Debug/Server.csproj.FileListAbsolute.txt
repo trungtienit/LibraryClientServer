@@ -14,3 +14,12 @@ C:\Users\chepchip\Documents\SharpDevelop Projects\Game Xuc xac\Game Xuc xac\obj\
 \\Mac\Home\Skill\Code\C#\Game_Xuc_xac\Game Xuc xac\obj\Debug\Server.pdb
 \\Mac\Home\Skill\Code\C#\Game_Xuc_xac\Game Xuc xac\obj\Debug\Game_Xuc_xac.Properties.Resources.resources
 \\Mac\Home\Skill\Code\C#\Game_Xuc_xac\Game Xuc xac\obj\Debug\Game_Xuc_xac.Server.resources
+Y:\Skill\Code\C#\LibraryClientServer\Library\Server\bin\Debug\Server.exe
+Y:\Skill\Code\C#\LibraryClientServer\Library\Server\bin\Debug\Server.pdb
+Y:\Skill\Code\C#\LibraryClientServer\Library\Server\obj\Debug\Library.ServerForm.resources
+Y:\Skill\Code\C#\LibraryClientServer\Library\Server\obj\Debug\Game_Xuc_xac.Properties.Resources.resources
+Y:\Skill\Code\C#\LibraryClientServer\Library\Server\obj\Debug\Library.ViewFile.resources
+Y:\Skill\Code\C#\LibraryClientServer\Library\Server\obj\Debug\Server.csproj.GenerateResource.Cache
+Y:\Skill\Code\C#\LibraryClientServer\Library\Server\obj\Debug\Server.csproj.CoreCompileInputs.cache
+Y:\Skill\Code\C#\LibraryClientServer\Library\Server\obj\Debug\Server.exe
+Y:\Skill\Code\C#\LibraryClientServer\Library\Server\obj\Debug\Server.pdb

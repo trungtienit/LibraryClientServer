@@ -4,14 +4,16 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 
-namespace Game_Xuc_xac
+namespace Library
 {
 	/// <summary>
 	/// Description of SocketModel.
 	/// </summary>
 	public class SocketModel
 	{
-		private Socket socket;
+        public const String CLIENT_DISSCONECT = "Socket is closed with ";
+
+        private Socket socket;
 		private byte[] array_to_receive_data;
 		private string remoteEndPoint;		
 		
@@ -35,7 +37,7 @@ namespace Game_Xuc_xac
 			catch (Exception e){
 				string str1 = "Error..... " + e.StackTrace;
 		        Console.WriteLine(str1);
-		        str = "Socket is closed with " + remoteEndPoint;
+                str = CLIENT_DISSCONECT + remoteEndPoint;
 			}
 			return str;			
 		}
@@ -59,7 +61,7 @@ namespace Game_Xuc_xac
 			catch (Exception e){
 				string str1 = "Error..... " + e.StackTrace;
 		        Console.WriteLine(str1);
-		        str = "Socket is closed with " + remoteEndPoint;
+		        str = CLIENT_DISSCONECT + remoteEndPoint;
 			}
 			return str;
 		}

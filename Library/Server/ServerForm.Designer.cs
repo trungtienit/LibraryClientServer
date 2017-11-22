@@ -6,9 +6,9 @@
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
-namespace Game_Xuc_xac
+namespace Library
 {
-	partial class Server
+	partial class ServerForm
 	{
 		/// <summary>
 		/// Designer variable used to keep track of non-visual components.
@@ -38,11 +38,11 @@ namespace Game_Xuc_xac
 		{
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.tbIpAddress = new System.Windows.Forms.TextBox();
+            this.tbPort = new System.Windows.Forms.TextBox();
+            this.btnStart = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.tbLogConnect = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -70,66 +70,66 @@ namespace Game_Xuc_xac
             this.label2.TabIndex = 1;
             this.label2.Text = "Port";
             // 
-            // textBox1
+            // tbIpAddress
             // 
-            this.textBox1.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.textBox1.Location = new System.Drawing.Point(103, 17);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(6);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(206, 31);
-            this.textBox1.TabIndex = 2;
-            this.textBox1.Text = "127.0.0.1";
+            this.tbIpAddress.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.tbIpAddress.Location = new System.Drawing.Point(103, 17);
+            this.tbIpAddress.Margin = new System.Windows.Forms.Padding(6);
+            this.tbIpAddress.Name = "tbIpAddress";
+            this.tbIpAddress.Size = new System.Drawing.Size(206, 31);
+            this.tbIpAddress.TabIndex = 2;
+            this.tbIpAddress.Text = "127.0.0.1";
             // 
-            // textBox2
+            // tbPort
             // 
-            this.textBox2.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.textBox2.Location = new System.Drawing.Point(103, 81);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(6);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(206, 31);
-            this.textBox2.TabIndex = 3;
-            this.textBox2.Text = "13000";
+            this.tbPort.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.tbPort.Location = new System.Drawing.Point(103, 81);
+            this.tbPort.Margin = new System.Windows.Forms.Padding(6);
+            this.tbPort.Name = "tbPort";
+            this.tbPort.Size = new System.Drawing.Size(206, 31);
+            this.tbPort.TabIndex = 3;
+            this.tbPort.Text = "13000";
             // 
-            // button1
+            // btnStart
             // 
-            this.button1.BackColor = System.Drawing.Color.RoyalBlue;
-            this.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button1.Location = new System.Drawing.Point(354, 182);
-            this.button1.Margin = new System.Windows.Forms.Padding(6);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(160, 129);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Start";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.Button1Click);
+            this.btnStart.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnStart.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnStart.Location = new System.Drawing.Point(354, 182);
+            this.btnStart.Margin = new System.Windows.Forms.Padding(6);
+            this.btnStart.Name = "btnStart";
+            this.btnStart.Size = new System.Drawing.Size(160, 129);
+            this.btnStart.TabIndex = 4;
+            this.btnStart.Text = "Start";
+            this.btnStart.UseVisualStyleBackColor = false;
+            this.btnStart.Click += new System.EventHandler(this.StartClick);
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.textBox3);
-            this.groupBox1.Location = new System.Drawing.Point(27, 20);
+            this.groupBox1.Controls.Add(this.tbLogConnect);
+            this.groupBox1.Location = new System.Drawing.Point(21, 18);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(6);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(6);
-            this.groupBox1.Size = new System.Drawing.Size(581, 192);
+            this.groupBox1.Size = new System.Drawing.Size(587, 228);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Connection Control";
             // 
-            // textBox3
+            // tbLogConnect
             // 
-            this.textBox3.Location = new System.Drawing.Point(14, 37);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(6);
-            this.textBox3.Multiline = true;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBox3.Size = new System.Drawing.Size(552, 141);
-            this.textBox3.TabIndex = 0;
+            this.tbLogConnect.Location = new System.Drawing.Point(14, 37);
+            this.tbLogConnect.Margin = new System.Windows.Forms.Padding(6);
+            this.tbLogConnect.Multiline = true;
+            this.tbLogConnect.Name = "tbLogConnect";
+            this.tbLogConnect.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.tbLogConnect.Size = new System.Drawing.Size(552, 141);
+            this.tbLogConnect.TabIndex = 0;
             // 
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.textBox2);
-            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.tbPort);
+            this.panel1.Controls.Add(this.tbIpAddress);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Location = new System.Drawing.Point(21, 182);
@@ -153,7 +153,7 @@ namespace Game_Xuc_xac
             this.panel2.Controls.Add(this.groupBox1);
             this.panel2.Location = new System.Drawing.Point(21, 464);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(618, 232);
+            this.panel2.Size = new System.Drawing.Size(618, 267);
             this.panel2.TabIndex = 9;
             // 
             // lbNumberClient
@@ -165,7 +165,7 @@ namespace Game_Xuc_xac
             this.lbNumberClient.TabIndex = 4;
             this.lbNumberClient.Text = "0";
             // 
-            // Server
+            // ServerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -174,10 +174,10 @@ namespace Game_Xuc_xac
             this.Controls.Add(this.lbNumberClient);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnStart);
             this.Controls.Add(this.panel1);
             this.Margin = new System.Windows.Forms.Padding(6);
-            this.Name = "Server";
+            this.Name = "ServerForm";
             this.Text = "LibraryManager";
             this.Load += new System.EventHandler(this.MainFormLoad);
             this.groupBox1.ResumeLayout(false);
@@ -189,11 +189,11 @@ namespace Game_Xuc_xac
             this.PerformLayout();
 
 		}
-		private System.Windows.Forms.TextBox textBox3;
+		private System.Windows.Forms.TextBox tbLogConnect;
 		private System.Windows.Forms.GroupBox groupBox1;
-		private System.Windows.Forms.Button button1;
-		private System.Windows.Forms.TextBox textBox2;
-		private System.Windows.Forms.TextBox textBox1;
+		private System.Windows.Forms.Button btnStart;
+		private System.Windows.Forms.TextBox tbPort;
+		private System.Windows.Forms.TextBox tbIpAddress;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel1;

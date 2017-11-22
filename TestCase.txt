@@ -1,0 +1,29 @@
+project cuối kì 
+-1. Search sách, xem thử. -Xem full khi đón phí
+-Đổi sách.
+
+
+TestCase
+ 
+  1 .Data: Đọc từ file xml
+2. View file : doc,docx,txt, excel, pdf,...
+	2.1 Xem 1 phần
+	2.2 Xem full
+	2.3 Tải về
+  3.Giao tiếp giữa client-server
+	3.1: Search file
+  4. Gửi file từ sever cho server
+
+Nâng cao
+  5.Sever: search book-> download đổ vào database,
+  6. Đổi sách.
+
+
+Thuận : Đọc+ ghi dữ liệu từ file xml  gồm
+Num
+ID
+Name
+Type
+Size
+Price
+path file

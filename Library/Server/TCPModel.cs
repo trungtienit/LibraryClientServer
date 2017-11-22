@@ -3,7 +3,7 @@ using System;
 using System.Net;
 using System.Net.Sockets;
 
-namespace Game_Xuc_xac
+namespace Library
 {
 	/// <summary>
 	/// Description of TCPModel.

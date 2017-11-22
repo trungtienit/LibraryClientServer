@@ -1,4 +1,4 @@
-﻿namespace Game_Xuc_xac
+﻿namespace Library
 {
     partial class ViewFile
     {

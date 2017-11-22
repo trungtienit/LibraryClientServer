@@ -41,24 +41,23 @@ namespace Client
             this.label5 = new System.Windows.Forms.Label();
             this.lbConnected = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.button3 = new System.Windows.Forms.Button();
+            this.btnConnect = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.tbPort = new System.Windows.Forms.TextBox();
+            this.tbIpAddress = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.tbSearch = new System.Windows.Forms.TextBox();
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
@@ -80,29 +79,30 @@ namespace Client
             // 
             this.lbConnected.AutoSize = true;
             this.lbConnected.ForeColor = System.Drawing.Color.Blue;
-            this.lbConnected.Location = new System.Drawing.Point(443, 9);
+            this.lbConnected.Location = new System.Drawing.Point(436, 9);
             this.lbConnected.Name = "lbConnected";
-            this.lbConnected.Size = new System.Drawing.Size(109, 25);
+            this.lbConnected.Size = new System.Drawing.Size(116, 25);
             this.lbConnected.TabIndex = 13;
-            this.lbConnected.Text = "Đã kết nối";
+            this.lbConnected.Text = "Connected";
             // 
-            // button3
+            // btnConnect
             // 
-            this.button3.BackColor = System.Drawing.Color.RoyalBlue;
-            this.button3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button3.Location = new System.Drawing.Point(380, 150);
-            this.button3.Margin = new System.Windows.Forms.Padding(6);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(160, 129);
-            this.button3.TabIndex = 14;
-            this.button3.Text = "Start";
-            this.button3.UseVisualStyleBackColor = false;
+            this.btnConnect.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnConnect.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnConnect.Location = new System.Drawing.Point(380, 150);
+            this.btnConnect.Margin = new System.Windows.Forms.Padding(6);
+            this.btnConnect.Name = "btnConnect";
+            this.btnConnect.Size = new System.Drawing.Size(160, 129);
+            this.btnConnect.TabIndex = 14;
+            this.btnConnect.Text = "Connect";
+            this.btnConnect.UseVisualStyleBackColor = false;
+            this.btnConnect.Click += new System.EventHandler(this.Connect_Click);
             // 
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(this.textBox5);
-            this.panel2.Controls.Add(this.textBox6);
+            this.panel2.Controls.Add(this.tbPort);
+            this.panel2.Controls.Add(this.tbIpAddress);
             this.panel2.Controls.Add(this.label6);
             this.panel2.Controls.Add(this.label7);
             this.panel2.Location = new System.Drawing.Point(33, 150);
@@ -110,25 +110,25 @@ namespace Client
             this.panel2.Size = new System.Drawing.Size(326, 129);
             this.panel2.TabIndex = 15;
             // 
-            // textBox5
+            // tbPort
             // 
-            this.textBox5.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.textBox5.Location = new System.Drawing.Point(103, 81);
-            this.textBox5.Margin = new System.Windows.Forms.Padding(6);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(206, 31);
-            this.textBox5.TabIndex = 3;
-            this.textBox5.Text = "13000";
+            this.tbPort.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.tbPort.Location = new System.Drawing.Point(103, 81);
+            this.tbPort.Margin = new System.Windows.Forms.Padding(6);
+            this.tbPort.Name = "tbPort";
+            this.tbPort.Size = new System.Drawing.Size(206, 31);
+            this.tbPort.TabIndex = 3;
+            this.tbPort.Text = "13000";
             // 
-            // textBox6
+            // tbIpAddress
             // 
-            this.textBox6.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.textBox6.Location = new System.Drawing.Point(103, 17);
-            this.textBox6.Margin = new System.Windows.Forms.Padding(6);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(206, 31);
-            this.textBox6.TabIndex = 2;
-            this.textBox6.Text = "127.0.0.1";
+            this.tbIpAddress.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.tbIpAddress.Location = new System.Drawing.Point(103, 17);
+            this.tbIpAddress.Margin = new System.Windows.Forms.Padding(6);
+            this.tbIpAddress.Name = "tbIpAddress";
+            this.tbIpAddress.Size = new System.Drawing.Size(206, 31);
+            this.tbIpAddress.TabIndex = 2;
+            this.tbIpAddress.Text = "127.0.0.1";
             // 
             // label6
             // 
@@ -161,8 +161,8 @@ namespace Client
             this.groupBox1.BackColor = System.Drawing.Color.MintCream;
             this.groupBox1.Controls.Add(this.textBox2);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.button1);
-            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.btnSearch);
+            this.groupBox1.Controls.Add(this.tbSearch);
             this.groupBox1.Controls.Add(this.comboBox1);
             this.groupBox1.Location = new System.Drawing.Point(19, 308);
             this.groupBox1.Name = "groupBox1";
@@ -170,61 +170,6 @@ namespace Client
             this.groupBox1.TabIndex = 17;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Communication";
-            // 
-            // textBox1
-            // 
-            this.textBox1.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.textBox1.Location = new System.Drawing.Point(14, 47);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(6);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(507, 31);
-            this.textBox1.TabIndex = 4;
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.RoyalBlue;
-            this.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button1.Location = new System.Drawing.Point(361, 127);
-            this.button1.Margin = new System.Windows.Forms.Padding(6);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(160, 53);
-            this.button1.TabIndex = 18;
-            this.button1.Text = "Start";
-            this.button1.UseVisualStyleBackColor = false;
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Id,
-            this.Name,
-            this.Type,
-            this.Price});
-            this.dataGridView1.Location = new System.Drawing.Point(571, 20);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 33;
-            this.dataGridView1.Size = new System.Drawing.Size(770, 734);
-            this.dataGridView1.TabIndex = 19;
-            // 
-            // Id
-            // 
-            this.Id.HeaderText = "Id";
-            this.Id.Name = "Id";
-            // 
-            // Name
-            // 
-            this.Name.HeaderText = "Name";
-            this.Name.Name = "Name";
-            // 
-            // Type
-            // 
-            this.Type.HeaderText = "Type";
-            this.Type.Name = "Type";
-            // 
-            // Price
-            // 
-            this.Price.HeaderText = "Price";
-            this.Price.Name = "Price";
             // 
             // textBox2
             // 
@@ -237,27 +182,80 @@ namespace Client
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(9, 396);
+            this.label1.Location = new System.Drawing.Point(9, 402);
             this.label1.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(104, 34);
             this.label1.TabIndex = 19;
             this.label1.Text = "Wallet";
             // 
-            // Client
+            // btnSearch
+            // 
+            this.btnSearch.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnSearch.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnSearch.Location = new System.Drawing.Point(361, 127);
+            this.btnSearch.Margin = new System.Windows.Forms.Padding(6);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(160, 53);
+            this.btnSearch.TabIndex = 18;
+            this.btnSearch.Text = "Search";
+            this.btnSearch.UseVisualStyleBackColor = false;
+            this.btnSearch.Click += new System.EventHandler(this.Search_Click);
+            // 
+            // tbSearch
+            // 
+            this.tbSearch.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.tbSearch.Location = new System.Drawing.Point(14, 47);
+            this.tbSearch.Margin = new System.Windows.Forms.Padding(6);
+            this.tbSearch.Name = "tbSearch";
+            this.tbSearch.Size = new System.Drawing.Size(507, 31);
+            this.tbSearch.TabIndex = 4;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Id,
+            this.Type,
+            this.Price});
+            this.dataGridView1.Location = new System.Drawing.Point(571, 20);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowTemplate.Height = 33;
+            this.dataGridView1.Size = new System.Drawing.Size(794, 734);
+            this.dataGridView1.TabIndex = 19;
+            // 
+            // Id
+            // 
+            this.Id.HeaderText = "Id";
+            this.Id.Name = "Id";
+            // 
+       
+            // 
+            // Type
+            // 
+            this.Type.HeaderText = "Type";
+            this.Type.Name = "Type";
+            // 
+            // Price
+            // 
+            this.Price.HeaderText = "Price";
+            this.Price.Name = "Price";
+            this.Price.Width = 150;
+            // 
+            // ClientForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PaleTurquoise;
-            this.ClientSize = new System.Drawing.Size(1366, 766);
+            this.ClientSize = new System.Drawing.Size(1368, 766);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.btnConnect);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.lbConnected);
             this.Controls.Add(this.label5);
             this.Margin = new System.Windows.Forms.Padding(6);
-            this.Name = "Client";
+     
             this.Text = "Client";
             this.Load += new System.EventHandler(this.MainFormLoad);
             this.panel2.ResumeLayout(false);
@@ -273,22 +271,21 @@ namespace Client
         private Label label5;
         private Label lbConnected;
         private Timer timer1;
-        private Button button3;
+        private Button btnConnect;
         private Panel panel2;
-        private TextBox textBox5;
-        private TextBox textBox6;
+        private TextBox tbPort;
+        private TextBox tbIpAddress;
         private Label label6;
         private Label label7;
         private ComboBox comboBox1;
         private GroupBox groupBox1;
-        private Button button1;
-        private TextBox textBox1;
+        private Button btnSearch;
+        private TextBox tbSearch;
         private BindingSource bindingSource1;
         private DataGridView dataGridView1;
         private TextBox textBox2;
         private Label label1;
         private DataGridViewTextBoxColumn Id;
-        private DataGridViewTextBoxColumn Name;
         private DataGridViewTextBoxColumn Type;
         private DataGridViewTextBoxColumn Price;
     }
