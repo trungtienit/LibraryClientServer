@@ -1,0 +1,16 @@
+C:\Users\chepchip\Documents\SharpDevelop Projects\Game Xuc xac\Game Xuc xac\bin\Debug\Server.exe
+C:\Users\chepchip\Documents\SharpDevelop Projects\Game Xuc xac\Game Xuc xac\bin\Debug\Server.pdb
+C:\Users\chepchip\Documents\SharpDevelop Projects\Game Xuc xac\Game Xuc xac\obj\Debug\Server.csprojResolveAssemblyReference.cache
+C:\Users\chepchip\Documents\SharpDevelop Projects\Game Xuc xac\Game Xuc xac\obj\Debug\Server.exe
+C:\Users\chepchip\Documents\SharpDevelop Projects\Game Xuc xac\Game Xuc xac\obj\Debug\Server.pdb
+C:\Users\chepchip\Documents\SharpDevelop Projects\Game Xuc xac\Game Xuc xac\obj\Debug\Game_Xuc_xac.MainForm.resources
+C:\Users\chepchip\Documents\SharpDevelop Projects\Game Xuc xac\Game Xuc xac\obj\Debug\Server.csproj.GenerateResource.Cache
+\\Mac\Home\Skill\Code\C#\Game_Xuc_xac\Game Xuc xac\bin\Debug\Server.exe
+\\Mac\Home\Skill\Code\C#\Game_Xuc_xac\Game Xuc xac\bin\Debug\Server.pdb
+\\Mac\Home\Skill\Code\C#\Game_Xuc_xac\Game Xuc xac\obj\Debug\Server.csprojResolveAssemblyReference.cache
+\\Mac\Home\Skill\Code\C#\Game_Xuc_xac\Game Xuc xac\obj\Debug\Server.csproj.GenerateResource.Cache
+\\Mac\Home\Skill\Code\C#\Game_Xuc_xac\Game Xuc xac\obj\Debug\Server.csproj.CoreCompileInputs.cache
+\\Mac\Home\Skill\Code\C#\Game_Xuc_xac\Game Xuc xac\obj\Debug\Server.exe
+\\Mac\Home\Skill\Code\C#\Game_Xuc_xac\Game Xuc xac\obj\Debug\Server.pdb
+\\Mac\Home\Skill\Code\C#\Game_Xuc_xac\Game Xuc xac\obj\Debug\Game_Xuc_xac.Properties.Resources.resources
+\\Mac\Home\Skill\Code\C#\Game_Xuc_xac\Game Xuc xac\obj\Debug\Game_Xuc_xac.Server.resources
