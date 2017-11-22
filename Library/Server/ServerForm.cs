@@ -17,6 +17,7 @@ namespace Library
     /// </summary>
     public partial class ServerForm : Form
     {
+      
         public ServerForm()
         {
             //
@@ -37,6 +38,7 @@ namespace Library
             CheckForIllegalCrossThreadCalls = false;
 
             server = new ServerModel().GetInstance();
+
         }
 
         public void StartServer()
@@ -54,11 +56,12 @@ namespace Library
             while (true)
             {
                 string str = socket.ReceiveData();
-
+                //Remove socket fail : disconnect
                 if (str.Equals(SocketModel.CLIENT_DISSCONECT + socket.GetRemoteEndpoint()))
                 {
-                    tbLogConnect.AppendText(str + "\n");
+                    tbLogConnect.AppendText(str + "\r\n");
                     Console.WriteLine(str);
+                    server.Remove(socket);
                     return;
                 }
                 Random random = new Random();
@@ -80,11 +83,10 @@ namespace Library
                 currentSocket = new SocketModel(s);
                 server.Add(currentSocket);
                 string str = currentSocket.GetRemoteEndpoint();
-                string str1 = "New connection from: " + str + "\n";
+                string str1 = "New connection from: " + str + "\r\n";
                 
                 tbLogConnect.AppendText(str1);
                 lbNumberClient.Text = server.GetSocketCounts().ToString();
-                tbLogConnect.Update();
 
                 Thread t = new Thread(Commmunication);
                 t.Start(currentSocket);
@@ -92,9 +94,20 @@ namespace Library
         }
         void StartClick(object sender, EventArgs e)
         {
+            LoadData();
             StartServer();
             Thread t = new Thread(ServeClients);
             t.Start();
+
+            Book b = new Book();
+
+        }
+
+        private void LoadData()
+        {
+            DataBase.InitDB(DataTest.GetListBook());
+
+
         }
     }
 }

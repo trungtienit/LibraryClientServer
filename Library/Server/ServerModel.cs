@@ -5,11 +5,12 @@ using System.Text;
 
 namespace Library
 {
-    class  ServerModel
+    class ServerModel
     {
-        private  List<SocketModel> mList;
-       
-        public  ServerModel GetInstance() {
+        private List<SocketModel> mList;
+
+        public ServerModel GetInstance()
+        {
             if (mList == null)
                 mList = new List<SocketModel>();
             return this;
@@ -34,7 +35,7 @@ namespace Library
 
         internal void Remove(SocketModel socket)
         {
-            throw new NotImplementedException();
+            mList.Remove(socket);
         }
     }
 }

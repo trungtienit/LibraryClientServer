@@ -50,6 +50,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Book.cs" />
+    <Compile Include="DataBase.cs" />
+    <Compile Include="DataTest.cs" />
     <Compile Include="ServerModel.cs" />
     <Compile Include="ServerForm.cs">
       <SubType>Form</SubType>

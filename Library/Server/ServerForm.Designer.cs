@@ -158,11 +158,11 @@ namespace Library
             // 
             // lbNumberClient
             // 
-            this.lbNumberClient.Location = new System.Drawing.Point(230, 360);
-            this.lbNumberClient.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.lbNumberClient.AutoSize = true;
+            this.lbNumberClient.Location = new System.Drawing.Point(285, 370);
             this.lbNumberClient.Name = "lbNumberClient";
-            this.lbNumberClient.Size = new System.Drawing.Size(174, 54);
-            this.lbNumberClient.TabIndex = 4;
+            this.lbNumberClient.Size = new System.Drawing.Size(24, 25);
+            this.lbNumberClient.TabIndex = 10;
             this.lbNumberClient.Text = "0";
             // 
             // ServerForm

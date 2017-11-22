@@ -23,3 +23,4 @@ Y:\Skill\Code\C#\LibraryClientServer\Library\Server\obj\Debug\Server.csproj.Gene
 Y:\Skill\Code\C#\LibraryClientServer\Library\Server\obj\Debug\Server.csproj.CoreCompileInputs.cache
 Y:\Skill\Code\C#\LibraryClientServer\Library\Server\obj\Debug\Server.exe
 Y:\Skill\Code\C#\LibraryClientServer\Library\Server\obj\Debug\Server.pdb
+Y:\Skill\Code\C#\LibraryClientServer\Library\Server\obj\Debug\Server.csprojResolveAssemblyReference.cache

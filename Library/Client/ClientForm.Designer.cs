@@ -55,9 +55,11 @@ namespace Client
             this.tbSearch = new System.Windows.Forms.TextBox();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.type = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.price = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.size = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
@@ -79,7 +81,7 @@ namespace Client
             // 
             this.lbConnected.AutoSize = true;
             this.lbConnected.ForeColor = System.Drawing.Color.Blue;
-            this.lbConnected.Location = new System.Drawing.Point(436, 9);
+            this.lbConnected.Location = new System.Drawing.Point(402, 9);
             this.lbConnected.Name = "lbConnected";
             this.lbConnected.Size = new System.Drawing.Size(116, 25);
             this.lbConnected.TabIndex = 13;
@@ -92,7 +94,7 @@ namespace Client
             this.btnConnect.Location = new System.Drawing.Point(380, 150);
             this.btnConnect.Margin = new System.Windows.Forms.Padding(6);
             this.btnConnect.Name = "btnConnect";
-            this.btnConnect.Size = new System.Drawing.Size(160, 129);
+            this.btnConnect.Size = new System.Drawing.Size(138, 129);
             this.btnConnect.TabIndex = 14;
             this.btnConnect.Text = "Connect";
             this.btnConnect.UseVisualStyleBackColor = false;
@@ -107,7 +109,7 @@ namespace Client
             this.panel2.Controls.Add(this.label7);
             this.panel2.Location = new System.Drawing.Point(33, 150);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(326, 129);
+            this.panel2.Size = new System.Drawing.Size(322, 129);
             this.panel2.TabIndex = 15;
             // 
             // tbPort
@@ -166,7 +168,7 @@ namespace Client
             this.groupBox1.Controls.Add(this.comboBox1);
             this.groupBox1.Location = new System.Drawing.Point(19, 308);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(533, 446);
+            this.groupBox1.Size = new System.Drawing.Size(499, 446);
             this.groupBox1.TabIndex = 17;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Communication";
@@ -193,7 +195,7 @@ namespace Client
             // 
             this.btnSearch.BackColor = System.Drawing.Color.RoyalBlue;
             this.btnSearch.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnSearch.Location = new System.Drawing.Point(361, 127);
+            this.btnSearch.Location = new System.Drawing.Point(319, 127);
             this.btnSearch.Margin = new System.Windows.Forms.Padding(6);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(160, 53);
@@ -208,46 +210,59 @@ namespace Client
             this.tbSearch.Location = new System.Drawing.Point(14, 47);
             this.tbSearch.Margin = new System.Windows.Forms.Padding(6);
             this.tbSearch.Name = "tbSearch";
-            this.tbSearch.Size = new System.Drawing.Size(507, 31);
+            this.tbSearch.Size = new System.Drawing.Size(465, 31);
             this.tbSearch.TabIndex = 4;
             // 
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Id,
-            this.Type,
-            this.Price});
-            this.dataGridView1.Location = new System.Drawing.Point(571, 20);
+            this.id,
+            this.name,
+            this.type,
+            this.price,
+            this.size});
+            this.dataGridView1.Location = new System.Drawing.Point(548, 12);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 33;
-            this.dataGridView1.Size = new System.Drawing.Size(794, 734);
-            this.dataGridView1.TabIndex = 19;
+            this.dataGridView1.Size = new System.Drawing.Size(1264, 742);
+            this.dataGridView1.TabIndex = 21;
             // 
-            // Id
+            // id
             // 
-            this.Id.HeaderText = "Id";
-            this.Id.Name = "Id";
+            this.id.HeaderText = "ID";
+            this.id.Name = "id";
             // 
-       
+            // name
             // 
-            // Type
+            this.name.HeaderText = "Name";
+            this.name.Name = "name";
+            this.name.Width = 200;
             // 
-            this.Type.HeaderText = "Type";
-            this.Type.Name = "Type";
+            // type
             // 
-            // Price
+            this.type.HeaderText = "Type";
+            this.type.Name = "type";
             // 
-            this.Price.HeaderText = "Price";
-            this.Price.Name = "Price";
-            this.Price.Width = 150;
+            // price
             // 
-            // ClientForm
+            this.price.HeaderText = "Price";
+            this.price.Name = "price";
+            // 
+            // size
+            // 
+            this.size.HeaderText = "Size";
+            this.size.Name = "size";
+            // 
+            // Client
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
+            this.AutoSize = true;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.PaleTurquoise;
-            this.ClientSize = new System.Drawing.Size(1368, 766);
+            this.ClientSize = new System.Drawing.Size(1824, 766);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnConnect);
@@ -255,7 +270,7 @@ namespace Client
             this.Controls.Add(this.lbConnected);
             this.Controls.Add(this.label5);
             this.Margin = new System.Windows.Forms.Padding(6);
-     
+            this.Name = "Client";
             this.Text = "Client";
             this.Load += new System.EventHandler(this.MainFormLoad);
             this.panel2.ResumeLayout(false);
@@ -282,11 +297,13 @@ namespace Client
         private Button btnSearch;
         private TextBox tbSearch;
         private BindingSource bindingSource1;
-        private DataGridView dataGridView1;
         private TextBox textBox2;
         private Label label1;
-        private DataGridViewTextBoxColumn Id;
-        private DataGridViewTextBoxColumn Type;
-        private DataGridViewTextBoxColumn Price;
+        private DataGridView dataGridView1;
+        private DataGridViewTextBoxColumn id;
+        private DataGridViewTextBoxColumn name;
+        private DataGridViewTextBoxColumn type;
+        private DataGridViewTextBoxColumn price;
+        private DataGridViewTextBoxColumn size;
     }
 }

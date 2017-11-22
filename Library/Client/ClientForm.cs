@@ -39,7 +39,7 @@ namespace Client
             {
                 this.Text = client.UpdateInformation();
                 lbConnected.Visible = true;
-              //  Thread t2 = new Thread(OpponentResult);
+                //  Thread t2 = new Thread(OpponentResult);
                 //t2.Start();
             }
         }
@@ -52,7 +52,10 @@ namespace Client
 
         private void Connect_Click(object sender, EventArgs e)
         {
-            Connect();
+            if (lbConnected.Visible == true)
+                MessageBox.Show("Connected to Server!", "Info", MessageBoxButtons.OK);
+            else
+                Connect();
         }
 
         private void Search_Click(object sender, EventArgs e)
