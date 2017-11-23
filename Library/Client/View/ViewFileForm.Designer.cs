@@ -1,4 +1,4 @@
-﻿namespace Library
+﻿namespace Server
 {
     partial class ViewFile
     {

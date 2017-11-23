@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Client.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Library
+namespace Server
 {
     public class Book
     {
@@ -20,7 +21,7 @@ namespace Library
         public double Price { get => price; set => price = value; }
         public string Size { get => size; set => size = value; }
         public string Path { get => path; set => path = value; }
-
+  
         public Book()
         {
         }
@@ -34,7 +35,10 @@ namespace Library
             this.size = builder.size;
             this.path = builder.path;
         }
-
+        public string ToString()
+        {
+            return String.Format("{0}#{1}#{2}#{3}#{4}", id, name, type, price, size);
+        }
         public class Builder
         {
             public String id;
@@ -82,12 +86,16 @@ namespace Library
                 this.path = path;
                 return this;
             }
-            public Book build()
+            public Book Build()
             {
                 return new Book(this);
             }
 
+   
+      
+
         }
+
 
     }
 }

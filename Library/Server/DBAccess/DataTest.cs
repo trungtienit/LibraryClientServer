@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Library
+namespace Server
 {
     class DataTest
     {
@@ -19,7 +19,7 @@ namespace Library
                         .Price(0.0f)
                         .Size("128kb")
                         .Path("")
-                        .build();
+                        .Build();
                 books.Add(b);
             }
             return books;

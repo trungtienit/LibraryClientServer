@@ -2,7 +2,7 @@
 using System;
 using System.Windows.Forms;
 
-namespace Library
+namespace Server
 {
 	/// <summary>
 	/// Class with program entry point.

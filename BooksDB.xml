@@ -1,0 +1,196 @@
+<?xml version="1.0"?>
+<ArrayOfBook xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Book>
+    <Id>5342074422</Id>
+    <Name>CHUONG 1-GIOI THIEU.pdf</Name>
+    <Type>.pdf</Type>
+    <Price>6700000</Price>
+    <Size>420kb</Size>
+    <Path>Y:\Skill\Code\C#\LibraryClientServer\DATA\LTM\SLIDE\CHUONG 1-GIOI THIEU.pdf</Path>
+  </Book>
+  <Book>
+    <Id>8428933322</Id>
+    <Name>CHUONG 10-LAP TRINH VOI SCALABILITY.pdf</Name>
+    <Type>.pdf</Type>
+    <Price>400000</Price>
+    <Size>289kb</Size>
+    <Path>Y:\Skill\Code\C#\LibraryClientServer\DATA\LTM\SLIDE\CHUONG 10-LAP TRINH VOI SCALABILITY.pdf</Path>
+  </Book>
+  <Book>
+    <Id>8059687822</Id>
+    <Name>CHUONG 11-TOI UU BANG THONG.pdf</Name>
+    <Type>.pdf</Type>
+    <Price>400000</Price>
+    <Size>596kb</Size>
+    <Path>Y:\Skill\Code\C#\LibraryClientServer\DATA\LTM\SLIDE\CHUONG 11-TOI UU BANG THONG.pdf</Path>
+  </Book>
+  <Book>
+    <Id>1017075082</Id>
+    <Name>CHUONG 12-KIEM SOAT MANG.pdf</Name>
+    <Type>.pdf</Type>
+    <Price>400000</Price>
+    <Size>707kb</Size>
+    <Path>Y:\Skill\Code\C#\LibraryClientServer\DATA\LTM\SLIDE\CHUONG 12-KIEM SOAT MANG.pdf</Path>
+  </Book>
+  <Book>
+    <Id>7268348922</Id>
+    <Name>CHUONG 13-PHAN TICH GOI TIN MANG.pdf</Name>
+    <Type>.pdf</Type>
+    <Price>400000</Price>
+    <Size>683kb</Size>
+    <Path>Y:\Skill\Code\C#\LibraryClientServer\DATA\LTM\SLIDE\CHUONG 13-PHAN TICH GOI TIN MANG.pdf</Path>
+  </Book>
+  <Book>
+    <Id>1032627032</Id>
+    <Name>CHUONG 14-LAP TRINH CHO THE HE INTERNET KE TIEP.pdf</Name>
+    <Type>.pdf</Type>
+    <Price>400000</Price>
+    <Size>262kb</Size>
+    <Path>Y:\Skill\Code\C#\LibraryClientServer\DATA\LTM\SLIDE\CHUONG 14-LAP TRINH CHO THE HE INTERNET KE TIEP.pdf</Path>
+  </Book>
+  <Book>
+    <Id>1108518642</Id>
+    <Name>CHUONG 15-WEB SERVICES &amp; REMOTING.pdf</Name>
+    <Type>.pdf</Type>
+    <Price>400000</Price>
+    <Size>851kb</Size>
+    <Path>Y:\Skill\Code\C#\LibraryClientServer\DATA\LTM\SLIDE\CHUONG 15-WEB SERVICES &amp; REMOTING.pdf</Path>
+  </Book>
+  <Book>
+    <Id>5751187322</Id>
+    <Name>CHUONG 2-INPUT &amp; OUTPUT.pdf</Name>
+    <Type>.pdf</Type>
+    <Price>400000</Price>
+    <Size>511kb</Size>
+    <Path>Y:\Skill\Code\C#\LibraryClientServer\DATA\LTM\SLIDE\CHUONG 2-INPUT &amp; OUTPUT.pdf</Path>
+  </Book>
+  <Book>
+    <Id>6410440712</Id>
+    <Name>CHUONG 3-SOCKETS (moi).pdf</Name>
+    <Type>.pdf</Type>
+    <Price>400000</Price>
+    <Size>1044kb</Size>
+    <Path>Y:\Skill\Code\C#\LibraryClientServer\DATA\LTM\SLIDE\CHUONG 3-SOCKETS (moi).pdf</Path>
+  </Book>
+  <Book>
+    <Id>1085758542</Id>
+    <Name>CHUONG 4-TRUYEN THONG VOI WEB SERVER.pdf</Name>
+    <Type>.pdf</Type>
+    <Price>400000</Price>
+    <Size>575kb</Size>
+    <Path>Y:\Skill\Code\C#\LibraryClientServer\DATA\LTM\SLIDE\CHUONG 4-TRUYEN THONG VOI WEB SERVER.pdf</Path>
+  </Book>
+  <Book>
+    <Id>6836899922</Id>
+    <Name>CHUONG 5-TRUYEN THONG VOI EMAIL SERVER.pdf</Name>
+    <Type>.pdf</Type>
+    <Price>400000</Price>
+    <Size>368kb</Size>
+    <Path>Y:\Skill\Code\C#\LibraryClientServer\DATA\LTM\SLIDE\CHUONG 5-TRUYEN THONG VOI EMAIL SERVER.pdf</Path>
+  </Book>
+  <Book>
+    <Id>6011578372</Id>
+    <Name>CHUONG 6-TRUYEN THONG VOI FILE SERVER.pdf</Name>
+    <Type>.pdf</Type>
+    <Price>400000</Price>
+    <Size>1157kb</Size>
+    <Path>Y:\Skill\Code\C#\LibraryClientServer\DATA\LTM\SLIDE\CHUONG 6-TRUYEN THONG VOI FILE SERVER.pdf</Path>
+  </Book>
+  <Book>
+    <Id>6369678221</Id>
+    <Name>CHUONG 7-BAO MAT.pdf</Name>
+    <Type>.pdf</Type>
+    <Price>400000</Price>
+    <Size>69kb</Size>
+    <Path>Y:\Skill\Code\C#\LibraryClientServer\DATA\LTM\SLIDE\CHUONG 7-BAO MAT.pdf</Path>
+  </Book>
+  <Book>
+    <Id>7084886722</Id>
+    <Name>CHUONG 8-BAO VE DU LIEU - MA HOA.pdf</Name>
+    <Type>.pdf</Type>
+    <Price>400000</Price>
+    <Size>848kb</Size>
+    <Path>Y:\Skill\Code\C#\LibraryClientServer\DATA\LTM\SLIDE\CHUONG 8-BAO VE DU LIEU - MA HOA.pdf</Path>
+  </Book>
+  <Book>
+    <Id>7455444222</Id>
+    <Name>CHUONG 9-QUAN LY TRUY CAP.pdf</Name>
+    <Type>.pdf</Type>
+    <Price>400000</Price>
+    <Size>554kb</Size>
+    <Path>Y:\Skill\Code\C#\LibraryClientServer\DATA\LTM\SLIDE\CHUONG 9-QUAN LY TRUY CAP.pdf</Path>
+  </Book>
+  <Book>
+    <Id>9786528261</Id>
+    <Name>C1,C3.doc</Name>
+    <Type>.doc</Type>
+    <Price>400000</Price>
+    <Size>86kb</Size>
+    <Path>Y:\Skill\Code\C#\LibraryClientServer\DATA\LTM\Tom tat\C1,C3.doc</Path>
+  </Book>
+  <Book>
+    <Id>1283051326</Id>
+    <Name>C4,C5.docx</Name>
+    <Type>.docx</Type>
+    <Price>400000</Price>
+    <Size>30kb</Size>
+    <Path>Y:\Skill\Code\C#\LibraryClientServer\DATA\LTM\Tom tat\C4,C5.docx</Path>
+  </Book>
+  <Book>
+    <Id>6630720251</Id>
+    <Name>bai kiem tra LTHTM buoi 2.doc</Name>
+    <Type>.doc</Type>
+    <Price>400000</Price>
+    <Size>30kb</Size>
+    <Path>Y:\Skill\Code\C#\LibraryClientServer\DATA\LTM\bai kiem tra LTHTM buoi 2.doc</Path>
+  </Book>
+  <Book>
+    <Id>4168096239</Id>
+    <Name>bai kiem tra LTHTM buoi 3.doc</Name>
+    <Type>.doc</Type>
+    <Price>400000</Price>
+    <Size>68kb</Size>
+    <Path>Y:\Skill\Code\C#\LibraryClientServer\DATA\LTM\bai kiem tra LTHTM buoi 3.doc</Path>
+  </Book>
+  <Book>
+    <Id>9016076811</Id>
+    <Name>bai kiem tra LTHTM buoi 4.doc</Name>
+    <Type>.doc</Type>
+    <Price>400000</Price>
+    <Size>160kb</Size>
+    <Path>Y:\Skill\Code\C#\LibraryClientServer\DATA\LTM\bai kiem tra LTHTM buoi 4.doc</Path>
+  </Book>
+  <Book>
+    <Id>5110956811</Id>
+    <Name>bai kiem tra LTHTM buoi 5.doc</Name>
+    <Type>.doc</Type>
+    <Price>400000</Price>
+    <Size>109kb</Size>
+    <Path>Y:\Skill\Code\C#\LibraryClientServer\DATA\LTM\bai kiem tra LTHTM buoi 5.doc</Path>
+  </Book>
+  <Book>
+    <Id>1011623041</Id>
+    <Name>bai kiem tra LTHTM buoi 6.doc</Name>
+    <Type>.doc</Type>
+    <Price>400000</Price>
+    <Size>162kb</Size>
+    <Path>Y:\Skill\Code\C#\LibraryClientServer\DATA\LTM\bai kiem tra LTHTM buoi 6.doc</Path>
+  </Book>
+  <Book>
+    <Id>9319046425</Id>
+    <Name>bai kiem tra LTHTM buoi 7.doc</Name>
+    <Type>.doc</Type>
+    <Price>400000</Price>
+    <Size>190kb</Size>
+    <Path>Y:\Skill\Code\C#\LibraryClientServer\DATA\LTM\bai kiem tra LTHTM buoi 7.doc</Path>
+  </Book>
+  <Book>
+    <Id />
+    <Name>Book 9</Name>
+    <Type>pdf</Type>
+    <Price>0</Price>
+    <Size>128kb</Size>
+    <Path>
+    </Path>
+  </Book>
+</ArrayOfBook>

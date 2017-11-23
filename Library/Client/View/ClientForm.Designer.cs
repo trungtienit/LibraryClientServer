@@ -47,14 +47,14 @@ namespace Client
             this.tbIpAddress = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cbType = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnSearch = new System.Windows.Forms.Button();
             this.tbSearch = new System.Windows.Forms.TextBox();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvBooks = new System.Windows.Forms.DataGridView();
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.type = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -63,7 +63,7 @@ namespace Client
             this.panel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvBooks)).BeginInit();
             this.SuspendLayout();
             // 
             // label5
@@ -150,13 +150,17 @@ namespace Client
             this.label7.TabIndex = 1;
             this.label7.Text = "Port";
             // 
-            // comboBox1
+            // cbType
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(14, 87);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(180, 33);
-            this.comboBox1.TabIndex = 16;
+            this.cbType.FormattingEnabled = true;
+            this.cbType.Items.AddRange(new object[] {
+            "PDF",
+            "Word",
+            "Excel"});
+            this.cbType.Location = new System.Drawing.Point(14, 87);
+            this.cbType.Name = "cbType";
+            this.cbType.Size = new System.Drawing.Size(180, 33);
+            this.cbType.TabIndex = 16;
             // 
             // groupBox1
             // 
@@ -165,7 +169,7 @@ namespace Client
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.btnSearch);
             this.groupBox1.Controls.Add(this.tbSearch);
-            this.groupBox1.Controls.Add(this.comboBox1);
+            this.groupBox1.Controls.Add(this.cbType);
             this.groupBox1.Location = new System.Drawing.Point(19, 308);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(499, 446);
@@ -213,20 +217,20 @@ namespace Client
             this.tbSearch.Size = new System.Drawing.Size(465, 31);
             this.tbSearch.TabIndex = 4;
             // 
-            // dataGridView1
+            // dgvBooks
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvBooks.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvBooks.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.id,
             this.name,
             this.type,
             this.price,
             this.size});
-            this.dataGridView1.Location = new System.Drawing.Point(548, 12);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 33;
-            this.dataGridView1.Size = new System.Drawing.Size(1264, 742);
-            this.dataGridView1.TabIndex = 21;
+            this.dgvBooks.Location = new System.Drawing.Point(548, 12);
+            this.dgvBooks.Name = "dgvBooks";
+            this.dgvBooks.RowTemplate.Height = 33;
+            this.dgvBooks.Size = new System.Drawing.Size(1264, 742);
+            this.dgvBooks.TabIndex = 21;
             // 
             // id
             // 
@@ -263,7 +267,7 @@ namespace Client
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.PaleTurquoise;
             this.ClientSize = new System.Drawing.Size(1824, 766);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dgvBooks);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnConnect);
             this.Controls.Add(this.panel2);
@@ -278,7 +282,7 @@ namespace Client
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvBooks)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -292,14 +296,14 @@ namespace Client
         private TextBox tbIpAddress;
         private Label label6;
         private Label label7;
-        private ComboBox comboBox1;
+        private ComboBox cbType;
         private GroupBox groupBox1;
         private Button btnSearch;
         private TextBox tbSearch;
         private BindingSource bindingSource1;
         private TextBox textBox2;
         private Label label1;
-        private DataGridView dataGridView1;
+        private DataGridView dgvBooks;
         private DataGridViewTextBoxColumn id;
         private DataGridViewTextBoxColumn name;
         private DataGridViewTextBoxColumn type;

@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Threading;
-
+using Client.Common;
 namespace Client
 {
     /// <summary>
@@ -16,6 +16,7 @@ namespace Client
     /// </summary>
     public partial class Client : System.Windows.Forms.Form
     {
+
         public Client()
         {
             //
@@ -27,7 +28,7 @@ namespace Client
             // TODO: Add constructor code after the InitializeComponent() call.
             //
         }
-
+        private List<String> listBooksCurrent;
         private TCPModel client;
         public void Connect()
         {
@@ -43,7 +44,7 @@ namespace Client
                 //t2.Start();
             }
         }
-
+#region Event
         void MainFormLoad(object sender, System.EventArgs e)
         {
             lbConnected.Visible = false;
@@ -60,8 +61,30 @@ namespace Client
 
         private void Search_Click(object sender, EventArgs e)
         {
-            client.SendData("tung");
-            tbSearch.Text = client.ReadData();
+            if (cbType.Text.Equals(""))
+                MessageBox.Show("Type is invalid", "Client", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        
+            client.SendData(ClientManager.TYPE_SEARCH.ToString() +ClientManager.SIGN+ tbSearch.Text+ClientManager.SIGN+cbType.Text);
+            updateView();
+        }
+
+        #endregion
+        private void updateView()
+        {
+            dgvBooks.Rows.Clear();
+            listBooksCurrent = client.ReadListData();
+            int k = 0;
+            foreach (String s in listBooksCurrent)
+            {
+          
+                String[] a = s.Split(ClientManager.SIGN);
+                this.dgvBooks.Rows.Add();
+                for(int i = 0; i < 5; i++)
+                {
+                    this.dgvBooks.Rows[k].Cells[i].Value = a[i];
+                }
+                k++;
+            }
         }
     }
 }

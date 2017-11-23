@@ -5,12 +5,14 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Net.Sockets;
 using System.Threading;
+using Server.Common;
+using System.IO;
 
 /**
  * TRAN TRUNG TIEN 22/11/2017
  */
- 
-namespace Library
+
+namespace Server
 {
     /// <summary>
     /// Description of MainForm.
@@ -33,6 +35,7 @@ namespace Library
         private TCPModel tcp;
         ServerModel server;
         SocketModel currentSocket;
+#region Event
         void MainFormLoad(object sender, EventArgs e)
         {
             CheckForIllegalCrossThreadCalls = false;
@@ -40,7 +43,15 @@ namespace Library
             server = new ServerModel().GetInstance();
 
         }
-
+        void StartClick(object sender, EventArgs e)
+        {
+            LoadData();
+            StartServer();
+            Thread t = new Thread(ServeClients);
+            t.Start();
+        }
+        #endregion
+#region Funtion Communication Server-client
         public void StartServer()
         {
             string ip = tbIpAddress.Text;
@@ -49,12 +60,14 @@ namespace Library
             tcp.Listen();
             btnStart.Enabled = false;
         }
-
-        public void Commmunication(object obj)
+        public void Communication(object obj)
         {
+            string result = "";
+            List<String> results = new List<string>(); ;
             SocketModel socket = (SocketModel) obj;
             while (true)
             {
+               
                 string str = socket.ReceiveData();
                 //Remove socket fail : disconnect
                 if (str.Equals(SocketModel.CLIENT_DISSCONECT + socket.GetRemoteEndpoint()))
@@ -64,12 +77,19 @@ namespace Library
                     server.Remove(socket);
                     return;
                 }
-                Random random = new Random();
-                int num = random.Next(1, 6);
-                string result = num.ToString();
-                BroadcastResult(socket, result);
+                string[] receive = str.Split(ServerManager.SIGN);
+                if (receive[0].Equals(ServerManager.TYPE_SEARCH.ToString()))
+                    socket.SendData(results = SearchView(receive[1], receive[2]));
+          
+            //    BroadcastResult(socket, results);
             }
         }
+
+        private void BroadcastResult(SocketModel socket, List<string> results)
+        {
+            socket.SendData(results);
+        }
+
         public void BroadcastResult(SocketModel socket, string result)
         {
             socket.SendData(result);
@@ -88,26 +108,27 @@ namespace Library
                 tbLogConnect.AppendText(str1);
                 lbNumberClient.Text = server.GetSocketCounts().ToString();
 
-                Thread t = new Thread(Commmunication);
+                Thread t = new Thread(Communication);
                 t.Start(currentSocket);
             }
         }
-        void StartClick(object sender, EventArgs e)
+        private List<string> SearchView(string name, string type)
         {
-            LoadData();
-            StartServer();
-            Thread t = new Thread(ServeClients);
-            t.Start();
+            List<String> l= new List<string>();
 
-            Book b = new Book();
-
+            foreach(Book b in DataBase.GetListBook())
+            {
+                if (b.Name.ToUpper().Contains(name.ToUpper()) && type.ToUpper().Equals(type.ToUpper()))
+                    l.Add(b.ToString());
+            }
+            return l;
         }
+
+        #endregion
 
         private void LoadData()
         {
-            DataBase.InitDB(DataTest.GetListBook());
-
-
+            DataBase.GetListBook();
         }
     }
 }

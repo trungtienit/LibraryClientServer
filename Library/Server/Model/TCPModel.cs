@@ -3,7 +3,7 @@ using System;
 using System.Net;
 using System.Net.Sockets;
 
-namespace Library
+namespace Server
 {
 	/// <summary>
 	/// Description of TCPModel.

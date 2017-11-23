@@ -4,6 +4,8 @@ using System.Net;
 using System.Net.Sockets;
 using System.IO;
 using System.Text;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Collections.Generic;
 
 namespace Client
 {
@@ -18,8 +20,8 @@ namespace Client
 		private byte[] byteReceive;
 		private string IPofServer;
 		private int port;
-		
-		public TCPModel(string ip, int p)
+
+        public TCPModel(string ip, int p)
 		{
 			IPofServer = ip;
 			port = p;
@@ -85,8 +87,16 @@ namespace Client
 			}			
 			return str;
 		}
-		//close connection
-		public void CloseConnection(){
+
+        internal List<String> ReadListData()
+        {
+            var bin = new BinaryFormatter();
+            var list = (List<string>) bin.Deserialize(stm);
+            return list;
+        }
+
+        //close connection
+        public void CloseConnection(){
 			tcpclnt.Close();			
 		}
 		

@@ -1,10 +1,14 @@
 ﻿
 using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Net;
 using System.Net.Sockets;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 
-namespace Library
+namespace Server
 {
 	/// <summary>
 	/// Description of SocketModel.
@@ -15,8 +19,8 @@ namespace Library
 
         private Socket socket;
 		private byte[] array_to_receive_data;
-		private string remoteEndPoint;		
-		
+		private string remoteEndPoint;
+        private Stream stream;
 		public SocketModel(Socket s)
 		{
 			socket = s;
@@ -56,7 +60,6 @@ namespace Library
 		            c[i] = Convert.ToChar(array_to_receive_data[i]);
 		        }
 		        str = new string(c);
-		        str = socket.RemoteEndPoint + " >> " + str;
 			}
 			catch (Exception e){
 				string str1 = "Error..... " + e.StackTrace;
@@ -76,8 +79,22 @@ namespace Library
 		        Console.WriteLine("Error..... " + e.StackTrace);
 			}		
 		}
-		//close sockket
-		public void CloseSocket(){
+        public void SendData(List<String> strs)
+        {
+            if (stream == null)
+                stream = new NetworkStream(socket);
+            try
+            {
+                var bin = new BinaryFormatter();
+                bin.Serialize(stream, strs);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Send List String Error..... " + e.StackTrace);
+            }
+        }
+        //close sockket
+        public void CloseSocket(){
 			socket.Close();
 		}		
 
