@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="Common\ClientManager.cs" />
     <Compile Include="Model\Book.cs" />
+    <Compile Include="Model\FileSteam.cs" />
     <Compile Include="View\ClientForm.cs">
       <SubType>Form</SubType>
     </Compile>

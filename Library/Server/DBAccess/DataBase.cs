@@ -17,7 +17,7 @@ namespace Server
     {
         public const String PATH_DB_XML = "..\\..\\..\\..\\BooksDB.xml";
         public const String PATH_DB = "..\\..\\..\\..\\DATA";
-        public static string[] EXTENSIONS = new[] { ".doc", ".pdf", ".docx" };
+        public static string[] EXTENSIONS = new[] { ".doc", ".pdf", ".docx",".mp4",".sketch",".mp3",".zip",".dmg" };
         public static List<Book> books;
         public DataBase() {}
         public static List<Book> GetListBook()
@@ -43,7 +43,7 @@ namespace Server
                 using (FileStream fs = new FileStream(PATH_DB_XML, FileMode.Open, FileAccess.Read))
                 {
                     books = serializer.Deserialize(fs) as List<Book>;
-                    Console.Write("Database Created");
+                    Console.Write("Database load");
                 }
 
             }
@@ -55,6 +55,7 @@ namespace Server
         //TODO Write listbooks --> file xml
         public static void WriteNewDB()
         {
+            books.Clear();
             books = ServerManager.GetAllDataLocal(DataBase.PATH_DB, EXTENSIONS);
             try
             {      
@@ -102,6 +103,15 @@ namespace Server
             //Save to listbooks
             books.Add(b);
         }
+
+        internal static Book GetFile(string v)
+        {
+            foreach (Book b in books)
+                if (v.Equals(b.Id))
+                    return b;
+            return null;
+        }
+
         public static void DeleteBook(Book b)
         {
             //Remove book in xml

@@ -44,7 +44,7 @@ namespace Client
                 //t2.Start();
             }
         }
-#region Event
+        #region Event
         void MainFormLoad(object sender, System.EventArgs e)
         {
             lbConnected.Visible = false;
@@ -62,9 +62,11 @@ namespace Client
         private void Search_Click(object sender, EventArgs e)
         {
             if (cbType.Text.Equals(""))
+            {
                 MessageBox.Show("Type is invalid", "Client", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        
-            client.SendData(ClientManager.TYPE_SEARCH.ToString() +ClientManager.SIGN+ tbSearch.Text+ClientManager.SIGN+cbType.Text);
+                return;
+            }
+            client.SendData(ClientManager.TYPE_SEARCH.ToString() + ClientManager.SIGN + tbSearch.Text + ClientManager.SIGN + cbType.Text);
             updateView();
         }
 
@@ -76,15 +78,28 @@ namespace Client
             int k = 0;
             foreach (String s in listBooksCurrent)
             {
-          
+
                 String[] a = s.Split(ClientManager.SIGN);
                 this.dgvBooks.Rows.Add();
-                for(int i = 0; i < 5; i++)
+                for (int i = 0; i < 5; i++)
                 {
                     this.dgvBooks.Rows[k].Cells[i].Value = a[i];
+
                 }
-                k++;
+                this.dgvBooks.Rows[k].HeaderCell.Value = (++k).ToString();
+                dgvBooks.RowsDefaultCellStyle.BackColor = Color.LightBlue;
+                dgvBooks.AlternatingRowsDefaultCellStyle.BackColor = Color.LightSkyBlue;
             }
+        }
+
+        private void dgvBooks_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            client.SendData(ClientManager.TYPE_PREVIEW.ToString() + ClientManager.SIGN + dgvBooks.Rows[e.RowIndex].Cells[0].Value.ToString());
+            //  String fileName = dgvBooks.Rows[e.RowIndex].Cells[1].Value.ToString();
+            if (!TCPModel.isDownloading)
+                client.DownloadData();
+            else
+                MessageBox.Show("Please wait...");
         }
     }
 }

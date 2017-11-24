@@ -6,3 +6,4 @@ Y:\Skill\Code\C#\LibraryClientServer\Library\Client\obj\Debug\Client.csproj.Gene
 Y:\Skill\Code\C#\LibraryClientServer\Library\Client\obj\Debug\Client.csproj.CoreCompileInputs.cache
 Y:\Skill\Code\C#\LibraryClientServer\Library\Client\obj\Debug\Client.exe
 Y:\Skill\Code\C#\LibraryClientServer\Library\Client\obj\Debug\Client.pdb
+Y:\Skill\Code\C#\LibraryClientServer\Library\Client\obj\Debug\Client.csprojResolveAssemblyReference.cache

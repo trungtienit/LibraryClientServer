@@ -152,11 +152,14 @@ namespace Client
             // 
             // cbType
             // 
+            this.cbType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbType.FormattingEnabled = true;
             this.cbType.Items.AddRange(new object[] {
-            "PDF",
             "Word",
-            "Excel"});
+            "Pdf",
+            "Excel",
+            "Text",
+            "All"});
             this.cbType.Location = new System.Drawing.Point(14, 87);
             this.cbType.Name = "cbType";
             this.cbType.Size = new System.Drawing.Size(180, 33);
@@ -185,6 +188,7 @@ namespace Client
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(230, 31);
             this.textBox2.TabIndex = 20;
+            this.textBox2.Text = "10 000 000";
             // 
             // label1
             // 
@@ -228,9 +232,11 @@ namespace Client
             this.size});
             this.dgvBooks.Location = new System.Drawing.Point(548, 12);
             this.dgvBooks.Name = "dgvBooks";
+            this.dgvBooks.RowHeadersWidth = 50;
             this.dgvBooks.RowTemplate.Height = 33;
             this.dgvBooks.Size = new System.Drawing.Size(1264, 742);
             this.dgvBooks.TabIndex = 21;
+            this.dgvBooks.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvBooks_CellMouseClick);
             // 
             // id
             // 
@@ -275,7 +281,7 @@ namespace Client
             this.Controls.Add(this.label5);
             this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "Client";
-            this.Text = "Client";
+            this.Text = " ";
             this.Load += new System.EventHandler(this.MainFormLoad);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();

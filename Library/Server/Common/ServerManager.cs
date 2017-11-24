@@ -33,22 +33,24 @@ namespace Server.Common
             {
                 mList.AddRange(GetAllDataLocal(s, fileTypes));
             }
+            Random r = new Random();
             foreach (FileInfo file in files)
             {
-                Random r = new Random();
+
                 double p = (r.Next(1, 99) * 100000);
-                String t = "byte";
+                String t = " bytes";
                 String l = file.Length.ToString();
-                if (file.Length > 1000)
-                {
-                    l = (file.Length / 1000).ToString();
-                    t = "kb";
-                }
-                else if (file.Length > 1000000)
+                if (file.Length > 1000000)
                 {
                     l = (file.Length / 1000000).ToString();
-                    t = "Mb";
+                    t = " MB";
                 }
+                else if (file.Length > 1000)
+                {
+                    l = (file.Length / 1000).ToString();
+                    t = " KB";
+                }
+
                 String nameEdit = file.Name;
                 if (nameEdit.Contains(ServerManager.SIGN))
                     nameEdit.Replace(ServerManager.SIGN, '~');

@@ -19,7 +19,7 @@ namespace Server
     /// </summary>
     public partial class ServerForm : Form
     {
-      
+
         public ServerForm()
         {
             //
@@ -35,7 +35,7 @@ namespace Server
         private TCPModel tcp;
         ServerModel server;
         SocketModel currentSocket;
-#region Event
+        #region Event
         void MainFormLoad(object sender, EventArgs e)
         {
             CheckForIllegalCrossThreadCalls = false;
@@ -51,7 +51,7 @@ namespace Server
             t.Start();
         }
         #endregion
-#region Funtion Communication Server-client
+        #region Funtion Communication Server-client
         public void StartServer()
         {
             string ip = tbIpAddress.Text;
@@ -64,10 +64,10 @@ namespace Server
         {
             string result = "";
             List<String> results = new List<string>(); ;
-            SocketModel socket = (SocketModel) obj;
+            SocketModel socket = (SocketModel)obj;
             while (true)
             {
-               
+
                 string str = socket.ReceiveData();
                 //Remove socket fail : disconnect
                 if (str.Equals(SocketModel.CLIENT_DISSCONECT + socket.GetRemoteEndpoint()))
@@ -78,12 +78,24 @@ namespace Server
                     return;
                 }
                 string[] receive = str.Split(ServerManager.SIGN);
-                if (receive[0].Equals(ServerManager.TYPE_SEARCH.ToString()))
-                    socket.SendData(results = SearchView(receive[1], receive[2]));
-          
-            //    BroadcastResult(socket, results);
+                switch (Int32.Parse(receive[0]))
+                {
+                    case ServerManager.TYPE_SEARCH:
+                        //TODO Send list books
+                        socket.SendData(results = SearchView(receive[1], receive[2]));
+                        break;
+                        //Send File book
+                    case ServerManager.TYPE_PREVIEW:
+
+                        socket.SendData(DataBase.GetFile(receive[1]));
+                        break;
+                }
+               
+                //    BroadcastResult(socket, results);
             }
         }
+
+
 
         private void BroadcastResult(SocketModel socket, List<string> results)
         {
@@ -104,7 +116,7 @@ namespace Server
                 server.Add(currentSocket);
                 string str = currentSocket.GetRemoteEndpoint();
                 string str1 = "New connection from: " + str + "\r\n";
-                
+
                 tbLogConnect.AppendText(str1);
                 lbNumberClient.Text = server.GetSocketCounts().ToString();
 
@@ -114,13 +126,61 @@ namespace Server
         }
         private List<string> SearchView(string name, string type)
         {
-            List<String> l= new List<string>();
-
-            foreach(Book b in DataBase.GetListBook())
+            List<String> l = new List<string>();
+            if (type.Equals("All"))
             {
-                if (b.Name.ToUpper().Contains(name.ToUpper()) && type.ToUpper().Equals(type.ToUpper()))
-                    l.Add(b.ToString());
+                foreach (Book b in DataBase.GetListBook())
+                {
+                    if (b.Name.ToUpper().Contains(name.ToUpper()))
+                        l.Add(b.ToString());
+                }
             }
+            else
+            {
+
+                if (type.Equals("Word"))
+                {
+                    foreach (Book b in DataBase.GetListBook())
+                    {
+                        if (b.Name.ToUpper().Contains(name.ToUpper())
+                                  && (b.Type.ToUpper().Equals(".DOC")
+                                  || b.Type.ToUpper().Equals(".DOCX")))
+                            l.Add(b.ToString());
+                    }
+                }
+                if (type.Equals("Exel"))
+                {
+                    foreach (Book b in DataBase.GetListBook())
+                    {
+                        if (b.Name.ToUpper().Contains(name.ToUpper())
+                            && (b.Type.ToUpper().Equals(".XLSX")
+                            || b.Type.ToUpper().Equals(".XLSM")
+                            || b.Type.ToUpper().Equals(".XLS")))
+                            l.Add(b.ToString());
+                    }
+                }
+                if (type.Equals("Pdf"))
+                {
+                    foreach (Book b in DataBase.GetListBook())
+                    {
+                        if (b.Name.ToUpper().Contains(name.ToUpper())
+                             && b.Type.ToUpper().Equals(".PDF"))
+                            l.Add(b.ToString());
+                    }
+                }
+                if (type.Equals("Text"))
+                {
+                    foreach (Book b in DataBase.GetListBook())
+                    {
+                        if (b.Name.ToUpper().Contains(name.ToUpper())
+                           && b.Type.ToUpper().Equals(".TXT"))
+                            l.Add(b.ToString());
+                    }
+                }
+
+            }
+
+
             return l;
         }
 
@@ -129,6 +189,11 @@ namespace Server
         private void LoadData()
         {
             DataBase.GetListBook();
+        }
+
+        private void btnUpdateDataBase_Click(object sender, EventArgs e)
+        {
+            DataBase.WriteNewDB();
         }
     }
 }

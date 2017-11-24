@@ -47,6 +47,7 @@ namespace Server
             this.label3 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lbNumberClient = new System.Windows.Forms.Label();
+            this.btnUpdateDataBase = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -97,7 +98,7 @@ namespace Server
             this.btnStart.Location = new System.Drawing.Point(354, 182);
             this.btnStart.Margin = new System.Windows.Forms.Padding(6);
             this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(160, 129);
+            this.btnStart.Size = new System.Drawing.Size(112, 129);
             this.btnStart.TabIndex = 4;
             this.btnStart.Text = "Start";
             this.btnStart.UseVisualStyleBackColor = false;
@@ -117,12 +118,12 @@ namespace Server
             // 
             // tbLogConnect
             // 
-            this.tbLogConnect.Location = new System.Drawing.Point(14, 37);
+            this.tbLogConnect.Location = new System.Drawing.Point(-5, 37);
             this.tbLogConnect.Margin = new System.Windows.Forms.Padding(6);
             this.tbLogConnect.Multiline = true;
             this.tbLogConnect.Name = "tbLogConnect";
             this.tbLogConnect.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.tbLogConnect.Size = new System.Drawing.Size(552, 141);
+            this.tbLogConnect.Size = new System.Drawing.Size(592, 191);
             this.tbLogConnect.TabIndex = 0;
             // 
             // panel1
@@ -151,19 +152,34 @@ namespace Server
             // panel2
             // 
             this.panel2.Controls.Add(this.groupBox1);
-            this.panel2.Location = new System.Drawing.Point(21, 464);
+            this.panel2.Location = new System.Drawing.Point(5, 464);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(618, 267);
+            this.panel2.Size = new System.Drawing.Size(634, 267);
             this.panel2.TabIndex = 9;
             // 
             // lbNumberClient
             // 
             this.lbNumberClient.AutoSize = true;
-            this.lbNumberClient.Location = new System.Drawing.Point(285, 370);
+            this.lbNumberClient.Font = new System.Drawing.Font("Segoe Script", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbNumberClient.ForeColor = System.Drawing.Color.Blue;
+            this.lbNumberClient.Location = new System.Drawing.Point(239, 336);
             this.lbNumberClient.Name = "lbNumberClient";
-            this.lbNumberClient.Size = new System.Drawing.Size(24, 25);
+            this.lbNumberClient.Size = new System.Drawing.Size(92, 106);
             this.lbNumberClient.TabIndex = 10;
             this.lbNumberClient.Text = "0";
+            // 
+            // btnUpdateDataBase
+            // 
+            this.btnUpdateDataBase.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnUpdateDataBase.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnUpdateDataBase.Location = new System.Drawing.Point(478, 182);
+            this.btnUpdateDataBase.Margin = new System.Windows.Forms.Padding(6);
+            this.btnUpdateDataBase.Name = "btnUpdateDataBase";
+            this.btnUpdateDataBase.Size = new System.Drawing.Size(112, 129);
+            this.btnUpdateDataBase.TabIndex = 11;
+            this.btnUpdateDataBase.Text = "Update Database";
+            this.btnUpdateDataBase.UseVisualStyleBackColor = false;
+            this.btnUpdateDataBase.Click += new System.EventHandler(this.btnUpdateDataBase_Click);
             // 
             // ServerForm
             // 
@@ -171,6 +187,7 @@ namespace Server
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PowderBlue;
             this.ClientSize = new System.Drawing.Size(650, 743);
+            this.Controls.Add(this.btnUpdateDataBase);
             this.Controls.Add(this.lbNumberClient);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.label3);
@@ -200,5 +217,6 @@ namespace Server
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label lbNumberClient;
+        private System.Windows.Forms.Button btnUpdateDataBase;
     }
 }
