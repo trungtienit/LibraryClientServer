@@ -1,9 +1,9 @@
 Y:\Skill\Code\C#\LibraryClientServer\Library\Client\bin\Debug\Client.exe
 Y:\Skill\Code\C#\LibraryClientServer\Library\Client\bin\Debug\Client.pdb
+Y:\Skill\Code\C#\LibraryClientServer\Library\Client\obj\Debug\Client.csprojResolveAssemblyReference.cache
 Y:\Skill\Code\C#\LibraryClientServer\Library\Client\obj\Debug\Client.Client.resources
 Y:\Skill\Code\C#\LibraryClientServer\Library\Client\obj\Debug\Server.ViewFile.resources
 Y:\Skill\Code\C#\LibraryClientServer\Library\Client\obj\Debug\Client.csproj.GenerateResource.Cache
 Y:\Skill\Code\C#\LibraryClientServer\Library\Client\obj\Debug\Client.csproj.CoreCompileInputs.cache
 Y:\Skill\Code\C#\LibraryClientServer\Library\Client\obj\Debug\Client.exe
 Y:\Skill\Code\C#\LibraryClientServer\Library\Client\obj\Debug\Client.pdb
-Y:\Skill\Code\C#\LibraryClientServer\Library\Client\obj\Debug\Client.csprojResolveAssemblyReference.cache

@@ -6,7 +6,7 @@ using System.IO;
 using System.Text;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Collections.Generic;
-using System.Threading;
+using System.Threading;  
 
 namespace Client
 {
@@ -22,7 +22,6 @@ namespace Client
         private byte[] byteReceive;
         private string IPofServer;
         private int port;
-        private FileStream a;
 
         public TCPModel(string ip, int p)
         {

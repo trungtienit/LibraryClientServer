@@ -6,8 +6,16 @@ using System.Text;
 
 namespace Server.Common
 {
+
     public class ServerManager
     {
+        public const String PDF = "mimeType = 'application/pdf'";
+        public const String PLAIN_TEXT = "mimeType = 'text/plain'";
+        public const String RICH_TEXT = "mimeType = 'application/rtf'";
+        public const String EXCEL = "mimeType = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'";
+        public const String MSWORD = "mimeType = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'";
+        public const String OFFICE_DOC = "mimeType = 'application/vnd.oasis.opendocument.text'";
+
         public const char SIGN = '#';
         public const byte TYPE = 1;
         public const byte TYPE_SEARCH = TYPE << 1;
@@ -16,6 +24,13 @@ namespace Server.Common
         public const byte TYPE_VIEW_FULL = TYPE << 4;
         public const byte TYPE_CHANGE = TYPE << 5;
 
+        public const byte TYPE_FILE = 1;
+        public const byte TYPE_FILE_MSWORD = TYPE_FILE<< 1;
+        public const byte TYPE_FILE_PLAIN_TEXT = TYPE_FILE << 2;
+        public const byte TYPE_FILE_PDF = TYPE_FILE << 3;
+        public const byte TYPE_FILE_RICH_TEXT = TYPE_FILE << 4;
+        public const byte TYPE_FILE_EXCEL = TYPE_FILE << 5;
+        public const byte TYPE_FILE_OFFICE_DOC = TYPE_FILE << 6;
 
         public static List<Book> GetAllDataLocal(string pathFolder, string[] fileTypes)
         {
@@ -38,28 +53,14 @@ namespace Server.Common
             {
 
                 double p = (r.Next(1, 99) * 100000);
-                String t = " bytes";
-                String l = file.Length.ToString();
-                if (file.Length > 1000000)
-                {
-                    l = (file.Length / 1000000).ToString();
-                    t = " MB";
-                }
-                else if (file.Length > 1000)
-                {
-                    l = (file.Length / 1000).ToString();
-                    t = " KB";
-                }
-
-                String nameEdit = file.Name;
-                if (nameEdit.Contains(ServerManager.SIGN))
-                    nameEdit.Replace(ServerManager.SIGN, '~');
+                
+               
                 Book b = new Book.Builder()
                       .Id(CreateId(file))
-                      .Name(nameEdit)
+                      .Name(CustomName(file.Name))
                       .Type(file.Extension)
                       .Price(p)
-                      .Size(l + t)
+                      .Size(CustomSize(file.Length))
                       .Path(file.FullName)
                       .Build();
                 mList.Add(b);
@@ -67,7 +68,32 @@ namespace Server.Common
             return mList;
         }
 
-        private static string CreateId(FileInfo file)
+        public static string CustomName(string name)
+        {
+            String nameEdit = name;
+            if (nameEdit.Contains(ServerManager.SIGN))
+                nameEdit.Replace(ServerManager.SIGN, '~');
+            return nameEdit;
+        }
+
+        public static string CustomSize(long length)
+        {
+            String t = " bytes";
+            String l = length.ToString();
+            if (length > 1000000)
+            {
+                l = (length / 1000000).ToString();
+                t = " MB";
+            }
+            else if (length > 1000)
+            {
+                l = (length / 1000).ToString();
+                t = " KB";
+            }
+            return l + t;
+        }
+
+        public static string CreateId(FileInfo file)
         {
             DateTime dateTime = new DateTime();
             if (file.CreationTime != null)

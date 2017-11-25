@@ -14,6 +14,7 @@ namespace Server
         double price;
         String size;
         String path;
+        Boolean onDrive;
 
         public string Id { get => id; set => id = value; }
         public string Name { get => name; set => name = value; }
@@ -34,6 +35,7 @@ namespace Server
             this.price = builder.price;
             this.size = builder.size;
             this.path = builder.path;
+            this.onDrive = builder.onDrive;
         }
         public string ToString()
         {
@@ -48,6 +50,7 @@ namespace Server
             public double price;
             public String size;
             public String path;
+            public Boolean onDrive;
             public Builder()
             {
                 id = "";
@@ -56,10 +59,16 @@ namespace Server
                 price = 0.0f;
                 size = "";
                 path = "";
+                onDrive = false;
             }
             public Builder Id(String id)
             {
                 this.id = id;
+                return this;
+            }
+            public Builder OnDrive()
+            {
+                this.onDrive = true;
                 return this;
             }
             public Builder Name(String name)
