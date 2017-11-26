@@ -15,8 +15,12 @@ namespace Server
         String size;
         String path;
         Boolean onDrive;
-
-        public string Id { get => id; set => id = value; }
+        public string Id
+        {
+            get { return id; }
+            set { id = value; }
+        }
+        //public string Id { get => id; set => id = value; }
         public string Name { get => name; set => name = value; }
         public string Type { get => type; set => type = value; }
         public double Price { get => price; set => price = value; }

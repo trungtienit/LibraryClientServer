@@ -91,6 +91,7 @@ namespace Server
             doc.Load(PATH_DB_XML);
             XmlNode book = doc.CreateElement("Book");
             XmlNode id = doc.CreateElement("Id");
+            id.InnerText = b.Id;
             XmlNode name = doc.CreateElement("Name");
             name.InnerText = b.Name;
             XmlNode type = doc.CreateElement("Type");

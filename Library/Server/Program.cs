@@ -19,8 +19,7 @@ namespace Server
 
         [STAThread]
         private static void Main(string[] args)
-        {
-
+        {   
         //    ApiManager apiManager = new ApiManager();
          //   apiManager.FindBookByTitleAndTypeOnDrive("chuong", ServerManager.TYPE_FILE_PDF|ServerManager.TYPE_FILE_MSWORD| ServerManager.TYPE_FILE_EXCEL);
             Application.EnableVisualStyles();

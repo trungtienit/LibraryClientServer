@@ -26,9 +26,6 @@ namespace Server.Api
             serverManager = new ServerManager();
             service = GetDriceService(credential);
         }
-
-
-
         internal List<string> FindBookOnDrive(string v1, string v2)
         {
             byte mType = ServerManager.TYPE_FILE;
