@@ -88,7 +88,13 @@ namespace Server
         {
             //Save to xml
             XmlDocument doc = new XmlDocument();
-            doc.Load(PATH_DB_XML);
+            try
+            {
+                doc.Load(PATH_DB_XML);
+            }catch(Exception E)
+            {
+                DataBase.WriteNewDB();
+            }
             XmlNode book = doc.CreateElement("Book");
             XmlNode id = doc.CreateElement("Id");
             id.InnerText = b.Id;
@@ -117,10 +123,10 @@ namespace Server
             books.Add(b);
         }
 
-        internal static Book GetFile(string v)
-        {
+        internal static Book GetFile(string id)
+        {   
             foreach (Book b in books)
-                if (v.Equals(b.Id))
+                if (id.Equals(b.Id))
                     return b;
             return null;
         }

@@ -1,4 +1,5 @@
 ﻿
+using Server.Api;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -22,6 +23,7 @@ namespace Server
         private byte[] array_to_receive_data;
         private string remoteEndPoint;
         private Stream stream;
+        private ApiManager apiManager;
         public SocketModel(Socket s)
         {
             socket = s;
@@ -111,19 +113,25 @@ namespace Server
             }
         }
 
-        internal void SendData(Book book)
+        internal void SendBook(Book book)
         {
-            Thread t = new Thread(SendDataByThread);
+            Thread t = new Thread(SendBookByThread);
             t.Start(book);
         }
 
-        public void SendDataByThread(Object o)
+        public void SendBookByThread(Object o)
         {
             Book book = (Book)o;
             try
             {
                 string filePath = "";
                 string fileName = book.Path;
+                if (book.Id.StartsWith("GD"))
+                {
+                    apiManager = new ApiManager();
+                    fileName = apiManager.DownLoadFile(book.Path,book.Name);
+                }
+                  
                 fileName = fileName.Replace("\\", "/");
                 while (fileName.IndexOf("/") > -1)
                 {

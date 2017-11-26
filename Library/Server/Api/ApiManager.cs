@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using Google.Apis.Drive.v3.Data;
+using Google.Apis.Download;
 
 namespace Server.Api
 {
@@ -32,12 +33,12 @@ namespace Server.Api
             if (v2.ToUpper().Equals("WORD"))
                 mType = ServerManager.TYPE_FILE_MSWORD;
             if (v2.ToUpper().Equals("PDF"))
-                mType = ServerManager.TYPE_FILE_PDF ;
+                mType = ServerManager.TYPE_FILE_PDF;
             if (v2.ToUpper().Equals("EXCEL"))
-                mType = ServerManager.TYPE_FILE_EXCEL ;
+                mType = ServerManager.TYPE_FILE_EXCEL;
             if (v2.ToUpper().Equals("ALL"))
-                mType = ServerManager.TYPE_FILE_EXCEL | ServerManager.TYPE_FILE_MSWORD| ServerManager.TYPE_FILE_PDF;
-            return FindBookByTitleAndTypeOnDrive(v1, mType); 
+                mType = ServerManager.TYPE_FILE_EXCEL | ServerManager.TYPE_FILE_MSWORD | ServerManager.TYPE_FILE_PDF;
+            return FindBookByTitleAndTypeOnDrive(v1, mType);
         }
         public List<String> FindBookByTitleAndTypeOnDrive(String title, byte types)
         {
@@ -99,7 +100,7 @@ namespace Server.Api
                 pageToken = result.NextPageToken;
             } while (pageToken != null);
             Console.WriteLine("Search done");
-           
+
             return results;
             #endregion
         }
@@ -142,7 +143,47 @@ namespace Server.Api
             Console.WriteLine("Done!");
             #endregion
         }
-
+        public String DownLoadFile(String fileId, String fileName)
+        {
+            String filePath = DataBase.PATH_DB + "/" + fileName;
+            while (System.IO.File.Exists(filePath))
+            {
+                return filePath;
+            }
+            var request = service.Files.Get(fileId);
+            var stream = new System.IO.MemoryStream();
+            // Add a handler which will be notified on progress changes.
+            // It will notify on each chunk download and when the
+            // download is completed or failed.
+            request.MediaDownloader.ProgressChanged +=
+                    (IDownloadProgress progress) =>
+                    {
+                        switch (progress.Status)
+                        {
+                            case DownloadStatus.Downloading:
+                                {
+                                    Console.WriteLine(progress.BytesDownloaded);
+                                    break;
+                                }
+                            case DownloadStatus.Completed:
+                                {
+                                    Console.WriteLine("Download complete.");
+                                    break;
+                                }
+                            case DownloadStatus.Failed:
+                                {
+                                    Console.WriteLine("Download failed.");
+                                    break;
+                                }
+                        }
+                    };
+            request.Download(stream);
+            using (var fileStream = new FileStream(filePath, FileMode.Create, FileAccess.Write))
+            {
+                fileStream.Write(stream.GetBuffer(), 0, stream.GetBuffer().Length);
+            }
+            return filePath;
+        }
         public UserCredential GetUserCredential()
         {
             using (var stream = new FileStream("..\\..\\client_secret.json", FileMode.Open, FileAccess.Read))
@@ -169,5 +210,6 @@ namespace Server.Api
                 ApplicationName = ApplicationName,
             });
         }
+
     }
 }

@@ -7,6 +7,8 @@ namespace Client.Common
 {
     public class ClientManager
     {
+        public const String FOLDER_DOWLOAD = "..\\Download";
+
         public const char SIGN = '#';
         public const byte TYPE = 1;
         public const byte TYPE_SEARCH = TYPE << 1;

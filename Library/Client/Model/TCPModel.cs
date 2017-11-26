@@ -6,7 +6,8 @@ using System.IO;
 using System.Text;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Collections.Generic;
-using System.Threading;  
+using System.Threading;
+using Client.Common;
 
 namespace Client
 {
@@ -128,7 +129,11 @@ namespace Client
             BinaryWriter bWrite = null;
             try
             {
-                String receivedPath = "..\\";
+
+                String receivedPath = ClientManager.FOLDER_DOWLOAD;
+                if (!Directory.Exists(receivedPath))
+                    Directory.CreateDirectory(receivedPath);
+
 
                 byte[] clientData = new byte[100];
 
@@ -146,7 +151,7 @@ namespace Client
                 int k = 1;
                 while (File.Exists(receivedPath + "/" + fileName))
                 {
-                    fileName = "(" + k + ") " + fileName;
+                    fileName = "(" + k++ + ") " + fileName;
                 }
 
                 bWrite = new BinaryWriter(File.Open(receivedPath + "/" + fileName, FileMode.Append)); ;
