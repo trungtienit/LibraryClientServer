@@ -94,8 +94,14 @@ namespace Client
 
         private void dgvBooks_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            client.SendData(ClientManager.TYPE_PREVIEW.ToString() + ClientManager.SIGN + dgvBooks.Rows[e.RowIndex].Cells[0].Value.ToString());
-            //  String fileName = dgvBooks.Rows[e.RowIndex].Cells[1].Value.ToString();
+            try
+            {
+                client.SendData(ClientManager.TYPE_PREVIEW.ToString() + ClientManager.SIGN + dgvBooks.Rows[e.RowIndex].Cells[0].Value.ToString());
+            }catch(Exception E)
+            {
+                return;
+            }
+                //  String fileName = dgvBooks.Rows[e.RowIndex].Cells[1].Value.ToString();
             if (!TCPModel.isDownloading)
                 client.DownloadData();
             else

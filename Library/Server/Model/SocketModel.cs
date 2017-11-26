@@ -141,8 +141,8 @@ namespace Server
                 fileNameLen.CopyTo(clientData, 0);
                 fileLength.CopyTo(clientData, 4);
                 fileNameByte.CopyTo(clientData, 8);
-                //[FILE NAME LENGHT] [LENGTH FILE ] [NAME FILE] [DATA]
-                //[   4            ] [   4        ] [   lengt file   ]
+                //[FILE NAME LENGHT] [LENGTH FILE ] [NAME FILE] 
+                //[   4            ] [   4        ] [  name   ]
 
                 //SEND INFO
                 stream.Write(clientData, 0, clientData.Length);
@@ -151,9 +151,7 @@ namespace Server
                 byte[] buffer = new byte[bufferLength];
 
                 int len = (Int32)tempfile.Length;
-                decimal allByteRead = 0;
                 int byteRead;
-                //  int tmp = bufferLength > len ? len : bufferLength;
 
                 while ((byteRead = tempfile.Read(buffer, 0, bufferLength)) > 0)
                 {
@@ -166,12 +164,6 @@ namespace Server
                         Console.Write("Send failed" + E.StackTrace);
                     }
 
-                    ////Debug
-                    //allByteRead += byteRead;
-                    //if (allByteRead >= tempfile.Length)
-                    //    break;
-                    //    len -= tmp;
-                    //   tmp = bufferLength > len ? len : bufferLength;
                 }
 
                 Console.WriteLine("Read all : " + tempfile.Length);

@@ -32,10 +32,12 @@ namespace Server.Common
         public const byte TYPE_FILE_EXCEL = TYPE_FILE << 5;
         public const byte TYPE_FILE_OFFICE_DOC = TYPE_FILE << 6;
 
-        public static List<Book> GetAllDataLocal(string pathFolder, string[] fileTypes)
+        public List<Book> GetAllDataLocal(string pathFolder, string[] fileTypes)
         {
 
             List<Book> mList = new List<Book>();
+            if (!System.IO.Directory.Exists(DataBase.PATH_DB))
+                System.IO.Directory.CreateDirectory(DataBase.PATH_DB);
             DirectoryInfo dinfo = new DirectoryInfo(pathFolder);
 
             FileInfo[] files =
@@ -52,7 +54,7 @@ namespace Server.Common
             foreach (FileInfo file in files)
             {
 
-                double p = (r.Next(1, 99) * 100000);
+                double p = (r.Next(1, 99) * 10000);
                 
                
                 Book b = new Book.Builder()
@@ -67,8 +69,66 @@ namespace Server.Common
             }
             return mList;
         }
+        public List<string> FindBook(string name, string type)
+        {
+            List<String> l = new List<string>();
+            if (type.Equals("All"))
+            {
+                foreach (Book b in DataBase.GetListBook())
+                {
+                    if (b.Name.ToUpper().Contains(name.ToUpper()))
+                        l.Add(b.ToString());
+                }
+            }
+            else
+            {
 
-        public static string CustomName(string name)
+                if (type.Equals("Word"))
+                {
+                    foreach (Book b in DataBase.GetListBook())
+                    {
+                        if (b.Name.ToUpper().Contains(name.ToUpper())
+                                  && (b.Type.ToUpper().Equals(".DOC")
+                                  || b.Type.ToUpper().Equals(".DOCX")))
+                            l.Add(b.ToString());
+                    }
+                }
+                if (type.Equals("Exel"))
+                {
+                    foreach (Book b in DataBase.GetListBook())
+                    {
+                        if (b.Name.ToUpper().Contains(name.ToUpper())
+                            && (b.Type.ToUpper().Equals(".XLSX")
+                            || b.Type.ToUpper().Equals(".XLSM")
+                            || b.Type.ToUpper().Equals(".XLS")))
+                            l.Add(b.ToString());
+                    }
+                }
+                if (type.Equals("Pdf"))
+                {
+                    foreach (Book b in DataBase.GetListBook())
+                    {
+                        if (b.Name.ToUpper().Contains(name.ToUpper())
+                             && b.Type.ToUpper().Equals(".PDF"))
+                            l.Add(b.ToString());
+                    }
+                }
+                if (type.Equals("Text"))
+                {
+                    foreach (Book b in DataBase.GetListBook())
+                    {
+                        if (b.Name.ToUpper().Contains(name.ToUpper())
+                           && b.Type.ToUpper().Equals(".TXT"))
+                            l.Add(b.ToString());
+                    }
+                }
+
+            }
+
+
+            return l;
+        }
+        public string CustomName(string name)
         {
             String nameEdit = name;
             if (nameEdit.Contains(ServerManager.SIGN))
@@ -76,7 +136,7 @@ namespace Server.Common
             return nameEdit;
         }
 
-        public static string CustomSize(long length)
+        public string CustomSize(long length)
         {
             String t = " bytes";
             String l = length.ToString();
@@ -93,7 +153,7 @@ namespace Server.Common
             return l + t;
         }
 
-        public static string CreateId(FileInfo file)
+        public string CreateId(FileInfo file)
         {
             DateTime dateTime = new DateTime();
             if (file.CreationTime != null)
@@ -101,7 +161,7 @@ namespace Server.Common
             else if (file.LastAccessTime != null)
                 dateTime = file.LastAccessTime;
 
-            String id = file.CreationTime.Second
+            String id = dateTime.Second
                 + dateTime.Minute
                 + dateTime.Hour
                 + file.Length.ToString()

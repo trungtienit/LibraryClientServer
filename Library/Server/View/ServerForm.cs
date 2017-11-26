@@ -7,6 +7,7 @@ using System.Net.Sockets;
 using System.Threading;
 using Server.Common;
 using System.IO;
+using Server.Api;
 
 /**
  * TRAN TRUNG TIEN 22/11/2017
@@ -35,13 +36,15 @@ namespace Server
         private TCPModel tcp;
         ServerModel server;
         SocketModel currentSocket;
+        ServerManager serverManager;
+        
         #region Event
         void MainFormLoad(object sender, EventArgs e)
         {
             CheckForIllegalCrossThreadCalls = false;
 
             server = new ServerModel().GetInstance();
-
+            serverManager = new ServerManager();
         }
         void StartClick(object sender, EventArgs e)
         {
@@ -62,7 +65,7 @@ namespace Server
         }
         public void Communication(object obj)
         {
-            string result = "";
+           // string result = "";
             List<String> results = new List<string>(); ;
             SocketModel socket = (SocketModel)obj;
             while (true)
@@ -82,7 +85,11 @@ namespace Server
                 {
                     case ServerManager.TYPE_SEARCH:
                         //TODO Send list books
-                        socket.SendData(results = SearchView(receive[1], receive[2]));
+                        results = serverManager.FindBook(receive[1], receive[2]);
+                        ApiManager apiManager = new ApiManager();
+                        if (results.Count == 0)
+                            results = apiManager.FindBookOnDrive(receive[1], receive[2]);
+                        socket.SendData(results);
                         break;
                         //Send File book
                     case ServerManager.TYPE_PREVIEW:
@@ -124,65 +131,7 @@ namespace Server
                 t.Start(currentSocket);
             }
         }
-        private List<string> SearchView(string name, string type)
-        {
-            List<String> l = new List<string>();
-            if (type.Equals("All"))
-            {
-                foreach (Book b in DataBase.GetListBook())
-                {
-                    if (b.Name.ToUpper().Contains(name.ToUpper()))
-                        l.Add(b.ToString());
-                }
-            }
-            else
-            {
-
-                if (type.Equals("Word"))
-                {
-                    foreach (Book b in DataBase.GetListBook())
-                    {
-                        if (b.Name.ToUpper().Contains(name.ToUpper())
-                                  && (b.Type.ToUpper().Equals(".DOC")
-                                  || b.Type.ToUpper().Equals(".DOCX")))
-                            l.Add(b.ToString());
-                    }
-                }
-                if (type.Equals("Exel"))
-                {
-                    foreach (Book b in DataBase.GetListBook())
-                    {
-                        if (b.Name.ToUpper().Contains(name.ToUpper())
-                            && (b.Type.ToUpper().Equals(".XLSX")
-                            || b.Type.ToUpper().Equals(".XLSM")
-                            || b.Type.ToUpper().Equals(".XLS")))
-                            l.Add(b.ToString());
-                    }
-                }
-                if (type.Equals("Pdf"))
-                {
-                    foreach (Book b in DataBase.GetListBook())
-                    {
-                        if (b.Name.ToUpper().Contains(name.ToUpper())
-                             && b.Type.ToUpper().Equals(".PDF"))
-                            l.Add(b.ToString());
-                    }
-                }
-                if (type.Equals("Text"))
-                {
-                    foreach (Book b in DataBase.GetListBook())
-                    {
-                        if (b.Name.ToUpper().Contains(name.ToUpper())
-                           && b.Type.ToUpper().Equals(".TXT"))
-                            l.Add(b.ToString());
-                    }
-                }
-
-            }
-
-
-            return l;
-        }
+     
 
         #endregion
 

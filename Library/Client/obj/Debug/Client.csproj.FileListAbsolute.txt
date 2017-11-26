@@ -7,3 +7,12 @@ Y:\Skill\Code\C#\LibraryClientServer\Library\Client\obj\Debug\Client.csproj.Gene
 Y:\Skill\Code\C#\LibraryClientServer\Library\Client\obj\Debug\Client.csproj.CoreCompileInputs.cache
 Y:\Skill\Code\C#\LibraryClientServer\Library\Client\obj\Debug\Client.exe
 Y:\Skill\Code\C#\LibraryClientServer\Library\Client\obj\Debug\Client.pdb
+\\Mac\Home\Skill\Code\C#\LibraryClientServer\Library\Client\bin\Debug\Client.exe
+\\Mac\Home\Skill\Code\C#\LibraryClientServer\Library\Client\bin\Debug\Client.pdb
+\\Mac\Home\Skill\Code\C#\LibraryClientServer\Library\Client\obj\Debug\Client.csprojResolveAssemblyReference.cache
+\\Mac\Home\Skill\Code\C#\LibraryClientServer\Library\Client\obj\Debug\Client.Client.resources
+\\Mac\Home\Skill\Code\C#\LibraryClientServer\Library\Client\obj\Debug\Server.ViewFile.resources
+\\Mac\Home\Skill\Code\C#\LibraryClientServer\Library\Client\obj\Debug\Client.csproj.GenerateResource.Cache
+\\Mac\Home\Skill\Code\C#\LibraryClientServer\Library\Client\obj\Debug\Client.csproj.CoreCompileInputs.cache
+\\Mac\Home\Skill\Code\C#\LibraryClientServer\Library\Client\obj\Debug\Client.exe
+\\Mac\Home\Skill\Code\C#\LibraryClientServer\Library\Client\obj\Debug\Client.pdb

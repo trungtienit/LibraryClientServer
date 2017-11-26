@@ -9,31 +9,43 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using Google.Apis.Drive.v3.Data;
 
 namespace Server.Api
 {
-
     class ApiManager
     {
         private string[] Scopes = { DriveService.Scope.DriveReadonly };
         private string ApplicationName = "BookApp";
         DriveService service;
         UserCredential credential;
-
-        List<Book> mList;
+        ServerManager serverManager;
         public ApiManager()
         {
             credential = GetUserCredential();
-
+            serverManager = new ServerManager();
             service = GetDriceService(credential);
         }
-        public List<Book> Search(String title,byte types)
+
+
+
+        internal List<string> FindBookOnDrive(string v1, string v2)
+        {
+            byte mType = ServerManager.TYPE_FILE;
+            if (v2.ToUpper().Equals("WORD"))
+                mType = ServerManager.TYPE_FILE_MSWORD;
+            if (v2.ToUpper().Equals("PDF"))
+                mType = ServerManager.TYPE_FILE_PDF ;
+            if (v2.ToUpper().Equals("EXCEL"))
+                mType = ServerManager.TYPE_FILE_EXCEL ;
+            if (v2.ToUpper().Equals("ALL"))
+                mType = ServerManager.TYPE_FILE_EXCEL | ServerManager.TYPE_FILE_MSWORD| ServerManager.TYPE_FILE_PDF;
+            return FindBookByTitleAndTypeOnDrive(v1, mType); 
+        }
+        public List<String> FindBookByTitleAndTypeOnDrive(String title, byte types)
         {
             #region Search
-            if (mList == null)
-                mList = new List<Book>();
-            else mList.Clear();
-
+            List<String> results = new List<string>();
             string pageToken = null;
             String mTypes = "";
             if (types != 0)
@@ -45,44 +57,72 @@ namespace Server.Api
                 if ((types & ServerManager.TYPE_FILE_EXCEL) == ServerManager.TYPE_FILE_EXCEL)
                     mTypes = mTypes + " or " + ServerManager.EXCEL;
             }
-          
+
             Console.WriteLine("Start Search");
             do
             {
+
                 var request = service.Files.List();
                 if (mTypes.Length > 0)
                 {
                     mTypes = mTypes.Substring(3);
                     request.Q = "name contains '"
                    + title
-                   + "' and ( "+mTypes+" )";
+                   + "' and ( " + mTypes + " )";
                 }
-                   
+                Random r = new Random();
                 request.Spaces = "drive";
                 request.Fields = "nextPageToken, files(id, name, mimeType, size, createdTime, modifiedTime,fullFileExtension)";
                 request.PageToken = pageToken;
-                var result = request.Execute();
+                FileList result = null;
+                try
+                {
+                    result = request.Execute();
+                }
+                catch (Exception E)
+                {
+                    Console.Write("ERROR Network: " + E.StackTrace);
+                }
                 foreach (var file in result.Files)
                 {
-
                     Book b = new Book.Builder()
-                     .Id("")
+                     .Id(CreateId(file))
                      .Name(file.Name)
-                     .Type("."+file.FullFileExtension)
-                     .Price(0)
-                     .Size(ServerManager.CustomSize((long) file.Size))
-                     .Path("")
+                     .Type("." + file.FullFileExtension)
+                     .Price((r.Next(1, 99) * 100000))
+                     .Size(serverManager.CustomSize((long)file.Size))
+                     .Path(file.Id)
                      .OnDrive()
                      .Build();
-                    mList.Add(b);
+                    DataBase.AddNewBook(b);
+                    results.Add(b.ToString());
                     Console.WriteLine(String.Format(
                             "Found file: {0} ({1})", file.Name, file.Id));
                 }
                 pageToken = result.NextPageToken;
             } while (pageToken != null);
             Console.WriteLine("Search done");
-            return mList;
+           
+            return results;
             #endregion
+        }
+        private string CreateId(Google.Apis.Drive.v3.Data.File file)
+        {
+            DateTime dateTime = new DateTime();
+            if (file.CreatedTime != null)
+                dateTime = (DateTime)file.CreatedTime;
+            else if (file.ModifiedTime != null)
+                dateTime = (DateTime)file.ModifiedTime;
+
+            String id = "GD" + dateTime.Second
+                 + dateTime.Minute
+                 + dateTime.Hour
+                 + file.Size.ToString()
+                 + dateTime.Day
+                 + dateTime.Month
+                 + dateTime.Year;
+
+            return id.Substring(0, 10);
         }
 
         public void GetFileMetaData()

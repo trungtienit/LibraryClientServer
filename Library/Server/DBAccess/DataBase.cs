@@ -16,12 +16,13 @@ namespace Server
     class DataBase
     {
         public const String PATH_DB_XML = "..\\..\\..\\..\\BooksDB.xml";
-        public const String PATH_DB = "..\\..\\..\\..\\DATA";
-        public static string[] EXTENSIONS = new[] { ".doc", ".pdf", ".docx",".mp4",".sketch",".mp3",".zip",".dmg" };
+        public const String PATH_DB = "..\\..\\..\\..\\Data";
+        public static string[] EXTENSIONS = new[] { ".doc", ".pdf", ".docx", ".mp4", ".sketch", ".mp3", ".zip", ".dmg" };
         public static List<Book> books;
-        public DataBase() {}
+        public DataBase() { }
         public static List<Book> GetListBook()
         {
+
             if (books == null)
             {
                 if (!File.Exists(PATH_DB_XML))
@@ -52,24 +53,35 @@ namespace Server
                 Console.Write("DB ERROR :" + E.StackTrace);
             }
         }
+
+        internal static void AddRangeNewBook(List<Book> list)
+        {
+            foreach (Book b in list)
+                AddNewBook(b);
+        }
+
         //TODO Write listbooks --> file xml
         public static void WriteNewDB()
         {
-            books.Clear();
-            books = ServerManager.GetAllDataLocal(DataBase.PATH_DB, EXTENSIONS);
+            if (books == null)
+                books = new List<Book>();
+            else
+                books.Clear();
+            ServerManager serverManager = new ServerManager();
+            books = serverManager.GetAllDataLocal(DataBase.PATH_DB, EXTENSIONS);
             try
-            {      
+            {
                 XmlSerializer serializer = new XmlSerializer(typeof(List<Book>));
                 using (FileStream fs = new FileStream(PATH_DB_XML, FileMode.OpenOrCreate, FileAccess.Write))
                 {
                     serializer.Serialize(fs, books);
                     Console.Write("Database updated");
-                }            
+                }
 
             }
             catch (Exception E)
             {
-                Console.Write("DB Write ERROR"+ E.StackTrace);
+                Console.Write("DB Write ERROR" + E.StackTrace);
             }
         }
         public static void AddNewBook(Book b)
