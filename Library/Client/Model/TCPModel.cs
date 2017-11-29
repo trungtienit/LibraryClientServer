@@ -162,7 +162,7 @@ namespace Client
 
                 bWrite = new BinaryWriter(File.Open(receivedPath + "/" + fileName, FileMode.Append)); ;
 
-                int bufferLength = 1024;
+                int bufferLength = ClientManager.BUFFER_SIZE;
                 byte[] buffer = new byte[bufferLength];
 
                 int byteRead;

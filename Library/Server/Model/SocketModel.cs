@@ -1,5 +1,6 @@
 ﻿
 using Server.Api;
+using Server.Common;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -165,7 +166,7 @@ namespace Server
                 //SEND INFO
                 stream.Write(clientData, 0, clientData.Length);
 
-                int bufferLength = 1024;
+                int bufferLength = ServerManager.BUFFER_SIZE;
                 byte[] buffer = new byte[bufferLength];
                 
                 int len = (Int32)tempfile.Length;

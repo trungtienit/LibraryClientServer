@@ -32,6 +32,8 @@ namespace Server.Common
         public const byte TYPE_FILE_EXCEL = TYPE_FILE << 5;
         public const byte TYPE_FILE_OFFICE_DOC = TYPE_FILE << 6;
 
+        public static int BUFFER_SIZE = 1024 ;
+
         public List<Book> GetAllDataLocal(string pathFolder, string[] fileTypes)
         {
 
