@@ -54,6 +54,7 @@ namespace Client
             {
                 tcpclnt.Connect(IPofServer, port);
                 stm = tcpclnt.GetStream();
+                stm.ReadTimeout = 10000;
                 Console.WriteLine("OK!");
             }
             catch (Exception e)
@@ -121,15 +122,18 @@ namespace Client
         {
             Thread t = new Thread(DownloadDataByThread);
             t.Start();
+
         }
 
         private void DownloadDataByThread()
         {
             isDownloading = true;
             BinaryWriter bWrite = null;
+            int fileLenght = 0;
+            int originalLength = 0;
+            decimal byteReadAll = 0;
             try
             {
-
                 String receivedPath = ClientManager.FOLDER_DOWLOAD;
                 if (!Directory.Exists(receivedPath))
                     Directory.CreateDirectory(receivedPath);
@@ -140,8 +144,8 @@ namespace Client
                 int byteReceive = stm.Read(clientData, 0, 4);
                 int fileNameLen = BitConverter.ToInt32(clientData, 0);
                 byteReceive = stm.Read(clientData, 0, 4);
-                int fileLenght = BitConverter.ToInt32(clientData, 0);
-
+                fileLenght = BitConverter.ToInt32(clientData, 0);
+                originalLength = fileLenght;
                 Console.WriteLine("fileNameLen = {0}", fileNameLen);
 
                 stm.Read(clientData, 0, fileNameLen);
@@ -151,49 +155,52 @@ namespace Client
                 int k = 1;
                 while (File.Exists(receivedPath + "/" + fileName))
                 {
-                    fileName = "(" + k++ + ") " + fileName;
+                    if (fileName.StartsWith("("))
+                        fileName = fileName.Substring(3);
+                    fileName = "(" + k++ + ")" + fileName;
                 }
 
                 bWrite = new BinaryWriter(File.Open(receivedPath + "/" + fileName, FileMode.Append)); ;
 
-                int bufferLength = 1000 * 1024;
+                int bufferLength = 1024;
                 byte[] buffer = new byte[bufferLength];
 
                 int byteRead;
-                decimal byteReadAll = 0;
 
                 while ((byteRead = stm.Read(buffer, 0, bufferLength)) > 0)
                 {
-                    if (fileLenght < bufferLength)
+                    if (fileLenght <= bufferLength)
                     {
                         bWrite.Write(buffer, 0, fileLenght);
-                        break;
+                        byteReadAll += fileLenght;
                     }
                     else
                     {
                         bWrite.Write(buffer, 0, byteRead);
+                        byteReadAll += byteRead;
                     }
-
-                    //byteReadAll += byteRead;
-                    //curMsg = "Receiving data... " + byteReadAll;
-                    //Console.WriteLine(curMsg);
-                    // if (byteReadAll >= fileLenght) break;
+                    if (byteReadAll == originalLength)
+                    {
+                        isDownloading = false;
+                        Console.Write("Recieved all :" + byteReadAll);
+                        bWrite.Close();
+                        return;
+                    }
+                   
                     fileLenght -= bufferLength;
-                    //  tmp = bufferLength > fileLenght ? fileLenght : bufferLength;
-                };
-                //bWrite.Write(clientData, 4 + fileNameLen, receivedBytesLen - 4 - fileNameLen);
 
-                Console.Write("Recieved all :" + byteReadAll);
-                isDownloading = false;
-                bWrite.Close();
-                //Socket.Close();
+                    //DEBUG
+                    Console.WriteLine("Recieveding :" + byteReadAll);
+
+                };
             }
             catch (Exception ex)
             {
+                Console.Write("Recieved all :" + byteReadAll);
+                Console.Write("Download Fail");
                 isDownloading = false;
                 if (bWrite != null)
                     bWrite.Close();
-
             }
         }
     }

@@ -81,22 +81,24 @@ namespace Server.Api
                 {
                     Console.Write("ERROR Network: " + E.StackTrace);
                 }
-                foreach (var file in result.Files)
-                {
-                    Book b = new Book.Builder()
-                     .Id(CreateId(file))
-                     .Name(file.Name)
-                     .Type("." + file.FullFileExtension)
-                     .Price((r.Next(1, 99) * 100000))
-                     .Size(serverManager.CustomSize((long)file.Size))
-                     .Path(file.Id)
-                     .OnDrive()
-                     .Build();
-                    DataBase.AddNewBook(b);
-                    results.Add(b.ToString());
-                    Console.WriteLine(String.Format(
-                            "Found file: {0} ({1})", file.Name, file.Id));
-                }
+                if (result == null)
+                    return results;
+                    foreach (var file in result.Files)
+                    {
+                        Book b = new Book.Builder()
+                         .Id(CreateId(file))
+                         .Name(file.Name)
+                         .Type("." + file.FullFileExtension)
+                         .Price((r.Next(1, 99) * 100000))
+                         .Size(serverManager.CustomSize((long)file.Size))
+                         .Path(file.Id)
+                         .OnDrive()
+                         .Build();
+                        DataBase.AddNewBook(b);
+                        results.Add(b.ToString());
+                        Console.WriteLine(String.Format(
+                                "Found file: {0} ({1})", file.Name, file.Id));
+                    }
                 pageToken = result.NextPageToken;
             } while (pageToken != null);
             Console.WriteLine("Search done");
@@ -162,7 +164,7 @@ namespace Server.Api
                         {
                             case DownloadStatus.Downloading:
                                 {
-                                    Console.WriteLine(progress.BytesDownloaded);
+                                    Console.WriteLine("PROGRESS" + progress.BytesDownloaded);
                                     break;
                                 }
                             case DownloadStatus.Completed:
@@ -178,11 +180,77 @@ namespace Server.Api
                         }
                     };
             request.Download(stream);
-            using (var fileStream = new FileStream(filePath, FileMode.Create, FileAccess.Write))
-            {
-                fileStream.Write(stream.GetBuffer(), 0, stream.GetBuffer().Length);
-            }
+
             return filePath;
+        }
+        //public static void FileUpload(HttpPostedFileBase file)
+        //{
+        //    if (file != null && file.ContentLength > 0)
+        //    {
+        //        DriveService service = GetService();
+
+        //        string path = Path.Combine(HttpContext.Current.Server.MapPath("~/GoogleDriveFiles"),
+        //        Path.GetFileName(file.FileName));
+        //        file.SaveAs(path);
+
+        //        var FileMetaData = new Google.Apis.Drive.v3.Data.File();
+        //        FileMetaData.Name = Path.GetFileName(file.FileName);
+        //        FileMetaData.MimeType = MimeMapping.GetMimeMapping(path);
+
+        //        FilesResource.CreateMediaUpload request;
+
+        //        using (var stream = new System.IO.FileStream(path, System.IO.FileMode.Open))
+        //        {
+        //            request = service.Files.Create(FileMetaData, stream, FileMetaData.MimeType);
+        //            request.Fields = "id";
+        //            request.Upload();
+        //        }
+        //    }
+        //}
+
+        public string DownloadGoogleFile(string fileId)
+        {
+            FilesResource.GetRequest request = service.Files.Get(fileId);
+
+            string fileName = request.Execute().Name;
+            String filePath = DataBase.PATH_DB + "/" + fileName;
+            if (System.IO.File.Exists(filePath))
+            {
+                return filePath;
+            }
+            MemoryStream stream1 = new MemoryStream();
+
+            request.MediaDownloader.ProgressChanged += (Google.Apis.Download.IDownloadProgress progress) =>
+            {
+                switch (progress.Status)
+                {
+                    case DownloadStatus.Downloading:
+                        {
+                            //Console.WriteLine(progress.BytesDownloaded);
+                            break;
+                        }
+                    case DownloadStatus.Completed:
+                        {
+                            //Console.WriteLine("Download complete.");
+                            SaveStream(stream1, filePath);
+                            break;
+                        }
+                    case DownloadStatus.Failed:
+                        {
+                            //Console.WriteLine("Download failed.");
+                            break;
+                        }
+                }
+            };
+            request.Download(stream1);
+            return filePath;
+        }
+        private static void SaveStream(MemoryStream stream, string FilePath)
+        {
+            using (System.IO.FileStream file = new FileStream(FilePath, FileMode.Create, FileAccess.ReadWrite))
+            {
+                stream.WriteTo(file);
+            }
         }
         public UserCredential GetUserCredential()
         {

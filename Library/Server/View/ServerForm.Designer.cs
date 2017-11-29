@@ -48,7 +48,6 @@ namespace Server
             this.panel2 = new System.Windows.Forms.Panel();
             this.lbNumberClient = new System.Windows.Forms.Label();
             this.btnUpdateDataBase = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.gbExpand = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -183,20 +182,6 @@ namespace Server
             this.btnUpdateDataBase.UseVisualStyleBackColor = false;
             this.btnUpdateDataBase.Click += new System.EventHandler(this.btnUpdateDataBase_Click);
             // 
-            // button1
-            // 
-            this.button1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.button1.BackColor = System.Drawing.Color.RoyalBlue;
-            this.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button1.Location = new System.Drawing.Point(1477, 206);
-            this.button1.Margin = new System.Windows.Forms.Padding(6);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(56, 214);
-            this.button1.TabIndex = 12;
-            this.button1.Text = "Start";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // gbExpand
             // 
             this.gbExpand.AutoSize = true;
@@ -205,7 +190,7 @@ namespace Server
             this.gbExpand.Margin = new System.Windows.Forms.Padding(6);
             this.gbExpand.Name = "gbExpand";
             this.gbExpand.Padding = new System.Windows.Forms.Padding(6);
-            this.gbExpand.Size = new System.Drawing.Size(12, 36);
+            this.gbExpand.Size = new System.Drawing.Size(12, 11);
             this.gbExpand.TabIndex = 6;
             this.gbExpand.TabStop = false;
             this.gbExpand.Text = "Connection Control";
@@ -215,8 +200,7 @@ namespace Server
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PowderBlue;
-            this.ClientSize = new System.Drawing.Size(1530, 743);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(646, 743);
             this.Controls.Add(this.gbExpand);
             this.Controls.Add(this.btnUpdateDataBase);
             this.Controls.Add(this.lbNumberClient);
@@ -249,7 +233,6 @@ namespace Server
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label lbNumberClient;
         private System.Windows.Forms.Button btnUpdateDataBase;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.GroupBox gbExpand;
     }
 }

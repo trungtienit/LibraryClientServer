@@ -20,7 +20,7 @@ namespace Server
     /// </summary>
     public partial class ServerForm : Form
     {
-        private int originalWidth;
+     //   private int originalWidth;
         public ServerForm()
         {
             //
@@ -70,8 +70,9 @@ namespace Server
             SocketModel socket = (SocketModel)obj;
             while (true)
             {
-
                 string str = socket.ReceiveData();
+                
+
                 //Remove socket fail : disconnect
                 if (str.Equals(SocketModel.CLIENT_DISSCONECT + socket.GetRemoteEndpoint()))
                 {
@@ -93,7 +94,7 @@ namespace Server
                         break;
                         //Send File book
                     case ServerManager.TYPE_PREVIEW:
-                        socket.SendBook(DataBase.GetFile(receive[1]));
+                        socket.SendBook( DataBase.GetFile(receive[1]));
                         break;
                 }
                
@@ -140,20 +141,6 @@ namespace Server
             DataBase.WriteNewDB();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            gbExpand.Visible = !gbExpand.Visible;
-            if (gbExpand.Visible ==false)
-                this.Width = originalWidth - 400;
-            else
-                this.Width = originalWidth;
-        }
-        protected override void OnLoad(EventArgs e)
-        {
-            originalWidth = this.Width;
-            gbExpand.Width = 400;
-            base.OnLoad(e);
-        }
 
     }
 }

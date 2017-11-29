@@ -24,6 +24,9 @@ namespace Server
         private string remoteEndPoint;
         private Stream stream;
         private ApiManager apiManager;
+        public  Boolean isDataSending = false;
+        public  Book bookCurrent=null;
+
         public SocketModel(Socket s)
         {
             socket = s;
@@ -87,6 +90,12 @@ namespace Server
             }
             return str;
         }
+
+        internal void SendBook(object bookCurrent)
+        {
+            throw new NotImplementedException();
+        }
+
         //send data to client
         public void SendData(string str)
         {
@@ -121,15 +130,16 @@ namespace Server
 
         public void SendBookByThread(Object o)
         {
-            Book book = (Book)o;
+            isDataSending = true;
+            bookCurrent = (Book)o;
             try
             {
                 string filePath = "";
-                string fileName = book.Path;
-                if (book.Id.StartsWith("GD"))
+                string fileName = bookCurrent.Path;
+                if (bookCurrent.Id.StartsWith("GD"))
                 {
                     apiManager = new ApiManager();
-                    fileName = apiManager.DownLoadFile(book.Path,book.Name);
+                    fileName = apiManager.DownloadGoogleFile(bookCurrent.Path);
                 }
                   
                 fileName = fileName.Replace("\\", "/");
@@ -155,31 +165,44 @@ namespace Server
                 //SEND INFO
                 stream.Write(clientData, 0, clientData.Length);
 
-                int bufferLength = 1024 * 1000;
+                int bufferLength = 1024;
                 byte[] buffer = new byte[bufferLength];
-
+                
                 int len = (Int32)tempfile.Length;
                 int byteRead;
-
+                int byteAllRead = 0;
                 while ((byteRead = tempfile.Read(buffer, 0, bufferLength)) > 0)
                 {
                     try
                     {
                         socket.Send(buffer);
+                        //DEBUG
+                        len -= byteRead;
+
+                        if (len < byteRead) byteAllRead += len;
+                        else
+                            byteAllRead += byteRead;
+                        Console.WriteLine("Reading : " + byteAllRead);
                     }
                     catch (Exception E)
                     {
                         Console.Write("Send failed" + E.StackTrace);
+                        isDataSending = false;
                     }
 
                 }
-
-                Console.WriteLine("Read all : " + tempfile.Length);
-
+                Console.WriteLine("Read all : " + byteAllRead);
+                if (ReceiveData().Equals("FAIL"))
+                {
+                    Console.Write("Send again!");
+                    SendBookByThread(bookCurrent);
+                }
+                isDataSending = false;
             }
             catch (Exception E)
             {
                 Console.Write(E.StackTrace);
+                isDataSending = false;
             }
         }
     }

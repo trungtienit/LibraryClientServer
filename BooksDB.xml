@@ -1,264 +1,75 @@
 <?xml version="1.0"?>
 <ArrayOfBook xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Book>
-    <Id>5342074422</Id>
+    <Id>7611806832</Id>
     <Type>.pdf</Type>
-    <Price>10000</Price>
-    <Size>420 KB</Size>
-    <Path>\\Mac\Home\Skill\Code\C#\LibraryClientServer\Data\LTM\SLIDE\CHUONG 1-GIOI THIEU.pdf</Path>
-    <Name>CHUONG 1-GIOI THIEU.pdf</Name>
-  </Book>
-  <Book>
-    <Id>8428933322</Id>
-    <Type>.pdf</Type>
-    <Price>890000</Price>
-    <Size>289 KB</Size>
-    <Path>\\Mac\Home\Skill\Code\C#\LibraryClientServer\Data\LTM\SLIDE\CHUONG 10-LAP TRINH VOI SCALABILITY.pdf</Path>
-    <Name>CHUONG 10-LAP TRINH VOI SCALABILITY.pdf</Name>
-  </Book>
-  <Book>
-    <Id>8059687822</Id>
-    <Type>.pdf</Type>
-    <Price>550000</Price>
-    <Size>596 KB</Size>
-    <Path>\\Mac\Home\Skill\Code\C#\LibraryClientServer\Data\LTM\SLIDE\CHUONG 11-TOI UU BANG THONG.pdf</Path>
-    <Name>CHUONG 11-TOI UU BANG THONG.pdf</Name>
-  </Book>
-  <Book>
-    <Id>1017075082</Id>
-    <Type>.pdf</Type>
-    <Price>790000</Price>
-    <Size>707 KB</Size>
-    <Path>\\Mac\Home\Skill\Code\C#\LibraryClientServer\Data\LTM\SLIDE\CHUONG 12-KIEM SOAT MANG.pdf</Path>
-    <Name>CHUONG 12-KIEM SOAT MANG.pdf</Name>
-  </Book>
-  <Book>
-    <Id>7268348922</Id>
-    <Type>.pdf</Type>
-    <Price>700000</Price>
-    <Size>683 KB</Size>
-    <Path>\\Mac\Home\Skill\Code\C#\LibraryClientServer\Data\LTM\SLIDE\CHUONG 13-PHAN TICH GOI TIN MANG.pdf</Path>
-    <Name>CHUONG 13-PHAN TICH GOI TIN MANG.pdf</Name>
-  </Book>
-  <Book>
-    <Id>1032627032</Id>
-    <Type>.pdf</Type>
-    <Price>410000</Price>
-    <Size>262 KB</Size>
-    <Path>\\Mac\Home\Skill\Code\C#\LibraryClientServer\Data\LTM\SLIDE\CHUONG 14-LAP TRINH CHO THE HE INTERNET KE TIEP.pdf</Path>
-    <Name>CHUONG 14-LAP TRINH CHO THE HE INTERNET KE TIEP.pdf</Name>
-  </Book>
-  <Book>
-    <Id>1108518642</Id>
-    <Type>.pdf</Type>
-    <Price>200000</Price>
-    <Size>851 KB</Size>
-    <Path>\\Mac\Home\Skill\Code\C#\LibraryClientServer\Data\LTM\SLIDE\CHUONG 15-WEB SERVICES &amp; REMOTING.pdf</Path>
-    <Name>CHUONG 15-WEB SERVICES &amp; REMOTING.pdf</Name>
-  </Book>
-  <Book>
-    <Id>5751187322</Id>
-    <Type>.pdf</Type>
-    <Price>500000</Price>
-    <Size>511 KB</Size>
-    <Path>\\Mac\Home\Skill\Code\C#\LibraryClientServer\Data\LTM\SLIDE\CHUONG 2-INPUT &amp; OUTPUT.pdf</Path>
-    <Name>CHUONG 2-INPUT &amp; OUTPUT.pdf</Name>
-  </Book>
-  <Book>
-    <Id>6410440712</Id>
-    <Type>.pdf</Type>
-    <Price>230000</Price>
+    <Price>750000</Price>
     <Size>1 MB</Size>
-    <Path>\\Mac\Home\Skill\Code\C#\LibraryClientServer\Data\LTM\SLIDE\CHUONG 3-SOCKETS (moi).pdf</Path>
-    <Name>CHUONG 3-SOCKETS (moi).pdf</Name>
+    <Path>\\Mac\Home\Skill\Code\C#\LibraryClientServer\Data\makeforum-pdf-7166.pdf</Path>
+    <Name>makeforum-pdf-7166.pdf</Name>
   </Book>
   <Book>
-    <Id>1085758542</Id>
+    <Id>1082049252</Id>
     <Type>.pdf</Type>
-    <Price>150000</Price>
-    <Size>575 KB</Size>
-    <Path>\\Mac\Home\Skill\Code\C#\LibraryClientServer\Data\LTM\SLIDE\CHUONG 4-TRUYEN THONG VOI WEB SERVER.pdf</Path>
-    <Name>CHUONG 4-TRUYEN THONG VOI WEB SERVER.pdf</Name>
+    <Price>560000</Price>
+    <Size>204 KB</Size>
+    <Path>\\Mac\Home\Skill\Code\C#\LibraryClientServer\Data\MOB1013-Lab1.pdf</Path>
+    <Name>MOB1013-Lab1.pdf</Name>
   </Book>
   <Book>
-    <Id>6836899922</Id>
+    <Id>9420949129</Id>
     <Type>.pdf</Type>
-    <Price>130000</Price>
-    <Size>368 KB</Size>
-    <Path>\\Mac\Home\Skill\Code\C#\LibraryClientServer\Data\LTM\SLIDE\CHUONG 5-TRUYEN THONG VOI EMAIL SERVER.pdf</Path>
-    <Name>CHUONG 5-TRUYEN THONG VOI EMAIL SERVER.pdf</Name>
+    <Price>980000</Price>
+    <Size>209 KB</Size>
+    <Path>\\Mac\Home\Skill\Code\C#\LibraryClientServer\Data\MOB1013-Lab4.pdf</Path>
+    <Name>MOB1013-Lab4.pdf</Name>
   </Book>
   <Book>
-    <Id>6011578372</Id>
+    <Id>8720561529</Id>
     <Type>.pdf</Type>
-    <Price>80000</Price>
-    <Size>1 MB</Size>
-    <Path>\\Mac\Home\Skill\Code\C#\LibraryClientServer\Data\LTM\SLIDE\CHUONG 6-TRUYEN THONG VOI FILE SERVER.pdf</Path>
-    <Name>CHUONG 6-TRUYEN THONG VOI FILE SERVER.pdf</Name>
+    <Price>210000</Price>
+    <Size>205 KB</Size>
+    <Path>\\Mac\Home\Skill\Code\C#\LibraryClientServer\Data\MOB1013-Lab6.pdf</Path>
+    <Name>MOB1013-Lab6.pdf</Name>
   </Book>
   <Book>
-    <Id>6369678221</Id>
+    <Id>8369674829</Id>
     <Type>.pdf</Type>
-    <Price>50000</Price>
-    <Size>69 KB</Size>
-    <Path>\\Mac\Home\Skill\Code\C#\LibraryClientServer\Data\LTM\SLIDE\CHUONG 7-BAO MAT.pdf</Path>
-    <Name>CHUONG 7-BAO MAT.pdf</Name>
+    <Price>160000</Price>
+    <Size>696 KB</Size>
+    <Path>\\Mac\Home\Skill\Code\C#\LibraryClientServer\Data\MOB1013-Slide 8 - Lop nang cao.pdf</Path>
+    <Name>MOB1013-Slide 8 - Lop nang cao.pdf</Name>
   </Book>
   <Book>
-    <Id>7084886722</Id>
+    <Id>1222051862</Id>
     <Type>.pdf</Type>
-    <Price>540000</Price>
-    <Size>848 KB</Size>
-    <Path>\\Mac\Home\Skill\Code\C#\LibraryClientServer\Data\LTM\SLIDE\CHUONG 8-BAO VE DU LIEU - MA HOA.pdf</Path>
-    <Name>CHUONG 8-BAO VE DU LIEU - MA HOA.pdf</Name>
+    <Price>570000</Price>
+    <Size>205 KB</Size>
+    <Path>\\Mac\Home\Skill\Code\C#\LibraryClientServer\Data\MOB1022 - Assignment.pdf</Path>
+    <Name>MOB1022 - Assignment.pdf</Name>
   </Book>
   <Book>
-    <Id>7455444222</Id>
-    <Type>.pdf</Type>
-    <Price>10000</Price>
-    <Size>554 KB</Size>
-    <Path>\\Mac\Home\Skill\Code\C#\LibraryClientServer\Data\LTM\SLIDE\CHUONG 9-QUAN LY TRUY CAP.pdf</Path>
-    <Name>CHUONG 9-QUAN LY TRUY CAP.pdf</Name>
-  </Book>
-  <Book>
-    <Id>9786528261</Id>
-    <Type>.doc</Type>
-    <Price>10000</Price>
-    <Size>86 KB</Size>
-    <Path>\\Mac\Home\Skill\Code\C#\LibraryClientServer\Data\LTM\Tom tat\C1,C3.doc</Path>
-    <Name>C1,C3.doc</Name>
-  </Book>
-  <Book>
-    <Id>1283051326</Id>
+    <Id>1203067019</Id>
     <Type>.docx</Type>
-    <Price>890000</Price>
-    <Size>30 KB</Size>
-    <Path>\\Mac\Home\Skill\Code\C#\LibraryClientServer\Data\LTM\Tom tat\C4,C5.docx</Path>
-    <Name>C4,C5.docx</Name>
-  </Book>
-  <Book>
-    <Id>6630720251</Id>
-    <Type>.doc</Type>
-    <Price>10000</Price>
-    <Size>30 KB</Size>
-    <Path>\\Mac\Home\Skill\Code\C#\LibraryClientServer\Data\LTM\bai kiem tra LTHTM buoi 2.doc</Path>
-    <Name>bai kiem tra LTHTM buoi 2.doc</Name>
-  </Book>
-  <Book>
-    <Id>4168096239</Id>
-    <Type>.doc</Type>
-    <Price>890000</Price>
-    <Size>68 KB</Size>
-    <Path>\\Mac\Home\Skill\Code\C#\LibraryClientServer\Data\LTM\bai kiem tra LTHTM buoi 3.doc</Path>
-    <Name>bai kiem tra LTHTM buoi 3.doc</Name>
-  </Book>
-  <Book>
-    <Id>9016076811</Id>
-    <Type>.doc</Type>
-    <Price>550000</Price>
-    <Size>160 KB</Size>
-    <Path>\\Mac\Home\Skill\Code\C#\LibraryClientServer\Data\LTM\bai kiem tra LTHTM buoi 4.doc</Path>
-    <Name>bai kiem tra LTHTM buoi 4.doc</Name>
-  </Book>
-  <Book>
-    <Id>5110956811</Id>
-    <Type>.doc</Type>
-    <Price>790000</Price>
-    <Size>109 KB</Size>
-    <Path>\\Mac\Home\Skill\Code\C#\LibraryClientServer\Data\LTM\bai kiem tra LTHTM buoi 5.doc</Path>
-    <Name>bai kiem tra LTHTM buoi 5.doc</Name>
-  </Book>
-  <Book>
-    <Id>1011623041</Id>
-    <Type>.doc</Type>
-    <Price>700000</Price>
-    <Size>162 KB</Size>
-    <Path>\\Mac\Home\Skill\Code\C#\LibraryClientServer\Data\LTM\bai kiem tra LTHTM buoi 6.doc</Path>
-    <Name>bai kiem tra LTHTM buoi 6.doc</Name>
-  </Book>
-  <Book>
-    <Id>9319046425</Id>
-    <Type>.doc</Type>
-    <Price>410000</Price>
-    <Size>190 KB</Size>
-    <Path>\\Mac\Home\Skill\Code\C#\LibraryClientServer\Data\LTM\bai kiem tra LTHTM buoi 7.doc</Path>
-    <Name>bai kiem tra LTHTM buoi 7.doc</Name>
-  </Book>
-  <Book>
-    <Id>1101705626</Id>
-    <Type>.docx</Type>
-    <Price>10000</Price>
-    <Size>17 KB</Size>
-    <Path>\\Mac\Home\Skill\Code\C#\LibraryClientServer\Data\(1)LTM_Secret.docx</Path>
-    <Name>(1)LTM_Secret.docx</Name>
-  </Book>
-  <Book>
-    <Id>2238385572</Id>
-    <Type>.mp3</Type>
-    <Price>890000</Price>
+    <Price>780000</Price>
     <Size>3 MB</Size>
-    <Path>\\Mac\Home\Skill\Code\C#\LibraryClientServer\Data\DieuKhacLa-DatGHaley-4857919.mp3</Path>
-    <Name>DieuKhacLa-DatGHaley-4857919.mp3</Name>
+    <Path>\\Mac\Home\Skill\Code\C#\LibraryClientServer\Data\MQTT.docx</Path>
+    <Name>MQTT.docx</Name>
   </Book>
   <Book>
-    <Id>1123924461</Id>
-    <Type>.zip</Type>
-    <Price>550000</Price>
-    <Size>3 MB</Size>
-    <Path>\\Mac\Home\Skill\Code\C#\LibraryClientServer\Data\FaceDetector-master.zip</Path>
-    <Name>FaceDetector-master.zip</Name>
-  </Book>
-  <Book>
-    <Id>7117056261</Id>
-    <Type>.docx</Type>
-    <Price>790000</Price>
-    <Size>17 KB</Size>
-    <Path>\\Mac\Home\Skill\Code\C#\LibraryClientServer\Data\LTM_Secret.docx</Path>
-    <Name>LTM_Secret.docx</Name>
-  </Book>
-  <Book>
-    <Id>8044789452</Id>
-    <Type>.mp3</Type>
-    <Price>700000</Price>
-    <Size>4 MB</Size>
-    <Path>\\Mac\Home\Skill\Code\C#\LibraryClientServer\Data\MoDiBay-HuynhJamesPjnboys-5161644.mp3</Path>
-    <Name>MoDiBay-HuynhJamesPjnboys-5161644.mp3</Name>
+    <Id>1101556144</Id>
+    <Type>.mp4</Type>
+    <Price>630000</Price>
+    <Size>1556 MB</Size>
+    <Path>\\Mac\Home\Skill\Code\C#\LibraryClientServer\Data\nhac.mp4</Path>
+    <Name>nhac.mp4</Name>
   </Book>
   <Book>
     <Id>4740085723</Id>
     <Type>.mp4</Type>
     <Price>410000</Price>
     <Size>400 MB</Size>
-    <Path>\\Mac\Home\Skill\Code\C#\LibraryClientServer\Data\Người Nhà Quê - Vở Hài Kịch Hay Nhức Nhối Của HOÀI LINH- Thanh Thủy, Chí Tài, Phi Nga, Hiếu Hiền.mp4</Path>
-    <Name>Người Nhà Quê - Vở Hài Kịch Hay Nhức Nhối Của HOÀI LINH- Thanh Thủy, Chí Tài, Phi Nga, Hiếu Hiền.mp4</Name>
-  </Book>
-  <Book>
-    <Id>7021627629</Id>
-    <Type>.dmg</Type>
-    <Price>200000</Price>
-    <Size>21 MB</Size>
-    <Path>\\Mac\Home\Skill\Code\C#\LibraryClientServer\Data\Sketch 46.2.dmg</Path>
-    <Name>Sketch 46.2.dmg</Name>
-  </Book>
-  <Book>
-    <Id>7224019781</Id>
-    <Type>.sketch</Type>
-    <Price>500000</Price>
-    <Size>2 MB</Size>
-    <Path>\\Mac\Home\Skill\Code\C#\LibraryClientServer\Data\Test case V06.3.sketch</Path>
-    <Name>Test case V06.3.sketch</Name>
-  </Book>
-  <Book>
-    <Id>1101556144</Id>
-    <Type>.mp4</Type>
-    <Price>230000</Price>
-    <Size>1556 MB</Size>
-    <Path>\\Mac\Home\Skill\Code\C#\LibraryClientServer\Data\Tuyển Tập Những Ca Khúc Nhạc Trẻ Mới Và Hay Nhất Cho Bạn Nữ Thất Tình - LK Vết Thương Trong Em.mp4</Path>
-    <Name>Tuyển Tập Những Ca Khúc Nhạc Trẻ Mới Và Hay Nhất Cho Bạn Nữ Thất Tình - LK Vết Thương Trong Em.mp4</Name>
-  </Book>
-</ArrayOfBook>>pe>.docx</Type>
-    <Price>4700000</Price>
-    <Size>117 KB</Size>
-    <Path>0B9R9w7L_5WtAM1pSNldiSWFLVk0</Path>
+    <Path>\\Mac\Home\Skill\Code\C#\LibraryClientServer\Data\qq.mp4</Path>
+    <Name>qq.mp4</Name>
   </Book>
 </ArrayOfBook>

@@ -72,7 +72,7 @@ namespace Server
             try
             {
                 XmlSerializer serializer = new XmlSerializer(typeof(List<Book>));
-                using (FileStream fs = new FileStream(PATH_DB_XML, FileMode.OpenOrCreate, FileAccess.Write))
+                using (FileStream fs = new FileStream(PATH_DB_XML, FileMode.Create, FileAccess.Write))
                 {
                     serializer.Serialize(fs, books);
                     Console.Write("Database updated");
