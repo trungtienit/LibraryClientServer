@@ -1,153 +1,9 @@
 <?xml version="1.0"?>
 <ArrayOfBook xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Book>
-    <Id>7611796483</Id>
-    <Type>.pdf</Type>
-    <Price>870000</Price>
-    <Size>1 MB</Size>
-    <Path>\\Mac\Home\Skill\Code\C#\LibraryClientServer\Data\(1)makeforum-pdf-7166.pdf</Path>
-    <Name>(1)makeforum-pdf-7166.pdf</Name>
-  </Book>
-  <Book>
-    <Id>5216384301</Id>
-    <Type>.pdf</Type>
-    <Price>370000</Price>
-    <Size>16 KB</Size>
-    <Path>\\Mac\Home\Skill\Code\C#\LibraryClientServer\Data\(1)MOB1013-Lab1.pdf</Path>
-    <Name>(1)MOB1013-Lab1.pdf</Name>
-  </Book>
-  <Book>
-    <Id>4903011201</Id>
-    <Type>.pdf</Type>
-    <Price>910000</Price>
-    <Size>0 bytes</Size>
-    <Path>\\Mac\Home\Skill\Code\C#\LibraryClientServer\Data\(1)MOB1022 - Assignment.pdf</Path>
-    <Name>(1)MOB1022 - Assignment.pdf</Name>
-  </Book>
-  <Book>
-    <Id>6630670193</Id>
-    <Type>.docx</Type>
-    <Price>940000</Price>
-    <Size>3 MB</Size>
-    <Path>\\Mac\Home\Skill\Code\C#\LibraryClientServer\Data\(1)MQTT.docx</Path>
-    <Name>(1)MQTT.docx</Name>
-  </Book>
-  <Book>
-    <Id>7603011201</Id>
-    <Type>.pdf</Type>
-    <Price>210000</Price>
-    <Size>0 bytes</Size>
-    <Path>\\Mac\Home\Skill\Code\C#\LibraryClientServer\Data\(2)MOB1013-Lab1.pdf</Path>
-    <Name>(2)MOB1013-Lab1.pdf</Name>
-  </Book>
-  <Book>
-    <Id>4420518630</Id>
-    <Type>.pdf</Type>
-    <Price>540000</Price>
-    <Size>205 KB</Size>
-    <Path>\\Mac\Home\Skill\Code\C#\LibraryClientServer\Data\(2)MOB1022 - Assignment.pdf</Path>
-    <Name>(2)MOB1022 - Assignment.pdf</Name>
-  </Book>
-  <Book>
-    <Id>6030670193</Id>
-    <Type>.docx</Type>
-    <Price>830000</Price>
-    <Size>3 MB</Size>
-    <Path>\\Mac\Home\Skill\Code\C#\LibraryClientServer\Data\(2)MQTT.docx</Path>
-    <Name>(2)MQTT.docx</Name>
-  </Book>
-  <Book>
-    <Id>7220492530</Id>
-    <Type>.pdf</Type>
-    <Price>270000</Price>
-    <Size>204 KB</Size>
-    <Path>\\Mac\Home\Skill\Code\C#\LibraryClientServer\Data\(3)MOB1013-Lab1.pdf</Path>
-    <Name>(3)MOB1013-Lab1.pdf</Name>
-  </Book>
-  <Book>
-    <Id>8930670193</Id>
-    <Type>.docx</Type>
-    <Price>630000</Price>
-    <Size>3 MB</Size>
-    <Path>\\Mac\Home\Skill\Code\C#\LibraryClientServer\Data\(3)MQTT.docx</Path>
-    <Name>(3)MQTT.docx</Name>
-  </Book>
-  <Book>
-    <Id>9220492530</Id>
-    <Type>.pdf</Type>
-    <Price>270000</Price>
-    <Size>204 KB</Size>
-    <Path>\\Mac\Home\Skill\Code\C#\LibraryClientServer\Data\(4)MOB1013-Lab1.pdf</Path>
-    <Name>(4)MOB1013-Lab1.pdf</Name>
-  </Book>
-  <Book>
-    <Id>7520492530</Id>
-    <Type>.pdf</Type>
-    <Price>500000</Price>
-    <Size>204 KB</Size>
-    <Path>\\Mac\Home\Skill\Code\C#\LibraryClientServer\Data\(5)MOB1013-Lab1.pdf</Path>
-    <Name>(5)MOB1013-Lab1.pdf</Name>
-  </Book>
-  <Book>
-    <Id>4920492511</Id>
-    <Type>.pdf</Type>
-    <Price>470000</Price>
-    <Size>204 KB</Size>
-    <Path>\\Mac\Home\Skill\Code\C#\LibraryClientServer\Data\(6)MOB1013-Lab1.pdf</Path>
-    <Name>(6)MOB1013-Lab1.pdf</Name>
-  </Book>
-  <Book>
-    <Id>7611806832</Id>
-    <Type>.pdf</Type>
-    <Price>390000</Price>
-    <Size>1 MB</Size>
-    <Path>\\Mac\Home\Skill\Code\C#\LibraryClientServer\Data\makeforum-pdf-7166.pdf</Path>
-    <Name>makeforum-pdf-7166.pdf</Name>
-  </Book>
-  <Book>
-    <Id>1082049252</Id>
-    <Type>.pdf</Type>
-    <Price>310000</Price>
-    <Size>204 KB</Size>
-    <Path>\\Mac\Home\Skill\Code\C#\LibraryClientServer\Data\MOB1013-Lab1.pdf</Path>
-    <Name>MOB1013-Lab1.pdf</Name>
-  </Book>
-  <Book>
-    <Id>9420949129</Id>
-    <Type>.pdf</Type>
-    <Price>250000</Price>
-    <Size>209 KB</Size>
-    <Path>\\Mac\Home\Skill\Code\C#\LibraryClientServer\Data\MOB1013-Lab4.pdf</Path>
-    <Name>MOB1013-Lab4.pdf</Name>
-  </Book>
-  <Book>
-    <Id>8720561529</Id>
-    <Type>.pdf</Type>
-    <Price>230000</Price>
-    <Size>205 KB</Size>
-    <Path>\\Mac\Home\Skill\Code\C#\LibraryClientServer\Data\MOB1013-Lab6.pdf</Path>
-    <Name>MOB1013-Lab6.pdf</Name>
-  </Book>
-  <Book>
-    <Id>8369674829</Id>
-    <Type>.pdf</Type>
-    <Price>240000</Price>
-    <Size>696 KB</Size>
-    <Path>\\Mac\Home\Skill\Code\C#\LibraryClientServer\Data\MOB1013-Slide 8 - Lop nang cao.pdf</Path>
-    <Name>MOB1013-Slide 8 - Lop nang cao.pdf</Name>
-  </Book>
-  <Book>
-    <Id>1222051862</Id>
-    <Type>.pdf</Type>
-    <Price>820000</Price>
-    <Size>205 KB</Size>
-    <Path>\\Mac\Home\Skill\Code\C#\LibraryClientServer\Data\MOB1022 - Assignment.pdf</Path>
-    <Name>MOB1022 - Assignment.pdf</Name>
-  </Book>
-  <Book>
     <Id>1203067019</Id>
     <Type>.docx</Type>
-    <Price>20000</Price>
+    <Price>560000</Price>
     <Size>3 MB</Size>
     <Path>\\Mac\Home\Skill\Code\C#\LibraryClientServer\Data\MQTT.docx</Path>
     <Name>MQTT.docx</Name>
@@ -155,7 +11,7 @@
   <Book>
     <Id>1101556144</Id>
     <Type>.mp4</Type>
-    <Price>640000</Price>
+    <Price>140000</Price>
     <Size>1556 MB</Size>
     <Path>\\Mac\Home\Skill\Code\C#\LibraryClientServer\Data\nhac.mp4</Path>
     <Name>nhac.mp4</Name>
@@ -163,7 +19,7 @@
   <Book>
     <Id>4740085723</Id>
     <Type>.mp4</Type>
-    <Price>430000</Price>
+    <Price>580000</Price>
     <Size>400 MB</Size>
     <Path>\\Mac\Home\Skill\Code\C#\LibraryClientServer\Data\qq.mp4</Path>
     <Name>qq.mp4</Name>

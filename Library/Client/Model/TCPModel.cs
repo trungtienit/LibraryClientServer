@@ -193,6 +193,7 @@ namespace Client
 
                     //DEBUG
                     Console.WriteLine("Recieveding :" + byteReadAll);
+                    
 
                 };
             }

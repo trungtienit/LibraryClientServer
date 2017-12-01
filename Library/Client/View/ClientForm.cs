@@ -34,6 +34,8 @@ namespace Client
         private List<String> listBooksCurrent;
         private static TCPModel client;
         private ChangeBookForm frmChangeBook;
+        private ShowInfoForm frmShowInfo;
+
         public void Connect()
         {
             string ip = tbIpAddress.Text;
@@ -52,7 +54,7 @@ namespace Client
 
         public void ChangeBook(string name)
         {
-            
+
             client.SendData(ClientManager.TYPE_CHANGE + "");
             Book b = new Book.Builder().Path(name).Build();
             client.SendBook(b);
@@ -64,7 +66,7 @@ namespace Client
                 MessageBox.Show("You given " + price + "", "Admin", MessageBoxButtons.OK);
             }
             catch (Exception e) { };
-            
+
         }
 
         #region Event
@@ -124,13 +126,41 @@ namespace Client
         {
             try
             {
-                client.SendData(ClientManager.TYPE_PREVIEW.ToString() + ClientManager.SIGN + dgvBooks.Rows[e.RowIndex].Cells[0].Value.ToString());
+                String id = dgvBooks.Rows[e.RowIndex].Cells[0].Value.ToString();
+                String name = dgvBooks.Rows[e.RowIndex].Cells[1].Value.ToString();
+                String price = dgvBooks.Rows[e.RowIndex].Cells[3].Value.ToString();
+                String size = dgvBooks.Rows[e.RowIndex].Cells[4].Value.ToString();
+
+                using (frmShowInfo = new ShowInfoForm()
+                {
+                    book = new Book.Builder()
+                            .Name(name)
+                            .Price(Double.Parse(price))
+                            .Size(size)
+                            .Build()
+                })
+                {
+                    switch (frmShowInfo.ShowDialog())
+                    {
+                        case DialogResult.Yes:
+                            if (Double.Parse(price) > ClientManager.myWallet)
+                            {
+                                MessageBox.Show("Your balance is not enough to pay", "Error", MessageBoxButtons.OK);
+                                break;
+                            }
+                            tbWallet.Text = (ClientManager.myWallet - Double.Parse(price)).ToString();
+                            client.SendData(ClientManager.TYPE_DOWNLOAD.ToString() +ClientManager.SIGN+ id);
+                            break;
+                        case DialogResult.No:
+                            client.SendData(ClientManager.TYPE_PREVIEW.ToString() + ClientManager.SIGN + id);
+                            break;
+                    }
+                }
             }
             catch (Exception E)
             {
                 return;
             }
-            //  String fileName = dgvBooks.Rows[e.RowIndex].Cells[1].Value.ToString();
             if (!TCPModel.isDownloading)
                 client.ReceiveBook();
             else
@@ -139,13 +169,13 @@ namespace Client
 
         private void changeBookToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmChangeBook = new ChangeBookForm();
-            using (frmChangeBook)
+
+            using (frmChangeBook=new ChangeBookForm())
             {
                 if (frmChangeBook.ShowDialog() == DialogResult.OK)
                     this.ChangeBook(frmChangeBook.nameCurrent);
             }
-            
+
         }
 
     }
