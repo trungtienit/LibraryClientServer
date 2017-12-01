@@ -9,15 +9,18 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Threading;
 using Client.Common;
+using System.IO;
+using Client.View;
+
 namespace Client
 {
     /// <summary>
     /// Description of MainForm.
     /// </summary>
-    public partial class Client : System.Windows.Forms.Form
+    public partial class ClientForm : System.Windows.Forms.Form
     {
 
-        public Client()
+        public ClientForm()
         {
             //
             // The InitializeComponent() call is required for Windows Forms designer support.
@@ -29,7 +32,8 @@ namespace Client
             //
         }
         private List<String> listBooksCurrent;
-        private TCPModel client;
+        private static TCPModel client;
+        private ChangeBookForm frmChangeBook;
         public void Connect()
         {
             string ip = tbIpAddress.Text;
@@ -40,15 +44,36 @@ namespace Client
             {
                 this.Text = client.UpdateInformation();
                 lbConnected.Visible = true;
-                //  Thread t2 = new Thread(OpponentResult);
-                //t2.Start();
+                tbWallet.Text = ClientManager.myWallet.ToString();
+                changeBookToolStripMenuItem.Enabled = true;
+                btnSearch.Enabled = true;
             }
         }
+
+        public void ChangeBook(string name)
+        {
+            
+            client.SendData(ClientManager.TYPE_CHANGE + "");
+            Book b = new Book.Builder().Path(name).Build();
+            client.SendBook(b);
+            try
+            {
+                int price = Int32.Parse(client.ReadData());
+                ClientManager.myWallet += price;
+                tbWallet.Text = ClientManager.myWallet.ToString();
+                MessageBox.Show("You given " + price + "", "Admin", MessageBoxButtons.OK);
+            }
+            catch (Exception e) { };
+            
+        }
+
         #region Event
         void MainFormLoad(object sender, System.EventArgs e)
         {
             lbConnected.Visible = false;
             CheckForIllegalCrossThreadCalls = false;
+            changeBookToolStripMenuItem.Enabled = false;
+            btnSearch.Enabled = false;
         }
 
         private void Connect_Click(object sender, EventArgs e)
@@ -76,16 +101,19 @@ namespace Client
             dgvBooks.Rows.Clear();
             listBooksCurrent = client.ReadListData();
             int k = 0;
+
             foreach (String s in listBooksCurrent)
             {
 
                 String[] a = s.Split(ClientManager.SIGN);
-                this.dgvBooks.Rows.Add();
-                for (int i = 0; i < 5; i++)
-                {
-                    this.dgvBooks.Rows[k].Cells[i].Value = a[i];
-
-                }
+                Book b = new Book.Builder()
+                    .Id(a[0])
+                    .Name(a[1])
+                    .Type(a[2])
+                    .Price(Int32.Parse(a[3]))
+                    .Size(a[4])
+                    .Build();
+                bookBindingSource.Add(b);
                 this.dgvBooks.Rows[k].HeaderCell.Value = (++k).ToString();
                 dgvBooks.RowsDefaultCellStyle.BackColor = Color.LightBlue;
                 dgvBooks.AlternatingRowsDefaultCellStyle.BackColor = Color.LightSkyBlue;
@@ -97,15 +125,28 @@ namespace Client
             try
             {
                 client.SendData(ClientManager.TYPE_PREVIEW.ToString() + ClientManager.SIGN + dgvBooks.Rows[e.RowIndex].Cells[0].Value.ToString());
-            }catch(Exception E)
+            }
+            catch (Exception E)
             {
                 return;
             }
-                //  String fileName = dgvBooks.Rows[e.RowIndex].Cells[1].Value.ToString();
+            //  String fileName = dgvBooks.Rows[e.RowIndex].Cells[1].Value.ToString();
             if (!TCPModel.isDownloading)
-                client.DownloadData();
+                client.ReceiveBook();
             else
                 MessageBox.Show("Please wait...");
         }
+
+        private void changeBookToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmChangeBook = new ChangeBookForm();
+            using (frmChangeBook)
+            {
+                if (frmChangeBook.ShowDialog() == DialogResult.OK)
+                    this.ChangeBook(frmChangeBook.nameCurrent);
+            }
+            
+        }
+
     }
 }

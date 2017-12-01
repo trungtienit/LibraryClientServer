@@ -2,7 +2,7 @@
 using Google.Apis.Drive.v3;
 using Google.Apis.Services;
 using Google.Apis.Util.Store;
-using Server.Common;
+using Client.Common;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -12,7 +12,7 @@ using System.Threading;
 using Google.Apis.Drive.v3.Data;
 using Google.Apis.Download;
 
-namespace Server.Api
+namespace Client.Api
 {
     class ApiManager
     {
@@ -145,44 +145,6 @@ namespace Server.Api
             Console.WriteLine("Done!");
             #endregion
         }
-        public String DownLoadFile(String fileId, String fileName)
-        {
-            String filePath = DataBase.PATH_DB + "/" + fileName;
-            while (System.IO.File.Exists(filePath))
-            {
-                return filePath;
-            }
-            var request = service.Files.Get(fileId);
-            var stream = new System.IO.MemoryStream();
-            // Add a handler which will be notified on progress changes.
-            // It will notify on each chunk download and when the
-            // download is completed or failed.
-            request.MediaDownloader.ProgressChanged +=
-                    (IDownloadProgress progress) =>
-                    {
-                        switch (progress.Status)
-                        {
-                            case DownloadStatus.Downloading:
-                                {
-                                    Console.WriteLine("PROGRESS" + progress.BytesDownloaded);
-                                    break;
-                                }
-                            case DownloadStatus.Completed:
-                                {
-                                    Console.WriteLine("Download complete.");
-                                    break;
-                                }
-                            case DownloadStatus.Failed:
-                                {
-                                    Console.WriteLine("Download failed.");
-                                    break;
-                                }
-                        }
-                    };
-            request.Download(stream);
-
-            return filePath;
-        }
         //public static void FileUpload(HttpPostedFileBase file)
         //{
         //    if (file != null && file.ContentLength > 0)
@@ -208,7 +170,7 @@ namespace Server.Api
         //    }
         //}
 
-        public string DownloadGoogleFile(string fileId)
+        public string DownloadGoogleFile(string fileId) 
         {
             FilesResource.GetRequest request = service.Files.Get(fileId);
 

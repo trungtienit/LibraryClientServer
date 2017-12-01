@@ -15,9 +15,10 @@ Y:\Skill\Code\C#\LibraryClientServer\Library\Client\obj\Debug\Client.pdb
 \\Mac\Home\Skill\Code\C#\LibraryClientServer\Library\Client\obj\Debug\Interop.AcroPDFLib.dll
 \\Mac\Home\Skill\Code\C#\LibraryClientServer\Library\Client\obj\Debug\AxInterop.AcroPDFLib.dll
 \\Mac\Home\Skill\Code\C#\LibraryClientServer\Library\Client\obj\Debug\Client.csproj.ResolveComReference.cache
-\\Mac\Home\Skill\Code\C#\LibraryClientServer\Library\Client\obj\Debug\Client.Client.resources
-\\Mac\Home\Skill\Code\C#\LibraryClientServer\Library\Client\obj\Debug\Server.ViewFile.resources
 \\Mac\Home\Skill\Code\C#\LibraryClientServer\Library\Client\obj\Debug\Client.csproj.GenerateResource.Cache
 \\Mac\Home\Skill\Code\C#\LibraryClientServer\Library\Client\obj\Debug\Client.csproj.CoreCompileInputs.cache
 \\Mac\Home\Skill\Code\C#\LibraryClientServer\Library\Client\obj\Debug\Client.exe
 \\Mac\Home\Skill\Code\C#\LibraryClientServer\Library\Client\obj\Debug\Client.pdb
+\\Mac\Home\Skill\Code\C#\LibraryClientServer\Library\Client\obj\Debug\Client.ClientForm.resources
+\\Mac\Home\Skill\Code\C#\LibraryClientServer\Library\Client\obj\Debug\Client.ViewFile.resources
+\\Mac\Home\Skill\Code\C#\LibraryClientServer\Library\Client\obj\Debug\Client.View.ChangeBookForm.resources

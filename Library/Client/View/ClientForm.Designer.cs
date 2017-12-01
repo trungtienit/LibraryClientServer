@@ -9,7 +9,7 @@
  */
 namespace Client
 {
-	partial class Client
+	partial class ClientForm
 	{
 		/// <summary>
 		/// Designer variable used to keep track of non-visual components.
@@ -49,21 +49,26 @@ namespace Client
             this.label7 = new System.Windows.Forms.Label();
             this.cbType = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.tbWallet = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnSearch = new System.Windows.Forms.Button();
             this.tbSearch = new System.Windows.Forms.TextBox();
-            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.dgvBooks = new System.Windows.Forms.DataGridView();
-            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.type = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.price = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.size = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.changeBookToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.typeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.priceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.sizeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bookBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBooks)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bookBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // label5
@@ -168,31 +173,30 @@ namespace Client
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.MintCream;
-            this.groupBox1.Controls.Add(this.textBox2);
+            this.groupBox1.Controls.Add(this.tbWallet);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.btnSearch);
             this.groupBox1.Controls.Add(this.tbSearch);
             this.groupBox1.Controls.Add(this.cbType);
             this.groupBox1.Location = new System.Drawing.Point(19, 308);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(499, 446);
+            this.groupBox1.Size = new System.Drawing.Size(499, 408);
             this.groupBox1.TabIndex = 17;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Communication";
             // 
-            // textBox2
+            // tbWallet
             // 
-            this.textBox2.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.textBox2.Location = new System.Drawing.Point(135, 399);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(6);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(230, 31);
-            this.textBox2.TabIndex = 20;
-            this.textBox2.Text = "10 000 000";
+            this.tbWallet.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.tbWallet.Location = new System.Drawing.Point(203, 361);
+            this.tbWallet.Margin = new System.Windows.Forms.Padding(6);
+            this.tbWallet.Name = "tbWallet";
+            this.tbWallet.Size = new System.Drawing.Size(276, 31);
+            this.tbWallet.TabIndex = 20;
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(9, 402);
+            this.label1.Location = new System.Drawing.Point(9, 364);
             this.label1.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(104, 34);
@@ -223,48 +227,85 @@ namespace Client
             // 
             // dgvBooks
             // 
+            this.dgvBooks.AutoGenerateColumns = false;
             this.dgvBooks.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvBooks.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.id,
-            this.name,
-            this.type,
-            this.price,
-            this.size});
+            this.idDataGridViewTextBoxColumn,
+            this.nameDataGridViewTextBoxColumn,
+            this.typeDataGridViewTextBoxColumn,
+            this.priceDataGridViewTextBoxColumn,
+            this.sizeDataGridViewTextBoxColumn});
+            this.dgvBooks.DataSource = this.bookBindingSource;
             this.dgvBooks.Location = new System.Drawing.Point(548, 12);
             this.dgvBooks.Name = "dgvBooks";
             this.dgvBooks.RowHeadersWidth = 50;
             this.dgvBooks.RowTemplate.Height = 33;
-            this.dgvBooks.Size = new System.Drawing.Size(1264, 742);
+            this.dgvBooks.Size = new System.Drawing.Size(1264, 704);
             this.dgvBooks.TabIndex = 21;
             this.dgvBooks.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvBooks_CellMouseClick);
             // 
-            // id
+            // openFileDialog1
             // 
-            this.id.HeaderText = "ID";
-            this.id.Name = "id";
+            this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // name
+            // contextMenuStrip1
             // 
-            this.name.HeaderText = "Name";
-            this.name.Name = "name";
-            this.name.Width = 200;
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.changeBookToolStripMenuItem,
+            this.aboutToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(234, 76);
             // 
-            // type
+            // changeBookToolStripMenuItem
             // 
-            this.type.HeaderText = "Type";
-            this.type.Name = "type";
+            this.changeBookToolStripMenuItem.Name = "changeBookToolStripMenuItem";
+            this.changeBookToolStripMenuItem.Size = new System.Drawing.Size(233, 36);
+            this.changeBookToolStripMenuItem.Text = "Change book";
+            this.changeBookToolStripMenuItem.Click += new System.EventHandler(this.changeBookToolStripMenuItem_Click);
             // 
-            // price
+            // aboutToolStripMenuItem
             // 
-            this.price.HeaderText = "Price";
-            this.price.Name = "price";
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(233, 36);
+            this.aboutToolStripMenuItem.Text = "About";
             // 
-            // size
+            // idDataGridViewTextBoxColumn
             // 
-            this.size.HeaderText = "Size";
-            this.size.Name = "size";
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
             // 
-            // Client
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.Width = 200;
+            // 
+            // typeDataGridViewTextBoxColumn
+            // 
+            this.typeDataGridViewTextBoxColumn.DataPropertyName = "Type";
+            this.typeDataGridViewTextBoxColumn.HeaderText = "Type";
+            this.typeDataGridViewTextBoxColumn.Name = "typeDataGridViewTextBoxColumn";
+            // 
+            // priceDataGridViewTextBoxColumn
+            // 
+            this.priceDataGridViewTextBoxColumn.DataPropertyName = "Price";
+            this.priceDataGridViewTextBoxColumn.HeaderText = "Price";
+            this.priceDataGridViewTextBoxColumn.Name = "priceDataGridViewTextBoxColumn";
+            // 
+            // sizeDataGridViewTextBoxColumn
+            // 
+            this.sizeDataGridViewTextBoxColumn.DataPropertyName = "Size";
+            this.sizeDataGridViewTextBoxColumn.HeaderText = "Size";
+            this.sizeDataGridViewTextBoxColumn.Name = "sizeDataGridViewTextBoxColumn";
+            // 
+            // bookBindingSource
+            // 
+            this.bookBindingSource.DataSource = typeof(Client.Book);
+            // 
+            // ClientForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -272,7 +313,8 @@ namespace Client
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.PaleTurquoise;
-            this.ClientSize = new System.Drawing.Size(1824, 766);
+            this.ClientSize = new System.Drawing.Size(1824, 734);
+            this.ContextMenuStrip = this.contextMenuStrip1;
             this.Controls.Add(this.dgvBooks);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnConnect);
@@ -280,15 +322,18 @@ namespace Client
             this.Controls.Add(this.lbConnected);
             this.Controls.Add(this.label5);
             this.Margin = new System.Windows.Forms.Padding(6);
-            this.Name = "Client";
+            this.MaximizeBox = false;
+            this.Name = "ClientForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = " ";
             this.Load += new System.EventHandler(this.MainFormLoad);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBooks)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.bookBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -306,14 +351,18 @@ namespace Client
         private GroupBox groupBox1;
         private Button btnSearch;
         private TextBox tbSearch;
-        private BindingSource bindingSource1;
-        private TextBox textBox2;
+        private TextBox tbWallet;
         private Label label1;
         private DataGridView dgvBooks;
-        private DataGridViewTextBoxColumn id;
-        private DataGridViewTextBoxColumn name;
-        private DataGridViewTextBoxColumn type;
-        private DataGridViewTextBoxColumn price;
-        private DataGridViewTextBoxColumn size;
+        private OpenFileDialog openFileDialog1;
+        private ContextMenuStrip contextMenuStrip1;
+        private ToolStripMenuItem changeBookToolStripMenuItem;
+        private ToolStripMenuItem aboutToolStripMenuItem;
+        private BindingSource bookBindingSource;
+        private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn typeDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn priceDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn sizeDataGridViewTextBoxColumn;
     }
 }

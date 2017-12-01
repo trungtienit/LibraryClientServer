@@ -17,6 +17,8 @@ namespace Client.Common
         public const byte TYPE_VIEW_FULL = TYPE << 4;
         public const byte TYPE_CHANGE = TYPE << 5;
 
-        public static int BUFFER_SIZE = 1024;
+        public const int BUFFER_SIZE = 1024;
+
+        public static int myWallet = 5000000;
     }
 }

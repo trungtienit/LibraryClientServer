@@ -23,6 +23,8 @@ namespace Client
         private byte[] byteReceive;
         private string IPofServer;
         private int port;
+        private bool isDataSending;
+        private Book bookCurrent;
 
         public TCPModel(string ip, int p)
         {
@@ -118,14 +120,14 @@ namespace Client
             tcpclnt.Close();
         }
 
-        internal void DownloadData()
+        internal void ReceiveBook()
         {
-            Thread t = new Thread(DownloadDataByThread);
+            Thread t = new Thread(ReceiveBookByThread);
             t.Start();
 
         }
 
-        private void DownloadDataByThread()
+        private void ReceiveBookByThread()
         {
             isDownloading = true;
             BinaryWriter bWrite = null;
@@ -201,6 +203,82 @@ namespace Client
                 isDownloading = false;
                 if (bWrite != null)
                     bWrite.Close();
+            }
+        }
+
+
+        internal void SendBook(Book book)
+        {
+            Thread t = new Thread(SendBookByThread);
+            t.Start(book);
+        }
+
+        private void SendBookByThread(Object o)
+        {
+            isDataSending = true;
+            bookCurrent = (Book)o;
+            try
+            {
+                string filePath = "";
+                string fileName = bookCurrent.Path;
+
+                fileName = fileName.Replace("\\", "/");
+                while (fileName.IndexOf("/") > -1)
+                {
+                    filePath += fileName.Substring(0, fileName.IndexOf("/") + 1);
+                    fileName = fileName.Substring(fileName.IndexOf("/") + 1);
+                }
+
+                byte[] fileNameByte = Encoding.ASCII.GetBytes(fileName);
+
+                FileStream tempfile = File.OpenRead(filePath + fileName);
+                byte[] clientData = new byte[4 + 4 + fileName.Length];
+
+                byte[] fileNameLen = BitConverter.GetBytes(fileNameByte.Length);
+                byte[] fileLength = BitConverter.GetBytes(tempfile.Length);
+                fileNameLen.CopyTo(clientData, 0);
+                fileLength.CopyTo(clientData, 4);
+                fileNameByte.CopyTo(clientData, 8);
+                //[FILE NAME LENGHT] [LENGTH FILE ] [NAME FILE] 
+                //[   4            ] [   4        ] [  name   ]
+
+                //SEND INFO
+                stm.Write(clientData, 0, clientData.Length);
+
+                int bufferLength = ClientManager.BUFFER_SIZE;
+                byte[] buffer = new byte[bufferLength];
+
+                int len = (Int32)tempfile.Length;
+                int byteRead;
+                int byteAllRead = 0;
+                while ((byteRead = tempfile.Read(buffer, 0, bufferLength)) > 0)
+                {
+                    try
+                    {
+                        stm.Write(buffer,0, bufferLength);
+                        //DEBUG
+                        len -= byteRead;
+
+                        if (len < byteRead) byteAllRead += len;
+                        else
+                            byteAllRead += byteRead;
+                        Console.WriteLine("Reading : " + byteAllRead);
+                    }
+                    catch (Exception E)
+                    {
+                        Console.Write("Send failed" + E.StackTrace);
+                        isDataSending = false;
+                    }
+
+                }
+                byteAllRead +=  bufferLength;
+                Console.WriteLine("Read all : " + byteAllRead);
+                isDataSending = false;
+            }
+            catch (Exception E)
+            {
+                Console.Write(E.StackTrace);
+                isDataSending = false;
             }
         }
     }

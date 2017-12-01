@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Server
+namespace Client
 {
     public partial class ViewFile : Form
     {
@@ -22,7 +22,10 @@ namespace Server
         }
 
         private void button1_Click(object sender, EventArgs e)
-        { 
+        {
+            openFileDialog1.ShowDialog();
+            String a = openFileDialog1.FileName;
+            webBrowser1.Navigate(a);
         }
     }
 }

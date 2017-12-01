@@ -1,10 +1,10 @@
-﻿using Server.Common;
+﻿using Client.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Server
+namespace Client
 {
     public class Book
     {
@@ -49,7 +49,16 @@ namespace Server
         public Book()
         {
         }
-
+        public Book(Book b)
+        {
+            this.id = b.id;
+            this.name = b.name;
+            this.type = b.type;
+            this.price = b.price;
+            this.size = b.size;
+            this.path = b.path;
+            this.onDrive = b.onDrive;
+        }
         public Book(Builder builder)
         {
             this.id = builder.id;

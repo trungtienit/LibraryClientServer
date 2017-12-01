@@ -1,4 +1,4 @@
-﻿namespace Server
+﻿namespace Client
 {
     partial class ViewFile
     {
@@ -28,20 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ViewFile));
-            this.view1 = new AxAcroPDFLib.AxAcroPDF();
             this.button1 = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.view1)).BeginInit();
+            this.webBrowser1 = new System.Windows.Forms.WebBrowser();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.SuspendLayout();
-            // 
-            // view1
-            // 
-            this.view1.Enabled = true;
-            this.view1.Location = new System.Drawing.Point(12, 74);
-            this.view1.Name = "view1";
-            this.view1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("view1.OcxState")));
-            this.view1.Size = new System.Drawing.Size(1300, 891);
-            this.view1.TabIndex = 0;
             // 
             // button1
             // 
@@ -53,24 +43,35 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // webBrowser1
+            // 
+            this.webBrowser1.Location = new System.Drawing.Point(12, 74);
+            this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
+            this.webBrowser1.Name = "webBrowser1";
+            this.webBrowser1.Size = new System.Drawing.Size(1277, 891);
+            this.webBrowser1.TabIndex = 2;
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
             // ViewFile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1324, 977);
+            this.Controls.Add(this.webBrowser1);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.view1);
             this.Name = "ViewFile";
             this.Text = "ViewFile";
             this.Load += new System.EventHandler(this.ViewFile_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.view1)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private AxAcroPDFLib.AxAcroPDF view1;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.WebBrowser webBrowser1;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }

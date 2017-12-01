@@ -5,15 +5,15 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Net.Sockets;
 using System.Threading;
-using Server.Common;
+using Client.Common;
 using System.IO;
-using Server.Api;
+using Client.Api;
 
 /**
  * TRAN TRUNG TIEN 22/11/2017
  */
 
-namespace Server
+namespace Client
 {
     /// <summary>
     /// Description of MainForm.
@@ -70,8 +70,9 @@ namespace Server
             SocketModel socket = (SocketModel)obj;
             while (true)
             {
+                if (socket.isDataSending || socket.isReceiving)
+                    continue;
                 string str = socket.ReceiveData();
-                
 
                 //Remove socket fail : disconnect
                 if (str.Equals(SocketModel.CLIENT_DISSCONECT + socket.GetRemoteEndpoint()))
@@ -93,11 +94,17 @@ namespace Server
                         socket.SendData(results);
                         break;
                         //Send File book
-                    case ServerManager.TYPE_PREVIEW:
+                    case ServerManager.TYPE_DOWNLOAD:
                         socket.SendBook( DataBase.GetFile(receive[1]));
                         break;
-                }
-               
+                    case ServerManager.TYPE_PREVIEW:
+                        socket.SendBook(DataBase.GetFilePreview(receive[1]));
+                        break;
+                    case ServerManager.TYPE_CHANGE:
+                        socket.ReceiveBook();
+
+                        break;
+                }           
             }
         }
 
@@ -140,7 +147,5 @@ namespace Server
         {
             DataBase.WriteNewDB();
         }
-
-
     }
 }

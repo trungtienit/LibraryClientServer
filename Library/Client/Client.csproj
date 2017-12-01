@@ -52,6 +52,12 @@
   <ItemGroup>
     <Compile Include="Common\ClientManager.cs" />
     <Compile Include="Model\Book.cs" />
+    <Compile Include="View\ChangeBookForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\ChangeBookForm.Designer.cs">
+      <DependentUpon>ChangeBookForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\ClientForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -69,6 +75,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="View\ChangeBookForm.resx">
+      <DependentUpon>ChangeBookForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\ClientForm.resx">
       <DependentUpon>ClientForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -94,6 +103,9 @@
       <WrapperTool>aximp</WrapperTool>
       <Isolated>False</Isolated>
     </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\DataSources\Book.datasource" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

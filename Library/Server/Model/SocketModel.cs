@@ -1,6 +1,6 @@
 ﻿
-using Server.Api;
-using Server.Common;
+using Client.Api;
+using Client.Common;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -11,9 +11,8 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading;
 
-namespace Server
+namespace Client
 {
-
     /// <summary>
     /// Description of SocketModel.
     /// </summary>
@@ -25,8 +24,10 @@ namespace Server
         private string remoteEndPoint;
         private Stream stream;
         private ApiManager apiManager;
-        public  Boolean isDataSending = false;
-        public  Book bookCurrent=null;
+        public Boolean isDataSending = false;
+        public Book bookCurrent = null;
+        public bool isDownloading = false;
+        public bool isReceiving = false;
 
         public SocketModel(Socket s)
         {
@@ -123,6 +124,95 @@ namespace Server
             }
         }
 
+        internal void ReceiveBook()
+        {
+            isReceiving = true;
+            Thread t = new Thread(ReceiveBookByThread);
+            t.Start();
+
+        }
+
+        private void ReceiveBookByThread()
+        {
+            BinaryWriter bWrite = null;
+            int fileLenght = 0;
+            int originalLength = 0;
+            decimal byteReadAll = 0;
+            try
+            {
+                String receivedPath = DataBase.PATH_DB;
+                if (!Directory.Exists(receivedPath))
+                    Directory.CreateDirectory(receivedPath);
+
+
+                byte[] clientData = new byte[100];
+
+                int byteReceive = stream.Read(clientData, 0, 4);
+                int fileNameLen = BitConverter.ToInt32(clientData, 0);
+                byteReceive = stream.Read(clientData, 0, 4);
+                fileLenght = BitConverter.ToInt32(clientData, 0);
+                originalLength = fileLenght;
+                Console.WriteLine("fileNameLen = {0}", fileNameLen);
+
+                stream.Read(clientData, 0, fileNameLen);
+
+                String fileName = Encoding.ASCII.GetString(clientData, 0, fileNameLen);
+                Console.WriteLine("fileName = {0}", fileName);
+                int k = 1;
+                while (File.Exists(receivedPath + "/" + fileName))
+                {
+                    if (fileName.StartsWith("("))
+                        fileName = fileName.Substring(3);
+                    fileName = "(" + k++ + ")" + fileName;
+                }
+
+                bWrite = new BinaryWriter(File.Open(receivedPath + "/" + fileName, FileMode.Append)); ;
+
+                int bufferLength = ServerManager.BUFFER_SIZE;
+                byte[] buffer = new byte[bufferLength];
+
+                int byteRead;
+
+                while ((byteRead = stream.Read(buffer, 0, bufferLength)) > 0)
+                {
+                    if (fileLenght <= bufferLength)
+                    {
+                        bWrite.Write(buffer, 0, fileLenght);
+                        byteReadAll += fileLenght;
+                    }
+                    else
+                    {
+                        bWrite.Write(buffer, 0, byteRead);
+                        byteReadAll += byteRead;
+                    }
+                    if (byteReadAll == originalLength)
+                    {
+                        isReceiving = false;
+                        Console.Write("Recieved all :" + byteReadAll);
+                        bWrite.Close();
+                        Random r = new Random();
+                        SendData((r.Next(1, 55) * 1000) + "");
+                        return;
+                    }
+
+                    fileLenght -= bufferLength;
+             
+                    //DEBUG
+                    Console.WriteLine("Recieveding :" + byteReadAll);
+
+                };
+            }
+            catch (Exception ex)
+            {
+                isReceiving = false;
+                Console.Write("Recieved all :" + byteReadAll);
+                Console.Write("Download Fail");
+                isDownloading = false;
+                if (bWrite != null)
+                    bWrite.Close();
+            }
+        }
+
         internal void SendBook(Book book)
         {
             Thread t = new Thread(SendBookByThread);
@@ -142,7 +232,7 @@ namespace Server
                     apiManager = new ApiManager();
                     fileName = apiManager.DownloadGoogleFile(bookCurrent.Path);
                 }
-                  
+
                 fileName = fileName.Replace("\\", "/");
                 while (fileName.IndexOf("/") > -1)
                 {
@@ -168,7 +258,7 @@ namespace Server
 
                 int bufferLength = ServerManager.BUFFER_SIZE;
                 byte[] buffer = new byte[bufferLength];
-                
+
                 int len = (Int32)tempfile.Length;
                 int byteRead;
                 int byteAllRead = 0;
@@ -192,12 +282,8 @@ namespace Server
                     }
 
                 }
+                byteAllRead += bufferLength;
                 Console.WriteLine("Read all : " + byteAllRead);
-                if (ReceiveData().Equals("FAIL"))
-                {
-                    Console.Write("Send again!");
-                    SendBookByThread(bookCurrent);
-                }
                 isDataSending = false;
             }
             catch (Exception E)
@@ -207,5 +293,4 @@ namespace Server
             }
         }
     }
-
 }

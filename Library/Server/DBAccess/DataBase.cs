@@ -1,5 +1,5 @@
-﻿using Server;
-using Server.Common;
+﻿using Client;
+using Client.Common;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -11,13 +11,14 @@ using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 
-namespace Server
+namespace Client
 {
     class DataBase
     {
         public const String PATH_DB_XML = "..\\..\\..\\..\\BooksDB.xml";
         public const String PATH_DB = "..\\..\\..\\..\\Data";
-        public static string[] EXTENSIONS = new[] { ".doc", ".pdf", ".docx", ".mp4", ".sketch", ".mp3", ".zip", ".dmg" };
+        public const String PATH_CACHE = "..\\..\\..\\..\\CACHE";
+        public static string[] EXTENSIONS = new[] { ".doc", ".pdf", ".docx", ".mp4", ".sketch", ".mp3", ".zip" };
         public static List<Book> books;
         public DataBase() { }
         public static List<Book> GetListBook()
@@ -121,6 +122,19 @@ namespace Server
 
             //Save to listbooks
             books.Add(b);
+        }
+
+        internal static Book GetFilePreview(string id)
+        {
+            return ConvertPDF(GetFile(id));
+        }
+
+        private static Book ConvertPDF(Book book)
+        {
+            Book b = new Book(book);
+            //TODO
+
+            return b;
         }
 
         internal static Book GetFile(string id)
