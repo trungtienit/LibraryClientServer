@@ -11,6 +11,8 @@ namespace Client
 {
     public partial class ViewFile : Form
     {
+        internal string bookCurrent;
+
         public ViewFile()
         {
             InitializeComponent();
@@ -18,14 +20,8 @@ namespace Client
 
         private void ViewFile_Load(object sender, EventArgs e)
         {
-           
+            webBrowser1.Navigate(bookCurrent);
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            openFileDialog1.ShowDialog();
-            String a = openFileDialog1.FileName;
-            webBrowser1.Navigate(a);
-        }
     }
 }

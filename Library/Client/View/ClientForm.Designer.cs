@@ -64,11 +64,14 @@ namespace Client
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.changeBookToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.progressBar = new System.Windows.Forms.ProgressBar();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.panel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBooks)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bookBindingSource)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // label5
@@ -180,7 +183,7 @@ namespace Client
             this.groupBox1.Controls.Add(this.cbType);
             this.groupBox1.Location = new System.Drawing.Point(19, 308);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(499, 408);
+            this.groupBox1.Size = new System.Drawing.Size(499, 412);
             this.groupBox1.TabIndex = 17;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Communication";
@@ -242,7 +245,7 @@ namespace Client
             this.dgvBooks.Name = "dgvBooks";
             this.dgvBooks.RowHeadersWidth = 50;
             this.dgvBooks.RowTemplate.Height = 33;
-            this.dgvBooks.Size = new System.Drawing.Size(1264, 704);
+            this.dgvBooks.Size = new System.Drawing.Size(1264, 675);
             this.dgvBooks.TabIndex = 21;
             this.dgvBooks.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvBooks_CellMouseClick);
             // 
@@ -307,6 +310,17 @@ namespace Client
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(233, 36);
             this.aboutToolStripMenuItem.Text = "About";
             // 
+            // progressBar
+            // 
+            this.progressBar.Location = new System.Drawing.Point(1172, 690);
+            this.progressBar.Name = "progressBar";
+            this.progressBar.Size = new System.Drawing.Size(616, 23);
+            this.progressBar.TabIndex = 22;
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
             // ClientForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -315,8 +329,9 @@ namespace Client
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.PaleTurquoise;
-            this.ClientSize = new System.Drawing.Size(1824, 734);
+            this.ClientSize = new System.Drawing.Size(1806, 730);
             this.ContextMenuStrip = this.contextMenuStrip1;
+            this.Controls.Add(this.progressBar);
             this.Controls.Add(this.dgvBooks);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnConnect);
@@ -336,6 +351,7 @@ namespace Client
             ((System.ComponentModel.ISupportInitialize)(this.dgvBooks)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bookBindingSource)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -366,5 +382,7 @@ namespace Client
         private DataGridViewTextBoxColumn typeDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn priceDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn sizeDataGridViewTextBoxColumn;
+        private ProgressBar progressBar;
+        private ErrorProvider errorProvider1;
     }
 }

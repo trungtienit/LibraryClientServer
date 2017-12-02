@@ -31,12 +31,12 @@
             this.btnBuy = new System.Windows.Forms.Button();
             this.btnPreview = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -74,21 +74,21 @@
             this.panel1.Size = new System.Drawing.Size(578, 342);
             this.panel1.TabIndex = 2;
             // 
-            // textBox1
+            // label3
             // 
-            this.textBox1.Location = new System.Drawing.Point(123, 73);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(350, 31);
-            this.textBox1.TabIndex = 0;
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(33, 256);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(61, 25);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "Price";
             // 
-            // label1
+            // textBox3
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(33, 78);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(68, 25);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Name";
+            this.textBox3.Location = new System.Drawing.Point(123, 251);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(350, 31);
+            this.textBox3.TabIndex = 4;
             // 
             // label2
             // 
@@ -106,28 +106,28 @@
             this.textBox2.Size = new System.Drawing.Size(350, 31);
             this.textBox2.TabIndex = 2;
             // 
-            // label3
+            // label1
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(33, 256);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(61, 25);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "Price";
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(33, 78);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(68, 25);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Name";
             // 
-            // textBox3
+            // textBox1
             // 
-            this.textBox3.Location = new System.Drawing.Point(123, 251);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(350, 31);
-            this.textBox3.TabIndex = 4;
+            this.textBox1.Location = new System.Drawing.Point(123, 73);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(350, 31);
+            this.textBox1.TabIndex = 0;
             // 
             // ShowInfoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(618, 489);
+            this.ClientSize = new System.Drawing.Size(616, 489);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnPreview);
             this.Controls.Add(this.btnBuy);

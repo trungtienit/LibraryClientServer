@@ -35,7 +35,7 @@ namespace Client
         private static TCPModel client;
         private ChangeBookForm frmChangeBook;
         private ShowInfoForm frmShowInfo;
-
+        public static ViewFile frmViewBook;
         public void Connect()
         {
             string ip = tbIpAddress.Text;
@@ -45,6 +45,7 @@ namespace Client
             if (client.ConnectToServer() == 1)
             {
                 this.Text = client.UpdateInformation();
+                client.setProgressBar(this.progressBar);
                 lbConnected.Visible = true;
                 tbWallet.Text = ClientManager.myWallet.ToString();
                 changeBookToolStripMenuItem.Enabled = true;
@@ -76,6 +77,7 @@ namespace Client
             CheckForIllegalCrossThreadCalls = false;
             changeBookToolStripMenuItem.Enabled = false;
             btnSearch.Enabled = false;
+             frmViewBook = new ViewFile();
         }
 
         private void Connect_Click(object sender, EventArgs e)
@@ -126,6 +128,11 @@ namespace Client
         {
             try
             {
+                if (TCPModel.isDownloading)
+                {
+                    MessageBox.Show("Please wait...");
+                    return;
+                }
                 String id = dgvBooks.Rows[e.RowIndex].Cells[0].Value.ToString();
                 String name = dgvBooks.Rows[e.RowIndex].Cells[1].Value.ToString();
                 String price = dgvBooks.Rows[e.RowIndex].Cells[3].Value.ToString();
@@ -149,7 +156,7 @@ namespace Client
                                 break;
                             }
                             tbWallet.Text = (ClientManager.myWallet - Double.Parse(price)).ToString();
-                            client.SendData(ClientManager.TYPE_DOWNLOAD.ToString() +ClientManager.SIGN+ id);
+                            client.SendData(ClientManager.TYPE_DOWNLOAD.ToString() + ClientManager.SIGN + id);
                             break;
                         case DialogResult.No:
                             client.SendData(ClientManager.TYPE_PREVIEW.ToString() + ClientManager.SIGN + id);
@@ -161,10 +168,11 @@ namespace Client
             {
                 return;
             }
-            if (!TCPModel.isDownloading)
-                client.ReceiveBook();
-            else
-                MessageBox.Show("Please wait...");
+            frmViewBook = new ViewFile();
+            client.setFormDetail(frmViewBook);
+
+            client.ReceiveBook();
+         
         }
 
         private void changeBookToolStripMenuItem_Click(object sender, EventArgs e)

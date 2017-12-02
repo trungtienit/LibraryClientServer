@@ -8,6 +8,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Collections.Generic;
 using System.Threading;
 using Client.Common;
+using System.Windows.Forms;
 
 namespace Client
 {
@@ -24,7 +25,9 @@ namespace Client
         private string IPofServer;
         private int port;
         private bool isDataSending;
-        private Book bookCurrent;
+        public String bookCurrent;
+        private ProgressBar progressBar;
+        private ViewFile viewFile;
 
         public TCPModel(string ip, int p)
         {
@@ -49,6 +52,12 @@ namespace Client
             }
             return str;
         }
+
+        internal void setProgressBar(ProgressBar progressBar)
+        {
+            this.progressBar = progressBar;
+        }
+
         //Set up a connection to server and get stream for communication
         public int ConnectToServer()
         {
@@ -122,8 +131,10 @@ namespace Client
 
         internal void ReceiveBook()
         {
-            Thread t = new Thread(ReceiveBookByThread);
-            t.Start();
+            bookCurrent = "";
+            ReceiveBookByThread();
+          //  Thread t = new Thread(ReceiveBookByThread);
+          //  t.Start();
 
         }
 
@@ -134,6 +145,8 @@ namespace Client
             int fileLenght = 0;
             int originalLength = 0;
             decimal byteReadAll = 0;
+            progressBar.Value = 0;
+            progressBar.Update();
             try
             {
                 String receivedPath = ClientManager.FOLDER_DOWLOAD;
@@ -147,6 +160,9 @@ namespace Client
                 int fileNameLen = BitConverter.ToInt32(clientData, 0);
                 byteReceive = stm.Read(clientData, 0, 4);
                 fileLenght = BitConverter.ToInt32(clientData, 0);
+
+                progressBar.Maximum = fileLenght;
+
                 originalLength = fileLenght;
                 Console.WriteLine("fileNameLen = {0}", fileNameLen);
 
@@ -175,17 +191,28 @@ namespace Client
                     {
                         bWrite.Write(buffer, 0, fileLenght);
                         byteReadAll += fileLenght;
+
                     }
                     else
                     {
                         bWrite.Write(buffer, 0, byteRead);
                         byteReadAll += byteRead;
                     }
+                    progressBar.Value = (Int32) byteReadAll;
+                    progressBar.Update();
                     if (byteReadAll == originalLength)
                     {
                         isDownloading = false;
                         Console.Write("Recieved all :" + byteReadAll);
+                        bookCurrent= receivedPath + "/" + fileName;
+
                         bWrite.Close();
+
+                        //
+                        FileInfo f = new FileInfo(bookCurrent);
+
+                        viewFile.bookCurrent = f.FullName;
+                        viewFile.Show();
                         return;
                     }
                    
@@ -193,20 +220,37 @@ namespace Client
 
                     //DEBUG
                     Console.WriteLine("Recieveding :" + byteReadAll);
-                    
 
                 };
             }
             catch (Exception ex)
             {
-                Console.Write("Recieved all :" + byteReadAll);
-                Console.Write("Download Fail");
-                isDownloading = false;
                 if (bWrite != null)
                     bWrite.Close();
+                isDownloading = false;
+                if (byteReadAll == originalLength)
+                {
+                    //
+                    FileInfo f = new FileInfo(bookCurrent);
+
+                    viewFile.bookCurrent = f.Name;
+                    viewFile.Show();
+                }
+                else
+                    Console.Write("Download Fail");
+
+                Console.Write("Recieved all :" + byteReadAll);
+             
+                
+           
             }
         }
 
+        internal void setFormDetail(ViewFile frmViewBook)
+        {
+            this.viewFile = frmViewBook;
+      
+        }
 
         internal void SendBook(Book book)
         {
@@ -217,11 +261,13 @@ namespace Client
         private void SendBookByThread(Object o)
         {
             isDataSending = true;
-            bookCurrent = (Book)o;
+           Book b = (Book)o;
+            progressBar.Value = 0;
+            progressBar.Update();
             try
             {
                 string filePath = "";
-                string fileName = bookCurrent.Path;
+                string fileName = b.Path;
 
                 fileName = fileName.Replace("\\", "/");
                 while (fileName.IndexOf("/") > -1)
@@ -237,6 +283,8 @@ namespace Client
 
                 byte[] fileNameLen = BitConverter.GetBytes(fileNameByte.Length);
                 byte[] fileLength = BitConverter.GetBytes(tempfile.Length);
+                 progressBar.Maximum=(Int32) tempfile.Length;
+                   
                 fileNameLen.CopyTo(clientData, 0);
                 fileLength.CopyTo(clientData, 4);
                 fileNameByte.CopyTo(clientData, 8);
@@ -248,7 +296,7 @@ namespace Client
 
                 int bufferLength = ClientManager.BUFFER_SIZE;
                 byte[] buffer = new byte[bufferLength];
-
+                
                 int len = (Int32)tempfile.Length;
                 int byteRead;
                 int byteAllRead = 0;
@@ -264,6 +312,8 @@ namespace Client
                         else
                             byteAllRead += byteRead;
                         Console.WriteLine("Reading : " + byteAllRead);
+                        progressBar.Value = byteAllRead;
+                        progressBar.Update();
                     }
                     catch (Exception E)
                     {

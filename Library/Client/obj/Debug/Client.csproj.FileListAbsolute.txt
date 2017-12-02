@@ -20,6 +20,6 @@ Y:\Skill\Code\C#\LibraryClientServer\Library\Client\obj\Debug\Client.pdb
 \\Mac\Home\Skill\Code\C#\LibraryClientServer\Library\Client\obj\Debug\Client.exe
 \\Mac\Home\Skill\Code\C#\LibraryClientServer\Library\Client\obj\Debug\Client.pdb
 \\Mac\Home\Skill\Code\C#\LibraryClientServer\Library\Client\obj\Debug\Client.ClientForm.resources
-\\Mac\Home\Skill\Code\C#\LibraryClientServer\Library\Client\obj\Debug\Client.ViewFile.resources
 \\Mac\Home\Skill\Code\C#\LibraryClientServer\Library\Client\obj\Debug\Client.View.ChangeBookForm.resources
 \\Mac\Home\Skill\Code\C#\LibraryClientServer\Library\Client\obj\Debug\Client.View.ShowInfoForm.resources
+\\Mac\Home\Skill\Code\C#\LibraryClientServer\Library\Client\obj\Debug\Client.ViewFile.resources
