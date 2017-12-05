@@ -16,8 +16,9 @@ namespace Client
     class DataBase
     {
         public const String PATH_DB_XML = "..\\..\\..\\..\\BooksDB.xml";
-        public const String PATH_DB = "..\\..\\..\\..\\Data";
-        public const String PATH_CACHE = "..\\..\\..\\..\\CACHE";
+        public const String PATH_DB_DIR = "..\\..\\..\\..\\Data";
+      //  public const String PATH_DB_PREV = "..\\..\\..\\..\\Data";
+        public const String PATH_CACHE = "..\\..\\..\\..\\Cache";
         public static string[] EXTENSIONS = new[] { ".doc", ".pdf", ".docx", ".mp4", ".sketch", ".mp3", ".zip" };
         public static List<Book> books;
         public DataBase() { }
@@ -69,7 +70,7 @@ namespace Client
             else
                 books.Clear();
             ServerManager serverManager = new ServerManager();
-            books = serverManager.GetAllDataLocal(DataBase.PATH_DB, EXTENSIONS);
+            books = serverManager.GetAllDataLocal(DataBase.PATH_DB_DIR, EXTENSIONS);
             try
             {
                 XmlSerializer serializer = new XmlSerializer(typeof(List<Book>));

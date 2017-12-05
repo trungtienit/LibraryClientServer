@@ -123,6 +123,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Api\ApiManager.cs" />
+    <Compile Include="Common\FileUtils.cs" />
     <Compile Include="Common\ServerManager.cs" />
     <Compile Include="Model\Book.cs" />
     <Compile Include="DBAccess\DataBase.cs" />

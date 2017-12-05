@@ -49,6 +49,8 @@ namespace Client
             this.lbNumberClient = new System.Windows.Forms.Label();
             this.btnUpdateDataBase = new System.Windows.Forms.Button();
             this.gbExpand = new System.Windows.Forms.GroupBox();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -195,12 +197,30 @@ namespace Client
             this.gbExpand.TabStop = false;
             this.gbExpand.Text = "Connection Control";
             // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.RoyalBlue;
+            this.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.button1.Location = new System.Drawing.Point(478, 313);
+            this.button1.Margin = new System.Windows.Forms.Padding(6);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(112, 129);
+            this.button1.TabIndex = 12;
+            this.button1.Text = "Start";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // ServerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PowderBlue;
             this.ClientSize = new System.Drawing.Size(646, 743);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.gbExpand);
             this.Controls.Add(this.btnUpdateDataBase);
             this.Controls.Add(this.lbNumberClient);
@@ -234,5 +254,7 @@ namespace Client
         private System.Windows.Forms.Label lbNumberClient;
         private System.Windows.Forms.Button btnUpdateDataBase;
         private System.Windows.Forms.GroupBox gbExpand;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.Button button1;
     }
 }

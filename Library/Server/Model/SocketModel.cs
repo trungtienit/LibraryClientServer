@@ -140,7 +140,7 @@ namespace Client
             decimal byteReadAll = 0;
             try
             {
-                String receivedPath = DataBase.PATH_DB;
+                String receivedPath = DataBase.PATH_DB_DIR;
                 if (!Directory.Exists(receivedPath))
                     Directory.CreateDirectory(receivedPath);
 

@@ -175,7 +175,7 @@ namespace Client.Api
             FilesResource.GetRequest request = service.Files.Get(fileId);
 
             string fileName = request.Execute().Name;
-            String filePath = DataBase.PATH_DB + "/" + fileName;
+            String filePath = DataBase.PATH_DB_DIR + "/" + fileName;
             if (System.IO.File.Exists(filePath))
             {
                 return filePath;

@@ -33,13 +33,14 @@ namespace Client.Common
         public const byte TYPE_FILE_OFFICE_DOC = TYPE_FILE << 6;
 
         public static int BUFFER_SIZE = 1024 ;
+        public static string PREVIEW="PREVIEW";
 
         public List<Book> GetAllDataLocal(string pathFolder, string[] fileTypes)
         {
 
             List<Book> mList = new List<Book>();
-            if (!System.IO.Directory.Exists(DataBase.PATH_DB))
-                System.IO.Directory.CreateDirectory(DataBase.PATH_DB);
+            if (!System.IO.Directory.Exists(DataBase.PATH_DB_DIR))
+                System.IO.Directory.CreateDirectory(DataBase.PATH_DB_DIR);
             DirectoryInfo dinfo = new DirectoryInfo(pathFolder);
 
             FileInfo[] files =

@@ -8,6 +8,7 @@ using System.Threading;
 using Client.Common;
 using System.IO;
 using Client.Api;
+using Server.Common;
 
 /**
  * TRAN TRUNG TIEN 22/11/2017
@@ -146,6 +147,16 @@ namespace Client
         private void btnUpdateDataBase_Click(object sender, EventArgs e)
         {
             DataBase.WriteNewDB();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+               String a= FileUtils.Split(openFileDialog1.FileName);
+                a = a;
+            };
+
         }
     }
 }
