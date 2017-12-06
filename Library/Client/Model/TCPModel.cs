@@ -7,10 +7,10 @@ using System.Text;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Collections.Generic;
 using System.Threading;
-using Client.Common;
+using Server.Common;
 using System.Windows.Forms;
 
-namespace Client
+namespace Server
 {
     /// <summary>
     /// Description of TCPModel.
@@ -28,12 +28,14 @@ namespace Client
         public String bookCurrent;
         private ProgressBar progressBar;
         private ViewFile viewFile;
+        internal byte typeCurrent;
 
         public TCPModel(string ip, int p)
         {
             IPofServer = ip;
             port = p;
             tcpclnt = new TcpClient();
+            tcpclnt.ReceiveTimeout = Timeout.Infinite;
             byteReceive = new byte[100];
         }
         //show information of client to update UI
@@ -65,7 +67,7 @@ namespace Client
             {
                 tcpclnt.Connect(IPofServer, port);
                 stm = tcpclnt.GetStream();
-                stm.ReadTimeout = 10000;
+                stm.ReadTimeout = Timeout.Infinite;
                 Console.WriteLine("OK!");
             }
             catch (Exception e)
@@ -119,7 +121,15 @@ namespace Client
         internal List<String> ReadListData()
         {
             var bin = new BinaryFormatter();
-            var list = (List<string>)bin.Deserialize(stm);
+            List<String> list = null;
+            try
+            {
+                list = (List<string>)bin.Deserialize(stm);
+            }
+            catch
+            {
+                return list;
+            }
             return list;
         }
 
@@ -133,8 +143,8 @@ namespace Client
         {
             bookCurrent = "";
             ReceiveBookByThread();
-          //  Thread t = new Thread(ReceiveBookByThread);
-          //  t.Start();
+            //  Thread t = new Thread(ReceiveBookByThread);
+            //  t.Start();
 
         }
 
@@ -153,8 +163,12 @@ namespace Client
                 if (!Directory.Exists(receivedPath))
                     Directory.CreateDirectory(receivedPath);
 
-
                 byte[] clientData = new byte[100];
+                //if(typeCurrent== ClientManager.TYPE_PREVIEW)
+                //{
+                //    tcpclnt.ReceiveTimeout = Timeout.Infinite;
+                //    stm.ReadTimeout = Timeout.Infinite;
+                //}
 
                 int byteReceive = stm.Read(clientData, 0, 4);
                 int fileNameLen = BitConverter.ToInt32(clientData, 0);
@@ -191,31 +205,33 @@ namespace Client
                     {
                         bWrite.Write(buffer, 0, fileLenght);
                         byteReadAll += fileLenght;
-
                     }
                     else
                     {
                         bWrite.Write(buffer, 0, byteRead);
                         byteReadAll += byteRead;
                     }
-                    progressBar.Value = (Int32) byteReadAll;
+                    progressBar.Value = (Int32)byteReadAll;
                     progressBar.Update();
                     if (byteReadAll == originalLength)
                     {
                         isDownloading = false;
                         Console.Write("Recieved all :" + byteReadAll);
-                        bookCurrent= receivedPath + "/" + fileName;
+                        bookCurrent = receivedPath + "/" + fileName;
 
                         bWrite.Close();
 
                         //
                         FileInfo f = new FileInfo(bookCurrent);
+                        if (typeCurrent == ClientManager.TYPE_PREVIEW)
+                        {
+                            viewFile.bookCurrent = f.FullName;
+                            viewFile.Show();
+                        }
 
-                        viewFile.bookCurrent = f.FullName;
-                        viewFile.Show();
                         return;
                     }
-                   
+
                     fileLenght -= bufferLength;
 
                     //DEBUG
@@ -228,28 +244,36 @@ namespace Client
                 if (bWrite != null)
                     bWrite.Close();
                 isDownloading = false;
+
                 if (byteReadAll == originalLength)
                 {
+                    if (typeCurrent == ClientManager.TYPE_PREVIEW)
+                    {
+                        //Wait Convert Pdf
+                        if (byteReadAll == 0)
+                            ReceiveBookByThread();
+                        else
+                        {
+                            FileInfo f = new FileInfo(bookCurrent);
+                            viewFile.bookCurrent = f.Name;
+                            viewFile.Show();
+                        }
+                    }
                     //
-                    FileInfo f = new FileInfo(bookCurrent);
 
-                    viewFile.bookCurrent = f.Name;
-                    viewFile.Show();
                 }
                 else
                     Console.Write("Download Fail");
 
                 Console.Write("Recieved all :" + byteReadAll);
-             
-                
-           
+
             }
         }
 
         internal void setFormDetail(ViewFile frmViewBook)
         {
             this.viewFile = frmViewBook;
-      
+
         }
 
         internal void SendBook(Book book)
@@ -261,7 +285,7 @@ namespace Client
         private void SendBookByThread(Object o)
         {
             isDataSending = true;
-           Book b = (Book)o;
+            Book b = (Book)o;
             progressBar.Value = 0;
             progressBar.Update();
             try
@@ -283,8 +307,8 @@ namespace Client
 
                 byte[] fileNameLen = BitConverter.GetBytes(fileNameByte.Length);
                 byte[] fileLength = BitConverter.GetBytes(tempfile.Length);
-                 progressBar.Maximum=(Int32) tempfile.Length;
-                   
+                progressBar.Maximum = (Int32)tempfile.Length;
+
                 fileNameLen.CopyTo(clientData, 0);
                 fileLength.CopyTo(clientData, 4);
                 fileNameByte.CopyTo(clientData, 8);
@@ -296,7 +320,7 @@ namespace Client
 
                 int bufferLength = ClientManager.BUFFER_SIZE;
                 byte[] buffer = new byte[bufferLength];
-                
+
                 int len = (Int32)tempfile.Length;
                 int byteRead;
                 int byteAllRead = 0;
@@ -304,7 +328,7 @@ namespace Client
                 {
                     try
                     {
-                        stm.Write(buffer,0, bufferLength);
+                        stm.Write(buffer, 0, bufferLength);
                         //DEBUG
                         len -= byteRead;
 
@@ -322,7 +346,7 @@ namespace Client
                     }
 
                 }
-                byteAllRead +=  bufferLength;
+                byteAllRead += bufferLength;
                 Console.WriteLine("Read all : " + byteAllRead);
                 isDataSending = false;
             }

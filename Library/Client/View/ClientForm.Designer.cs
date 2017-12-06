@@ -7,7 +7,7 @@
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
-namespace Client
+namespace Server
 {
 	partial class ClientForm
 	{
@@ -282,7 +282,7 @@ namespace Client
             // 
             // bookBindingSource
             // 
-            this.bookBindingSource.DataSource = typeof(Client.Book);
+            this.bookBindingSource.DataSource = typeof(Server.Book);
             // 
             // openFileDialog1
             // 

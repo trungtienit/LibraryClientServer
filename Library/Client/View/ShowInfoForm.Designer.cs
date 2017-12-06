@@ -1,4 +1,4 @@
-﻿namespace Client.View
+﻿namespace Server.View
 {
     partial class ShowInfoForm
     {
@@ -49,6 +49,7 @@
             this.btnBuy.TabIndex = 0;
             this.btnBuy.Text = "Buy";
             this.btnBuy.UseVisualStyleBackColor = true;
+            this.btnBuy.Click += new System.EventHandler(this.btnBuy_Click);
             // 
             // btnPreview
             // 

@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Client.Common
+namespace Server.Common
 {
     public class ClientManager
     {
-        public const String FOLDER_DOWLOAD = "..\\Download";
+        public const String FOLDER_DOWLOAD = "..\\..\\Download";
 
         public const char SIGN = '#';
         public const byte TYPE = 1;
@@ -19,6 +19,6 @@ namespace Client.Common
 
         public const int BUFFER_SIZE = 1024;
 
-        public static int myWallet = 5000000;
+        public static int myWallet = 50000000;
     }
 }

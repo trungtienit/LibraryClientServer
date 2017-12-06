@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace Client.Common
+namespace Server.Common
 {
 
     public class ServerManager
@@ -25,22 +25,27 @@ namespace Client.Common
         public const byte TYPE_CHANGE = TYPE << 5;
 
         public const byte TYPE_FILE = 1;
-        public const byte TYPE_FILE_MSWORD = TYPE_FILE<< 1;
+        public const byte TYPE_FILE_MSWORD = TYPE_FILE << 1;
         public const byte TYPE_FILE_PLAIN_TEXT = TYPE_FILE << 2;
         public const byte TYPE_FILE_PDF = TYPE_FILE << 3;
         public const byte TYPE_FILE_RICH_TEXT = TYPE_FILE << 4;
         public const byte TYPE_FILE_EXCEL = TYPE_FILE << 5;
         public const byte TYPE_FILE_OFFICE_DOC = TYPE_FILE << 6;
 
-        public static int BUFFER_SIZE = 1024 ;
-        public static string PREVIEW="PREVIEW";
+        public static int BUFFER_SIZE = 1024;
+        public static string PREVIEW = "PREVIEW";
 
         public List<Book> GetAllDataLocal(string pathFolder, string[] fileTypes)
         {
 
             List<Book> mList = new List<Book>();
+
+            if (!System.IO.Directory.Exists(DataBase.PATH_CONFIG))
+                System.IO.Directory.CreateDirectory(DataBase.PATH_CONFIG);
+
             if (!System.IO.Directory.Exists(DataBase.PATH_DB_DIR))
                 System.IO.Directory.CreateDirectory(DataBase.PATH_DB_DIR);
+
             DirectoryInfo dinfo = new DirectoryInfo(pathFolder);
 
             FileInfo[] files =
@@ -56,10 +61,11 @@ namespace Client.Common
             Random r = new Random();
             foreach (FileInfo file in files)
             {
+                double p = 0;
+                if (!file.Extension.ToUpper().Contains("TXT")
+                    && !file.Extension.ToUpper().Contains("XLS"))
+                    p = (r.Next(1, 99) * 10000);
 
-                double p = (r.Next(1, 99) * 10000);
-                
-               
                 Book b = new Book.Builder()
                       .Id(CreateId(file))
                       .Name(CustomName(file.Name))
@@ -85,7 +91,6 @@ namespace Client.Common
             }
             else
             {
-
                 if (type.Equals("Word"))
                 {
                     foreach (Book b in DataBase.GetListBook())
@@ -127,7 +132,6 @@ namespace Client.Common
                 }
 
             }
-
 
             return l;
         }

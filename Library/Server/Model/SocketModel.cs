@@ -1,6 +1,6 @@
 ﻿
-using Client.Api;
-using Client.Common;
+using Server.Api;
+using Server.Common;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -11,7 +11,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading;
 
-namespace Client
+namespace Server
 {
     /// <summary>
     /// Description of SocketModel.
@@ -227,7 +227,7 @@ namespace Client
             {
                 string filePath = "";
                 string fileName = bookCurrent.Path;
-                if (bookCurrent.Id.StartsWith("GD"))
+                if (bookCurrent.Id.StartsWith("GD") && bookCurrent.OnDrive)
                 {
                     apiManager = new ApiManager();
                     fileName = apiManager.DownloadGoogleFile(bookCurrent.Path);

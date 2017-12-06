@@ -8,11 +8,11 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Threading;
-using Client.Common;
+using Server.Common;
 using System.IO;
-using Client.View;
+using Server.View;
 
-namespace Client
+namespace Server
 {
     /// <summary>
     /// Description of MainForm.
@@ -105,7 +105,8 @@ namespace Client
             dgvBooks.Rows.Clear();
             listBooksCurrent = client.ReadListData();
             int k = 0;
-
+            if (listBooksCurrent == null)
+                listBooksCurrent = new List<string>();
             foreach (String s in listBooksCurrent)
             {
 
@@ -155,12 +156,16 @@ namespace Client
                                 MessageBox.Show("Your balance is not enough to pay", "Error", MessageBoxButtons.OK);
                                 break;
                             }
+                            client.typeCurrent = ClientManager.TYPE_DOWNLOAD;
                             tbWallet.Text = (ClientManager.myWallet - Double.Parse(price)).ToString();
                             client.SendData(ClientManager.TYPE_DOWNLOAD.ToString() + ClientManager.SIGN + id);
                             break;
                         case DialogResult.No:
+                            client.typeCurrent = ClientManager.TYPE_PREVIEW;
                             client.SendData(ClientManager.TYPE_PREVIEW.ToString() + ClientManager.SIGN + id);
                             break;
+                        default:
+                            return;
                     }
                 }
             }
@@ -170,7 +175,7 @@ namespace Client
             }
             frmViewBook = new ViewFile();
             client.setFormDetail(frmViewBook);
-
+            //if()
             client.ReceiveBook();
          
         }

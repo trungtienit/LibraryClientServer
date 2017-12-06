@@ -1,10 +1,10 @@
 ﻿
-using Client;
+using Server;
 using System;
 using System.Windows.Forms;
 
 
-namespace Client
+namespace Server
 {
 	/// <summary>
 	/// Class with program entry point.

@@ -5,16 +5,16 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Net.Sockets;
 using System.Threading;
-using Client.Common;
+using Server.Common;
 using System.IO;
-using Client.Api;
+using Server.Api;
 using Server.Common;
 
 /**
  * TRAN TRUNG TIEN 22/11/2017
  */
 
-namespace Client
+namespace Server
 {
     /// <summary>
     /// Description of MainForm.
@@ -103,7 +103,6 @@ namespace Client
                         break;
                     case ServerManager.TYPE_CHANGE:
                         socket.ReceiveBook();
-
                         break;
                 }           
             }
@@ -151,11 +150,6 @@ namespace Client
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
-            {
-               String a= FileUtils.Split(openFileDialog1.FileName);
-                a = a;
-            };
 
         }
     }

@@ -2,7 +2,7 @@
 using Google.Apis.Drive.v3;
 using Google.Apis.Services;
 using Google.Apis.Util.Store;
-using Client.Common;
+using Server.Common;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -12,7 +12,7 @@ using System.Threading;
 using Google.Apis.Drive.v3.Data;
 using Google.Apis.Download;
 
-namespace Client.Api
+namespace Server.Api
 {
     class ApiManager
     {
@@ -36,8 +36,10 @@ namespace Client.Api
                 mType = ServerManager.TYPE_FILE_PDF;
             if (v2.ToUpper().Equals("EXCEL"))
                 mType = ServerManager.TYPE_FILE_EXCEL;
+            if (v2.ToUpper().Equals("TEXT"))
+                mType = ServerManager.TYPE_FILE_PLAIN_TEXT;
             if (v2.ToUpper().Equals("ALL"))
-                mType = ServerManager.TYPE_FILE_EXCEL | ServerManager.TYPE_FILE_MSWORD | ServerManager.TYPE_FILE_PDF;
+                mType = ServerManager.TYPE_FILE_PLAIN_TEXT | ServerManager.TYPE_FILE_EXCEL | ServerManager.TYPE_FILE_MSWORD | ServerManager.TYPE_FILE_PDF;
             return FindBookByTitleAndTypeOnDrive(v1, mType);
         }
         public List<String> FindBookByTitleAndTypeOnDrive(String title, byte types)
@@ -54,6 +56,8 @@ namespace Client.Api
                     mTypes = mTypes + " or " + ServerManager.PDF;
                 if ((types & ServerManager.TYPE_FILE_EXCEL) == ServerManager.TYPE_FILE_EXCEL)
                     mTypes = mTypes + " or " + ServerManager.EXCEL;
+                if ((types & ServerManager.TYPE_FILE_PLAIN_TEXT) == ServerManager.TYPE_FILE_PLAIN_TEXT)
+                    mTypes = mTypes + " or " + ServerManager.PLAIN_TEXT;
             }
 
             Console.WriteLine("Start Search");
@@ -83,22 +87,26 @@ namespace Client.Api
                 }
                 if (result == null)
                     return results;
-                    foreach (var file in result.Files)
-                    {
-                        Book b = new Book.Builder()
-                         .Id(CreateId(file))
-                         .Name(file.Name)
-                         .Type("." + file.FullFileExtension)
-                         .Price((r.Next(1, 99) * 100000))
-                         .Size(serverManager.CustomSize((long)file.Size))
-                         .Path(file.Id)
-                         .OnDrive()
-                         .Build();
-                        DataBase.AddNewBook(b);
-                        results.Add(b.ToString());
-                        Console.WriteLine(String.Format(
-                                "Found file: {0} ({1})", file.Name, file.Id));
-                    }
+                foreach (var file in result.Files)
+                {
+                    int p = 0;
+                    if (!file.FullFileExtension.ToUpper().Contains("TXT")
+                   && !file.FullFileExtension.ToUpper().Contains("XLS"))
+                        p = (r.Next(1, 99) * 100000);
+                    Book b = new Book.Builder()
+                     .Id(CreateId(file))
+                     .Name(file.Name)
+                     .Type("." + file.FullFileExtension)
+                     .Price(p)
+                     .Size(serverManager.CustomSize((long)file.Size))
+                     .Path(file.Id)
+                     .OnDrive()
+                     .Build();
+                    DataBase.AddNewBook(b);
+                    results.Add(b.ToString());
+                    Console.WriteLine(String.Format(
+                            "Found file: {0} ({1})", file.Name, file.Id));
+                }
                 pageToken = result.NextPageToken;
             } while (pageToken != null);
             Console.WriteLine("Search done");
@@ -145,32 +153,8 @@ namespace Client.Api
             Console.WriteLine("Done!");
             #endregion
         }
-        //public static void FileUpload(HttpPostedFileBase file)
-        //{
-        //    if (file != null && file.ContentLength > 0)
-        //    {
-        //        DriveService service = GetService();
 
-        //        string path = Path.Combine(HttpContext.Current.Server.MapPath("~/GoogleDriveFiles"),
-        //        Path.GetFileName(file.FileName));
-        //        file.SaveAs(path);
-
-        //        var FileMetaData = new Google.Apis.Drive.v3.Data.File();
-        //        FileMetaData.Name = Path.GetFileName(file.FileName);
-        //        FileMetaData.MimeType = MimeMapping.GetMimeMapping(path);
-
-        //        FilesResource.CreateMediaUpload request;
-
-        //        using (var stream = new System.IO.FileStream(path, System.IO.FileMode.Open))
-        //        {
-        //            request = service.Files.Create(FileMetaData, stream, FileMetaData.MimeType);
-        //            request.Fields = "id";
-        //            request.Upload();
-        //        }
-        //    }
-        //}
-
-        public string DownloadGoogleFile(string fileId) 
+        public string DownloadGoogleFile(string fileId)
         {
             FilesResource.GetRequest request = service.Files.Get(fileId);
 

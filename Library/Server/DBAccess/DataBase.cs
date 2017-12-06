@@ -1,5 +1,7 @@
-﻿using Client;
-using Client.Common;
+﻿using Server;
+using Server.Api;
+using Server.Common;
+using Server.Common;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -11,17 +13,18 @@ using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 
-namespace Client
+namespace Server
 {
     class DataBase
     {
-        public const String PATH_DB_XML = "..\\..\\..\\..\\BooksDB.xml";
-        public const String PATH_DB_DIR = "..\\..\\..\\..\\Data";
-      //  public const String PATH_DB_PREV = "..\\..\\..\\..\\Data";
-        public const String PATH_CACHE = "..\\..\\..\\..\\Cache";
-        public static string[] EXTENSIONS = new[] { ".doc", ".pdf", ".docx", ".mp4", ".sketch", ".mp3", ".zip" };
+        public const String PATH_CONFIG = "..\\..\\Config";
+        public const String PATH_DB_XML = PATH_CONFIG + "\\BooksDB.xml";
+        public const String PATH_DB_DIR = PATH_CONFIG + "\\Data";
+        public const String PATH_CACHE = PATH_CONFIG + "\\Preview";
+        public static string[] EXTENSIONS = new[] { ".doc", ".pdf", ".docx", ".xls", ".xlsm", ".txt" };
         public static List<Book> books;
         public DataBase() { }
+        public static ApiManager apiManager = new ApiManager();
         public static List<Book> GetListBook()
         {
 
@@ -93,7 +96,8 @@ namespace Client
             try
             {
                 doc.Load(PATH_DB_XML);
-            }catch(Exception E)
+            }
+            catch (Exception E)
             {
                 DataBase.WriteNewDB();
             }
@@ -127,19 +131,23 @@ namespace Client
 
         internal static Book GetFilePreview(string id)
         {
-            return ConvertPDF(GetFile(id));
-        }
-
-        private static Book ConvertPDF(Book book)
-        {
-            Book b = new Book(book);
-            //TODO
-
+            Book b = GetFile(id);
+            if (b == null)
+                return null;
+            if (b.Id.StartsWith("GD") )
+            {
+                apiManager = new ApiManager();
+                b.Path = apiManager.DownloadGoogleFile(b.Path);
+                b.OnDrive = false;
+            }
+            FileUtils f = new FileUtils();
+            String rs = f.ConvertPdfPreview(b.Path);
+            b.Path = rs;
             return b;
         }
 
         internal static Book GetFile(string id)
-        {   
+        {
             foreach (Book b in books)
                 if (id.Equals(b.Id))
                     return b;

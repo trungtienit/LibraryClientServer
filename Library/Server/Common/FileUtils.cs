@@ -5,15 +5,79 @@ using System.Text;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using System.IO;
-using Client;
-using Client.Common;
+using Server;
+using Server.Common;
+using Spire.Pdf;
 
 namespace Server.Common
 {
     public class FileUtils
     {
 
-        public static string Split(string pdfFilePath)
+        public String ConvertPdfPreview(String path)
+        {
+            string output = "";
+            string fileFormat = path.Substring(path.LastIndexOf(".") + 1);
+            if (fileFormat.ToUpper().Equals("DOC") || fileFormat.ToUpper().Equals("DOCX"))
+                output = GetWordForPreview(path);
+            if (fileFormat.ToUpper().Equals("PDF"))
+                output = Split(path);
+            return output;
+        }
+
+        //private string GetTxtForPreview(string path)
+        //{
+        //    String nameFile = path.Substring(path.LastIndexOf("\\") + 1);
+
+        //    String output = DataBase.PATH_CACHE + "\\" + nameFile + ".pdf";
+        //    if (File.Exists(output))
+        //        return output;
+        //    StreamReader rdr = new StreamReader(path);
+
+        //    //Create a New instance on Document Class
+
+        //    Document doc = new Document();
+
+        //    //Create a New instance of PDFWriter Class for Output File
+
+        //    PdfWriter.GetInstance(doc, new FileStream(path, FileMode.Create));
+
+        //    //Open the Document
+
+        //    doc.Open();
+
+        //    //Add the content of Text File to PDF File
+
+        //    doc.Add(new Paragraph(rdr.ReadToEnd()));
+
+        //    //Close the Document
+
+        //    doc.Close();
+
+        //    //Open the Converted PDF File
+
+        //    System.Diagnostics.Process.Start(path);
+        //    return output;
+        //}
+
+        public String GetWordForPreview(string path)
+        {
+            String nameFile = path.Substring(path.LastIndexOf("\\") + 1);
+             nameFile = nameFile.Substring(0, nameFile.LastIndexOf("."));
+            String output = DataBase.PATH_CACHE + "\\" + nameFile + ".pdf";
+            if (File.Exists(output))
+                return output;
+            Spire.Doc.Document document = new Spire.Doc.Document();
+
+            document.LoadFromFile(path);
+
+            document.SaveToFile(output, Spire.Doc.FileFormat.PDF);
+
+            System.Diagnostics.Process.Start(output);
+            return output;
+        }
+
+        public string Split(string pdfFilePath)
         {
             if (!System.IO.Directory.Exists(DataBase.PATH_CACHE))
                 System.IO.Directory.CreateDirectory(DataBase.PATH_CACHE);
@@ -28,7 +92,7 @@ namespace Server.Common
             if (reader.NumberOfPages < 2) interval = 0;
             else if (reader.NumberOfPages < 10) interval = reader.NumberOfPages / 3;
             else interval = 5;
-           
+
             FileInfo file = null;
             try
             {
@@ -39,18 +103,17 @@ namespace Server.Common
                 Console.WriteLine("File not exist");
                 return "";
             }
-            string pdfFileName = file.Name.Substring(0, file.Name.LastIndexOf(".")) + "-";
+            string pdfFileName = file.Name.Substring(0, file.Name.LastIndexOf("."));
 
             int pageNumber = 1;
 
-            string newPdfFileName = string.Format(pdfFileName + ServerManager.PREVIEW);
-
+            string newPdfFileName = string.Format(pdfFileName);
 
             return SplitAndSaveInterval(pdfFilePath, outputPath, pageNumber, interval, newPdfFileName);
 
         }
 
-        public static String SplitAndSaveInterval(string pdfFilePath, string outputPath, int startPage, int interval, string pdfFileName)
+        public String SplitAndSaveInterval(string pdfFilePath, string outputPath, int startPage, int interval, string pdfFileName)
         {
             String fileName = outputPath + "\\" + pdfFileName + ".pdf";
             if (File.Exists(fileName))
@@ -63,7 +126,7 @@ namespace Server.Common
                 document.Open();
                 try
                 {
-                    for (int pagenumber = startPage; pagenumber < (startPage + interval); pagenumber++)
+                    for (int pagenumber = startPage; pagenumber <= (startPage + interval); pagenumber++)
                     {
                         if (reader.NumberOfPages >= pagenumber)
                         {
@@ -78,7 +141,7 @@ namespace Server.Common
                 }
                 catch (Exception E)
                 {
-                    Console.WriteLine("File not opened "+E.StackTrace);
+                    Console.WriteLine("File not opened " + E.StackTrace);
                 }
 
             }
