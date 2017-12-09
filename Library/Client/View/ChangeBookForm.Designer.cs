@@ -1,4 +1,4 @@
-﻿namespace Server.View
+﻿namespace Client.View
 {
     partial class ChangeBookForm
     {

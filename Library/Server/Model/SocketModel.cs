@@ -1,6 +1,6 @@
 ﻿
-using Server.Api;
-using Server.Common;
+using Client.Api;
+using Client.Common;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -11,7 +11,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading;
 
-namespace Server
+namespace Client
 {
     /// <summary>
     /// Description of SocketModel.

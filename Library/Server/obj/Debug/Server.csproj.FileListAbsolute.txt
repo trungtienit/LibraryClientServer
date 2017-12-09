@@ -182,9 +182,9 @@ Y:\Skill\Code\C#\BooksApp\Library\Server\bin\Debug\System.Runtime.xml
 Y:\Skill\Code\C#\BooksApp\Library\Server\bin\Debug\System.Threading.Tasks.xml
 Y:\Skill\Code\C#\BooksApp\Library\Server\bin\Debug\Zlib.Portable.xml
 Y:\Skill\Code\C#\BooksApp\Library\Server\obj\Debug\Server.csprojResolveAssemblyReference.cache
-Y:\Skill\Code\C#\BooksApp\Library\Server\obj\Debug\Server.ServerForm.resources
 Y:\Skill\Code\C#\BooksApp\Library\Server\obj\Debug\Server.Properties.Resources.resources
 Y:\Skill\Code\C#\BooksApp\Library\Server\obj\Debug\Server.csproj.GenerateResource.Cache
 Y:\Skill\Code\C#\BooksApp\Library\Server\obj\Debug\Server.csproj.CoreCompileInputs.cache
 Y:\Skill\Code\C#\BooksApp\Library\Server\obj\Debug\Server.exe
 Y:\Skill\Code\C#\BooksApp\Library\Server\obj\Debug\Server.pdb
+Y:\Skill\Code\C#\BooksApp\Library\Server\obj\Debug\Client.ServerForm.resources

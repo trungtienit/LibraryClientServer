@@ -5,16 +5,16 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Net.Sockets;
 using System.Threading;
-using Server.Common;
+using Client.Common;
 using System.IO;
-using Server.Api;
-using Server.Common;
+using Client.Api;
+using Client.Common;
 
 /**
  * TRAN TRUNG TIEN 22/11/2017
  */
 
-namespace Server
+namespace Client
 {
     /// <summary>
     /// Description of MainForm.
@@ -140,7 +140,8 @@ namespace Server
 
         private void LoadData()
         {
-            DataBase.GetListBook();
+            //DataBase.GetListBook();
+            DataBase.WriteNewDB();
         }
 
         private void btnUpdateDataBase_Click(object sender, EventArgs e)

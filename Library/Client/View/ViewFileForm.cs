@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Server
+namespace Client
 {
     public partial class ViewFile : Form
     {

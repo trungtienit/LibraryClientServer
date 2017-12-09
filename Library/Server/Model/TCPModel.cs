@@ -3,7 +3,7 @@ using System;
 using System.Net;
 using System.Net.Sockets;
 
-namespace Server
+namespace Client
 {
 	/// <summary>
 	/// Description of TCPModel.

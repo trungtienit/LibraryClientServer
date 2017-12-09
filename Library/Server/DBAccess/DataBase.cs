@@ -1,7 +1,7 @@
-﻿using Server;
-using Server.Api;
-using Server.Common;
-using Server.Common;
+﻿using Client;
+using Client.Api;
+using Client.Common;
+using Client.Common;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -13,7 +13,7 @@ using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 
-namespace Server
+namespace Client
 {
     class DataBase
     {

@@ -8,11 +8,11 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Threading;
-using Server.Common;
+using Client.Common;
 using System.IO;
-using Server.View;
+using Client.View;
 
-namespace Server
+namespace Client
 {
     /// <summary>
     /// Description of MainForm.

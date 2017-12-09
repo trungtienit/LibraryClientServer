@@ -7,10 +7,10 @@ using System.Text;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Collections.Generic;
 using System.Threading;
-using Server.Common;
+using Client.Common;
 using System.Windows.Forms;
 
-namespace Server
+namespace Client
 {
     /// <summary>
     /// Description of TCPModel.

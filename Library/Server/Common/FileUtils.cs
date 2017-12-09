@@ -5,11 +5,11 @@ using System.Text;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using System.IO;
-using Server;
-using Server.Common;
+using Client;
+using Client.Common;
 using Spire.Pdf;
 
-namespace Server.Common
+namespace Client.Common
 {
     public class FileUtils
     {
