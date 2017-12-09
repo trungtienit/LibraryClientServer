@@ -1,10 +1,10 @@
-﻿using Client.Common;
+﻿using Server.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Client
+namespace Server
 {
     public class Book
     {

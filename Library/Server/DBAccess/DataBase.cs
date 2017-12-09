@@ -1,7 +1,7 @@
-﻿using Client;
-using Client.Api;
-using Client.Common;
-using Client.Common;
+﻿using Server;
+using Server.Api;
+using Server.Common;
+using Server.Common;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -13,7 +13,7 @@ using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 
-namespace Client
+namespace Server
 {
     class DataBase
     {
@@ -21,6 +21,7 @@ namespace Client
         public const String PATH_DB_XML = PATH_CONFIG + "\\BooksDB.xml";
         public const String PATH_DB_DIR = PATH_CONFIG + "\\Data";
         public const String PATH_CACHE = PATH_CONFIG + "\\Preview";
+        public const String PATH_DB_USER_XML = PATH_CONFIG + "\\UsersDB.xml";
         public static string[] EXTENSIONS = new[] { ".doc", ".pdf", ".docx", ".xls", ".xlsm", ".txt" };
         public static List<Book> books;
         public DataBase() { }
@@ -100,6 +101,7 @@ namespace Client
             catch (Exception E)
             {
                 DataBase.WriteNewDB();
+                doc.Load(PATH_DB_XML);
             }
             XmlNode book = doc.CreateElement("Book");
             XmlNode id = doc.CreateElement("Id");

@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Client.View
+namespace Server.View
 {
     public partial class ChangeBookForm : Form
     {

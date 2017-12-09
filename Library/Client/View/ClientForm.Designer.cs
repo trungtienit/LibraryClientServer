@@ -7,7 +7,7 @@
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
-namespace Client
+namespace Server
 {
     partial class ClientForm
     {
@@ -40,7 +40,6 @@ namespace Client
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.label5 = new System.Windows.Forms.Label();
             this.lbConnected = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.btnConnect = new System.Windows.Forms.Button();
@@ -51,49 +50,40 @@ namespace Client
             this.label7 = new System.Windows.Forms.Label();
             this.cbType = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.tbWallet = new System.Windows.Forms.Label();
             this.progressBar = new System.Windows.Forms.ProgressBar();
             this.label1 = new System.Windows.Forms.Label();
             this.btnSearch = new System.Windows.Forms.Button();
             this.tbSearch = new System.Windows.Forms.TextBox();
             this.dgvBooks = new System.Windows.Forms.DataGridView();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.changeBookToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.typeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.priceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sizeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bookBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.tbWallet = new System.Windows.Forms.Label();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.loginToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.changeBookToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.label2 = new System.Windows.Forms.Label();
+            this.lbUserName = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBooks)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bookBindingSource)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bookBindingSource)).BeginInit();
             this.SuspendLayout();
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Century Gothic", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label5.Location = new System.Drawing.Point(12, 10);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(247, 88);
-            this.label5.TabIndex = 10;
-            this.label5.Text = "Client";
             // 
             // lbConnected
             // 
             this.lbConnected.AutoSize = true;
             this.lbConnected.Font = new System.Drawing.Font("Candara", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbConnected.ForeColor = System.Drawing.Color.Blue;
-            this.lbConnected.Location = new System.Drawing.Point(346, 29);
+            this.lbConnected.Location = new System.Drawing.Point(377, 103);
             this.lbConnected.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbConnected.Name = "lbConnected";
             this.lbConnected.Size = new System.Drawing.Size(133, 32);
@@ -108,7 +98,7 @@ namespace Client
             this.btnConnect.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnConnect.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnConnect.Location = new System.Drawing.Point(372, 150);
-            this.btnConnect.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.btnConnect.Margin = new System.Windows.Forms.Padding(6);
             this.btnConnect.Name = "btnConnect";
             this.btnConnect.Size = new System.Drawing.Size(138, 129);
             this.btnConnect.TabIndex = 14;
@@ -124,7 +114,7 @@ namespace Client
             this.panel2.Controls.Add(this.label6);
             this.panel2.Controls.Add(this.label7);
             this.panel2.Location = new System.Drawing.Point(32, 150);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(322, 129);
             this.panel2.TabIndex = 15;
@@ -133,7 +123,7 @@ namespace Client
             // 
             this.tbPort.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.tbPort.Location = new System.Drawing.Point(104, 81);
-            this.tbPort.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.tbPort.Margin = new System.Windows.Forms.Padding(6);
             this.tbPort.Name = "tbPort";
             this.tbPort.Size = new System.Drawing.Size(206, 31);
             this.tbPort.TabIndex = 3;
@@ -143,7 +133,7 @@ namespace Client
             // 
             this.tbIpAddress.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.tbIpAddress.Location = new System.Drawing.Point(104, 17);
-            this.tbIpAddress.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.tbIpAddress.Margin = new System.Windows.Forms.Padding(6);
             this.tbIpAddress.Name = "tbIpAddress";
             this.tbIpAddress.Size = new System.Drawing.Size(206, 31);
             this.tbIpAddress.TabIndex = 2;
@@ -180,7 +170,7 @@ namespace Client
             "Text",
             "All"});
             this.cbType.Location = new System.Drawing.Point(12, 104);
-            this.cbType.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbType.Margin = new System.Windows.Forms.Padding(4);
             this.cbType.Name = "cbType";
             this.cbType.Size = new System.Drawing.Size(180, 33);
             this.cbType.TabIndex = 16;
@@ -193,21 +183,31 @@ namespace Client
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.btnSearch);
             this.groupBox1.Controls.Add(this.tbSearch);
-            this.groupBox1.Controls.Add(this.lbConnected);
             this.groupBox1.Controls.Add(this.cbType);
             this.groupBox1.Location = new System.Drawing.Point(20, 308);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox1.Size = new System.Drawing.Size(500, 377);
             this.groupBox1.TabIndex = 17;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Communications";
             // 
+            // tbWallet
+            // 
+            this.tbWallet.Font = new System.Drawing.Font("Century Gothic", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbWallet.ForeColor = System.Drawing.Color.DarkGreen;
+            this.tbWallet.Location = new System.Drawing.Point(162, 294);
+            this.tbWallet.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.tbWallet.Name = "tbWallet";
+            this.tbWallet.Size = new System.Drawing.Size(316, 38);
+            this.tbWallet.TabIndex = 23;
+            this.tbWallet.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // progressBar
             // 
             this.progressBar.Location = new System.Drawing.Point(7, 350);
-            this.progressBar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.progressBar.Margin = new System.Windows.Forms.Padding(4);
             this.progressBar.Name = "progressBar";
             this.progressBar.Size = new System.Drawing.Size(489, 19);
             this.progressBar.TabIndex = 22;
@@ -230,7 +230,7 @@ namespace Client
             this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSearch.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnSearch.Location = new System.Drawing.Point(318, 113);
-            this.btnSearch.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.btnSearch.Margin = new System.Windows.Forms.Padding(6);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(160, 54);
             this.btnSearch.TabIndex = 18;
@@ -242,7 +242,7 @@ namespace Client
             // 
             this.tbSearch.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.tbSearch.Location = new System.Drawing.Point(12, 63);
-            this.tbSearch.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.tbSearch.Margin = new System.Windows.Forms.Padding(6);
             this.tbSearch.Name = "tbSearch";
             this.tbSearch.Size = new System.Drawing.Size(464, 31);
             this.tbSearch.TabIndex = 4;
@@ -261,7 +261,7 @@ namespace Client
             this.sizeDataGridViewTextBoxColumn});
             this.dgvBooks.DataSource = this.bookBindingSource;
             this.dgvBooks.Location = new System.Drawing.Point(524, 10);
-            this.dgvBooks.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvBooks.Margin = new System.Windows.Forms.Padding(4);
             this.dgvBooks.Name = "dgvBooks";
             this.dgvBooks.RowHeadersVisible = false;
             this.dgvBooks.RowHeadersWidth = 50;
@@ -269,36 +269,6 @@ namespace Client
             this.dgvBooks.Size = new System.Drawing.Size(1304, 675);
             this.dgvBooks.TabIndex = 21;
             this.dgvBooks.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvBooks_CellMouseClick);
-            // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.FileName = "openFileDialog1";
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.changeBookToolStripMenuItem,
-            this.aboutToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(234, 76);
-            // 
-            // changeBookToolStripMenuItem
-            // 
-            this.changeBookToolStripMenuItem.Name = "changeBookToolStripMenuItem";
-            this.changeBookToolStripMenuItem.Size = new System.Drawing.Size(233, 36);
-            this.changeBookToolStripMenuItem.Text = "Change book";
-            this.changeBookToolStripMenuItem.Click += new System.EventHandler(this.changeBookToolStripMenuItem_Click);
-            // 
-            // aboutToolStripMenuItem
-            // 
-            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(233, 36);
-            this.aboutToolStripMenuItem.Text = "About";
-            // 
-            // errorProvider1
-            // 
-            this.errorProvider1.ContainerControl = this;
             // 
             // idDataGridViewTextBoxColumn
             // 
@@ -333,18 +303,65 @@ namespace Client
             // 
             // bookBindingSource
             // 
-            this.bookBindingSource.DataSource = typeof(Client.Book);
+            this.bookBindingSource.DataSource = typeof(Server.Book);
             // 
-            // tbWallet
+            // openFileDialog1
             // 
-            this.tbWallet.Font = new System.Drawing.Font("Century Gothic", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbWallet.ForeColor = System.Drawing.Color.DarkGreen;
-            this.tbWallet.Location = new System.Drawing.Point(162, 294);
-            this.tbWallet.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.tbWallet.Name = "tbWallet";
-            this.tbWallet.Size = new System.Drawing.Size(316, 38);
-            this.tbWallet.TabIndex = 23;
-            this.tbWallet.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.loginToolStripMenuItem,
+            this.changeBookToolStripMenuItem,
+            this.aboutToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(234, 112);
+            // 
+            // loginToolStripMenuItem
+            // 
+            this.loginToolStripMenuItem.Name = "loginToolStripMenuItem";
+            this.loginToolStripMenuItem.Size = new System.Drawing.Size(233, 36);
+            this.loginToolStripMenuItem.Text = "Login";
+            this.loginToolStripMenuItem.Click += new System.EventHandler(this.loginToolStripMenuItem_Click);
+            // 
+            // changeBookToolStripMenuItem
+            // 
+            this.changeBookToolStripMenuItem.Name = "changeBookToolStripMenuItem";
+            this.changeBookToolStripMenuItem.Size = new System.Drawing.Size(233, 36);
+            this.changeBookToolStripMenuItem.Text = "Change book";
+            this.changeBookToolStripMenuItem.Click += new System.EventHandler(this.changeBookToolStripMenuItem_Click);
+            // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(233, 36);
+            this.aboutToolStripMenuItem.Text = "About";
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
+            // label2
+            // 
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(15, 9);
+            this.label2.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(96, 31);
+            this.label2.TabIndex = 22;
+            this.label2.Text = "User";
+            // 
+            // lbUserName
+            // 
+            this.lbUserName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbUserName.Location = new System.Drawing.Point(142, 10);
+            this.lbUserName.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.lbUserName.Name = "lbUserName";
+            this.lbUserName.Size = new System.Drawing.Size(356, 30);
+            this.lbUserName.TabIndex = 23;
+            this.lbUserName.Text = "Not found";
             // 
             // ClientForm
             // 
@@ -354,14 +371,16 @@ namespace Client
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(1842, 700);
+            this.ClientSize = new System.Drawing.Size(1840, 700);
             this.ContextMenuStrip = this.contextMenuStrip1;
+            this.Controls.Add(this.lbUserName);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.dgvBooks);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnConnect);
+            this.Controls.Add(this.lbConnected);
             this.Controls.Add(this.panel2);
-            this.Controls.Add(this.label5);
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.MaximizeBox = false;
             this.Name = "ClientForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -372,14 +391,13 @@ namespace Client
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBooks)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bookBindingSource)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bookBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
-        private Label label5;
         private Label lbConnected;
         private Timer timer1;
         private Button btnConnect;
@@ -407,5 +425,8 @@ namespace Client
         private ProgressBar progressBar;
         private ErrorProvider errorProvider1;
         private Label tbWallet;
+        private ToolStripMenuItem loginToolStripMenuItem;
+        private Label lbUserName;
+        private Label label2;
     }
 }

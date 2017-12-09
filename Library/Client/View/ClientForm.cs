@@ -8,11 +8,12 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Threading;
-using Client.Common;
+using Server.Common;
 using System.IO;
-using Client.View;
+using Server.View;
+using Server.View;
 
-namespace Client
+namespace Server
 {
     /// <summary>
     /// Description of MainForm.
@@ -34,6 +35,7 @@ namespace Client
         private List<String> listBooksCurrent;
         private static TCPModel client;
         private ChangeBookForm frmChangeBook;
+        private LoginForm frmLogin;
         private ShowInfoForm frmShowInfo;
         public static ViewFile frmViewBook;
         public void Connect()
@@ -47,9 +49,7 @@ namespace Client
                 this.Text = client.UpdateInformation();
                 client.setProgressBar(this.progressBar);
                 lbConnected.Visible = true;
-                tbWallet.Text = ClientManager.myWallet.ToString();
-                changeBookToolStripMenuItem.Enabled = true;
-                btnSearch.Enabled = true;
+                loginToolStripMenuItem.Enabled = true;
             }
         }
 
@@ -77,7 +77,8 @@ namespace Client
             CheckForIllegalCrossThreadCalls = false;
             changeBookToolStripMenuItem.Enabled = false;
             btnSearch.Enabled = false;
-             frmViewBook = new ViewFile();
+            loginToolStripMenuItem.Enabled = false;
+            frmViewBook = new ViewFile();
         }
 
         private void Connect_Click(object sender, EventArgs e)
@@ -90,6 +91,12 @@ namespace Client
 
         private void Search_Click(object sender, EventArgs e)
         {
+
+            if (tbSearch.Text.ToString().Trim().Equals(""))
+            {
+                MessageBox.Show("Input can't be blank", "Client", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             if (cbType.Text.Equals(""))
             {
                 MessageBox.Show("Type is invalid", "Client", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -98,33 +105,6 @@ namespace Client
             client.SendData(ClientManager.TYPE_SEARCH.ToString() + ClientManager.SIGN + tbSearch.Text + ClientManager.SIGN + cbType.Text);
             updateView();
         }
-
-        #endregion
-        private void updateView()
-        {
-            dgvBooks.Rows.Clear();
-            listBooksCurrent = client.ReadListData();
-            int k = 0;
-            if (listBooksCurrent == null)
-                listBooksCurrent = new List<string>();
-            foreach (String s in listBooksCurrent)
-            {
-
-                String[] a = s.Split(ClientManager.SIGN);
-                Book b = new Book.Builder()
-                    .Id(a[0])
-                    .Name(a[1])
-                    .Type(a[2])
-                    .Price(Int32.Parse(a[3]))
-                    .Size(a[4])
-                    .Build();
-                bookBindingSource.Add(b);
-                this.dgvBooks.Rows[k].HeaderCell.Value = (++k).ToString();
-                dgvBooks.RowsDefaultCellStyle.BackColor = Color.LightBlue;
-                dgvBooks.AlternatingRowsDefaultCellStyle.BackColor = Color.LightSkyBlue;
-            }
-        }
-
         private void dgvBooks_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             try
@@ -177,13 +157,13 @@ namespace Client
             client.setFormDetail(frmViewBook);
             //if()
             client.ReceiveBook();
-         
+
         }
 
         private void changeBookToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
-            using (frmChangeBook=new ChangeBookForm())
+            using (frmChangeBook = new ChangeBookForm())
             {
                 if (frmChangeBook.ShowDialog() == DialogResult.OK)
                     this.ChangeBook(frmChangeBook.nameCurrent);
@@ -191,5 +171,69 @@ namespace Client
 
         }
 
+        private void loginToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (frmLogin = new LoginForm())
+            {
+                if (frmLogin.ShowDialog() == DialogResult.Yes)
+                {
+                    if (frmLogin.name.Equals("") || frmLogin.pass.Equals(""))
+                    {
+                        MessageBox.Show("Login Failed");
+                        return;
+                    }
+
+                    client.SendData(ClientManager.TYPE_LOGIN.ToString() 
+                                    +ClientManager.SIGN
+                                      + frmLogin.name
+                                      + ClientManager.SIGN
+                                      + frmLogin.pass);
+                    String rc = client.ReadData();
+                    String[] rcs = rc.Split(ClientManager.SIGN);
+                    if (rcs[0].Equals("LOGIN_SUCCESS"))
+                    {
+                        ClientManager.myWallet = Int32.Parse(rcs[2]);
+                        MessageBox.Show("LOGIN SUCCESS");
+
+                        tbWallet.Text = ClientManager.myWallet.ToString();
+                        changeBookToolStripMenuItem.Enabled = true;
+                        loginToolStripMenuItem.Enabled = false;
+                        btnSearch.Enabled = true;
+                        lbUserName.Text = rcs[1];
+                    }
+                    else
+                        MessageBox.Show("Login Failed");
+                }
+
+            }
+
+        }
+        #endregion
+        private void updateView()
+        {
+            dgvBooks.Rows.Clear();
+            listBooksCurrent = client.ReadListData();
+            int k = 0;
+            if (listBooksCurrent == null)
+                listBooksCurrent = new List<string>();
+            foreach (String s in listBooksCurrent)
+            {
+
+                String[] a = s.Split(ClientManager.SIGN);
+                Book b = new Book.Builder()
+                    .Id(a[0])
+                    .Name(a[1])
+                    .Type(a[2])
+                    .Price(Int32.Parse(a[3]))
+                    .Size(a[4])
+                    .Build();
+                bookBindingSource.Add(b);
+                this.dgvBooks.Rows[k].HeaderCell.Value = (++k).ToString();
+                dgvBooks.RowsDefaultCellStyle.BackColor = Color.LightBlue;
+                dgvBooks.AlternatingRowsDefaultCellStyle.BackColor = Color.LightSkyBlue;
+            }
+        }
+
+        
     }
 }

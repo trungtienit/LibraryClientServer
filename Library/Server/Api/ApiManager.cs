@@ -2,7 +2,7 @@
 using Google.Apis.Drive.v3;
 using Google.Apis.Services;
 using Google.Apis.Util.Store;
-using Client.Common;
+using Server.Common;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -12,7 +12,7 @@ using System.Threading;
 using Google.Apis.Drive.v3.Data;
 using Google.Apis.Download;
 
-namespace Client.Api
+namespace Server.Api
 {
     class ApiManager
     {

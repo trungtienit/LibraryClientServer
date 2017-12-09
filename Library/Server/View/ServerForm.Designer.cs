@@ -6,7 +6,7 @@
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
-namespace Client
+namespace Server
 {
     partial class ServerForm
     {
@@ -50,6 +50,7 @@ namespace Client
             this.tbLogConnect = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.btnAddUser = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -77,7 +78,7 @@ namespace Client
             // 
             this.tbIpAddress.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.tbIpAddress.Location = new System.Drawing.Point(104, 17);
-            this.tbIpAddress.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.tbIpAddress.Margin = new System.Windows.Forms.Padding(6);
             this.tbIpAddress.Name = "tbIpAddress";
             this.tbIpAddress.Size = new System.Drawing.Size(206, 31);
             this.tbIpAddress.TabIndex = 2;
@@ -87,7 +88,7 @@ namespace Client
             // 
             this.tbPort.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.tbPort.Location = new System.Drawing.Point(104, 81);
-            this.tbPort.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.tbPort.Margin = new System.Windows.Forms.Padding(6);
             this.tbPort.Name = "tbPort";
             this.tbPort.Size = new System.Drawing.Size(206, 31);
             this.tbPort.TabIndex = 3;
@@ -101,9 +102,9 @@ namespace Client
             this.btnStart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnStart.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnStart.Location = new System.Drawing.Point(40, 156);
-            this.btnStart.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.btnStart.Margin = new System.Windows.Forms.Padding(6);
             this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(124, 106);
+            this.btnStart.Size = new System.Drawing.Size(90, 106);
             this.btnStart.TabIndex = 4;
             this.btnStart.Text = "Start";
             this.btnStart.UseVisualStyleBackColor = false;
@@ -117,7 +118,7 @@ namespace Client
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Location = new System.Drawing.Point(448, 21);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(324, 129);
             this.panel1.TabIndex = 7;
@@ -138,7 +139,7 @@ namespace Client
             // 
             this.lbNumberClient.AutoSize = true;
             this.lbNumberClient.Font = new System.Drawing.Font("Century Gothic", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbNumberClient.ForeColor = System.Drawing.Color.Black;
+            this.lbNumberClient.ForeColor = System.Drawing.Color.Red;
             this.lbNumberClient.Location = new System.Drawing.Point(712, 187);
             this.lbNumberClient.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbNumberClient.Name = "lbNumberClient";
@@ -153,10 +154,10 @@ namespace Client
             this.btnUpdateDataBase.FlatAppearance.BorderSize = 2;
             this.btnUpdateDataBase.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUpdateDataBase.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnUpdateDataBase.Location = new System.Drawing.Point(176, 156);
-            this.btnUpdateDataBase.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.btnUpdateDataBase.Location = new System.Drawing.Point(142, 156);
+            this.btnUpdateDataBase.Margin = new System.Windows.Forms.Padding(6);
             this.btnUpdateDataBase.Name = "btnUpdateDataBase";
-            this.btnUpdateDataBase.Size = new System.Drawing.Size(194, 106);
+            this.btnUpdateDataBase.Size = new System.Drawing.Size(144, 106);
             this.btnUpdateDataBase.TabIndex = 11;
             this.btnUpdateDataBase.Text = "Update Database";
             this.btnUpdateDataBase.UseVisualStyleBackColor = false;
@@ -167,7 +168,7 @@ namespace Client
             this.tbLogConnect.BackColor = System.Drawing.SystemColors.Window;
             this.tbLogConnect.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tbLogConnect.Location = new System.Drawing.Point(40, 321);
-            this.tbLogConnect.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.tbLogConnect.Margin = new System.Windows.Forms.Padding(6);
             this.tbLogConnect.Multiline = true;
             this.tbLogConnect.Name = "tbLogConnect";
             this.tbLogConnect.Size = new System.Drawing.Size(734, 388);
@@ -195,12 +196,29 @@ namespace Client
             this.label5.TabIndex = 13;
             this.label5.Text = "Clients:";
             // 
+            // btnAddUser
+            // 
+            this.btnAddUser.BackColor = System.Drawing.Color.Crimson;
+            this.btnAddUser.FlatAppearance.BorderColor = System.Drawing.Color.Salmon;
+            this.btnAddUser.FlatAppearance.BorderSize = 2;
+            this.btnAddUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddUser.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnAddUser.Location = new System.Drawing.Point(298, 156);
+            this.btnAddUser.Margin = new System.Windows.Forms.Padding(6);
+            this.btnAddUser.Name = "btnAddUser";
+            this.btnAddUser.Size = new System.Drawing.Size(96, 106);
+            this.btnAddUser.TabIndex = 14;
+            this.btnAddUser.Text = "Add User";
+            this.btnAddUser.UseVisualStyleBackColor = false;
+            this.btnAddUser.Click += new System.EventHandler(this.btnAddUser_Click);
+            // 
             // ServerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(804, 733);
+            this.Controls.Add(this.btnAddUser);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.tbLogConnect);
@@ -209,7 +227,7 @@ namespace Client
             this.Controls.Add(this.lbNumberClient);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "ServerForm";
             this.Text = "LibraryManager";
             this.Load += new System.EventHandler(this.MainFormLoad);
@@ -231,5 +249,6 @@ namespace Client
         private System.Windows.Forms.TextBox tbLogConnect;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button btnAddUser;
     }
 }

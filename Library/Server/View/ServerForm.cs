@@ -5,23 +5,25 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Net.Sockets;
 using System.Threading;
-using Client.Common;
+using Server.Common;
 using System.IO;
-using Client.Api;
-using Client.Common;
+using Server.Api;
+using Server.Common;
+using Server.DBAccess;
+using Server.View;
 
 /**
  * TRAN TRUNG TIEN 22/11/2017
  */
 
-namespace Client
+namespace Server
 {
     /// <summary>
     /// Description of MainForm.
     /// </summary>
     public partial class ServerForm : Form
     {
-     //   private int originalWidth;
+        //   private int originalWidth;
         public ServerForm()
         {
             //
@@ -38,7 +40,7 @@ namespace Client
         ServerModel server;
         SocketModel currentSocket;
         ServerManager serverManager;
-        
+
         #region Event
         void MainFormLoad(object sender, EventArgs e)
         {
@@ -46,6 +48,8 @@ namespace Client
 
             server = new ServerModel().GetInstance();
             serverManager = new ServerManager();
+            btnAddUser.Enabled = false;
+            btnUpdateDataBase.Enabled = false;
         }
         void StartClick(object sender, EventArgs e)
         {
@@ -63,10 +67,13 @@ namespace Client
             tcp = new TCPModel(ip, port);
             tcp.Listen();
             btnStart.Enabled = false;
+            btnAddUser.Enabled = true;
+            btnUpdateDataBase.Enabled = true;
+            UserDB.LoadUsersDB();
         }
         public void Communication(object obj)
         {
-           // string result = "";
+            // string result = "";
             List<String> results = new List<string>(); ;
             SocketModel socket = (SocketModel)obj;
             while (true)
@@ -86,6 +93,18 @@ namespace Client
                 string[] receive = str.Split(ServerManager.SIGN);
                 switch (Int32.Parse(receive[0]))
                 {
+                    case ServerManager.TYPE_LOGIN:
+
+                        User u = serverManager.FindUser(receive[1], receive[2]);
+                        if (u != null)
+                            socket.SendData("LOGIN_SUCCESS"
+                                + ServerManager.SIGN
+                                + u.Name
+                                + ServerManager.SIGN
+                                + u.Wallet);
+                        else socket.SendData("LOGIN_FAILED");
+                        break;
+
                     case ServerManager.TYPE_SEARCH:
                         //TODO Send list books
                         results = serverManager.FindBook(receive[1], receive[2]);
@@ -94,9 +113,9 @@ namespace Client
                             results = apiManager.FindBookOnDrive(receive[1], receive[2]);
                         socket.SendData(results);
                         break;
-                        //Send File book
+                    //Send File book
                     case ServerManager.TYPE_DOWNLOAD:
-                        socket.SendBook( DataBase.GetFile(receive[1]));
+                        socket.SendBook(DataBase.GetFile(receive[1]));
                         break;
                     case ServerManager.TYPE_PREVIEW:
                         socket.SendBook(DataBase.GetFilePreview(receive[1]));
@@ -104,7 +123,7 @@ namespace Client
                     case ServerManager.TYPE_CHANGE:
                         socket.ReceiveBook();
                         break;
-                }           
+                }
             }
         }
 
@@ -152,6 +171,26 @@ namespace Client
         private void button1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnAddUser_Click(object sender, EventArgs e)
+        {
+
+            using (AddUserForm f = new AddUserForm())
+            {
+                if (f.ShowDialog() == DialogResult.Yes)
+                {
+                    if (f.name.Equals("") || f.pass.Equals(""))
+                    {
+                        MessageBox.Show("Add Failed");
+                        return;
+                    }
+                    if (serverManager.AddNewUser(f.name, f.pass))
+                        MessageBox.Show("Add new user success");
+                    else
+                        MessageBox.Show("User is exist");
+                }
+            }
         }
     }
 }

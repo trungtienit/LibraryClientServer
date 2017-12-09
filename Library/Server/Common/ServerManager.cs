@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using Server.DBAccess;
 
-namespace Client.Common
+namespace Server.Common
 {
 
     public class ServerManager
@@ -23,6 +24,8 @@ namespace Client.Common
         public const byte TYPE_PREVIEW = TYPE << 3;
         public const byte TYPE_VIEW_FULL = TYPE << 4;
         public const byte TYPE_CHANGE = TYPE << 5;
+
+        public const byte TYPE_LOGIN = TYPE << 6;
 
         public const byte TYPE_FILE = 1;
         public const byte TYPE_FILE_MSWORD = TYPE_FILE << 1;
@@ -78,6 +81,12 @@ namespace Client.Common
             }
             return mList;
         }
+
+        internal User FindUser(string v1, string v2)
+        {
+            return UserDB.Login(v1, v2);
+        }
+
         public List<string> FindBook(string name, string type)
         {
             List<String> l = new List<string>();
@@ -158,6 +167,19 @@ namespace Client.Common
                 t = " KB";
             }
             return l + t;
+        }
+
+        internal bool AddNewUser(string name, string pass)
+        {
+            if (UserDB.Exist(name))
+                return false;
+            User u = new User.Builder()
+                               .Name(name)
+                               .Pass(pass)
+                               .Wallet(10000000)
+                               .Build();
+             UserDB.AddNewUser(u);
+            return true;
         }
 
         public string CreateId(FileInfo file)

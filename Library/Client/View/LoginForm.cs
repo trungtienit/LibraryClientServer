@@ -7,21 +7,21 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Server
+namespace Server.View
 {
-    public partial class ViewFile : Form
+    public partial class LoginForm : Form
     {
-        internal string bookCurrent;
-
-        public ViewFile()
+        public LoginForm()
         {
             InitializeComponent();
         }
+        public String name;
+        public String pass;
 
-        private void ViewFile_Load(object sender, EventArgs e)
+        private void btnLogin_Click(object sender, EventArgs e)
         {
-            webBrowser1.Navigate(bookCurrent);
+            name = tbUserName.Text;
+            pass = tbPassword.Text;
         }
-
     }
 }
