@@ -60,6 +60,7 @@
             this.btnPreview.TabIndex = 1;
             this.btnPreview.Text = "Preview";
             this.btnPreview.UseVisualStyleBackColor = true;
+            this.btnPreview.Click += new System.EventHandler(this.btnPreview_Click);
             // 
             // panel1
             // 

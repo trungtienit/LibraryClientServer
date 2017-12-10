@@ -38,8 +38,10 @@ namespace Server.Api
                 mType = ServerManager.TYPE_FILE_EXCEL;
             if (v2.ToUpper().Equals("TEXT"))
                 mType = ServerManager.TYPE_FILE_PLAIN_TEXT;
+            if (v2.ToUpper().Equals("POWERPOINT"))
+                mType = ServerManager.TYPE_FILE_POWERPOINT;
             if (v2.ToUpper().Equals("ALL"))
-                mType = ServerManager.TYPE_FILE_PLAIN_TEXT | ServerManager.TYPE_FILE_EXCEL | ServerManager.TYPE_FILE_MSWORD | ServerManager.TYPE_FILE_PDF;
+                mType = ServerManager.TYPE_FILE_PLAIN_TEXT | ServerManager.TYPE_FILE_EXCEL | ServerManager.TYPE_FILE_MSWORD | ServerManager.TYPE_FILE_PDF| ServerManager.TYPE_FILE_POWERPOINT;
             return FindBookByTitleAndTypeOnDrive(v1, mType);
         }
         public List<String> FindBookByTitleAndTypeOnDrive(String title, byte types)
@@ -58,12 +60,13 @@ namespace Server.Api
                     mTypes = mTypes + " or " + ServerManager.EXCEL;
                 if ((types & ServerManager.TYPE_FILE_PLAIN_TEXT) == ServerManager.TYPE_FILE_PLAIN_TEXT)
                     mTypes = mTypes + " or " + ServerManager.PLAIN_TEXT;
+                if ((types & ServerManager.TYPE_FILE_POWERPOINT) == ServerManager.TYPE_FILE_POWERPOINT)
+                    mTypes = mTypes + " or " + ServerManager.OFFICE_POWERPOINT;
             }
 
             Console.WriteLine("Start Search");
             do
             {
-
                 var request = service.Files.List();
                 if (mTypes.Length > 0)
                 {
@@ -92,7 +95,7 @@ namespace Server.Api
                     int p = 0;
                     if (!file.FullFileExtension.ToUpper().Contains("TXT")
                    && !file.FullFileExtension.ToUpper().Contains("XLS"))
-                        p = (r.Next(1, 99) * 100000);
+                        p = (r.Next(1, 99) * 100);        
                     Book b = new Book.Builder()
                      .Id(CreateId(file))
                      .Name(file.Name)

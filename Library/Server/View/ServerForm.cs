@@ -97,11 +97,14 @@ namespace Server
 
                         User u = serverManager.FindUser(receive[1], receive[2]);
                         if (u != null)
+                        {
                             socket.SendData("LOGIN_SUCCESS"
                                 + ServerManager.SIGN
                                 + u.Name
                                 + ServerManager.SIGN
                                 + u.Wallet);
+                            socket.userCurrent = u;
+                        }
                         else socket.SendData("LOGIN_FAILED");
                         break;
 
@@ -115,10 +118,12 @@ namespace Server
                         break;
                     //Send File book
                     case ServerManager.TYPE_DOWNLOAD:
+                        socket.typeCurrent = ServerManager.TYPE_DOWNLOAD;
                         socket.SendBook(DataBase.GetFile(receive[1]));
                         break;
                     case ServerManager.TYPE_PREVIEW:
                         socket.SendBook(DataBase.GetFilePreview(receive[1]));
+                        socket.typeCurrent = ServerManager.TYPE_PREVIEW;
                         break;
                     case ServerManager.TYPE_CHANGE:
                         socket.ReceiveBook();

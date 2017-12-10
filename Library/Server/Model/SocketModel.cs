@@ -10,6 +10,7 @@ using System.Net.Sockets;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading;
+using Server.DBAccess;
 
 namespace Server
 {
@@ -28,6 +29,8 @@ namespace Server
         public Book bookCurrent = null;
         public bool isDownloading = false;
         public bool isReceiving = false;
+        internal byte typeCurrent;
+        internal User userCurrent;
 
         public SocketModel(Socket s)
         {
@@ -191,7 +194,10 @@ namespace Server
                         Console.Write("Recieved all :" + byteReadAll);
                         bWrite.Close();
                         Random r = new Random();
-                        SendData((r.Next(1, 55) * 1000) + "");
+                        Int32 a= r.Next(1, 55) * 100;
+                        userCurrent.wallet += a;
+                        UserDB.UpdateWalletUser(userCurrent);
+                        SendData(a+"");
                         return;
                     }
 
@@ -284,6 +290,13 @@ namespace Server
                 }
                 byteAllRead += bufferLength;
                 Console.WriteLine("Read all : " + byteAllRead);
+                if (typeCurrent == ServerManager.TYPE_DOWNLOAD)
+                {
+                    userCurrent.Wallet -= bookCurrent.Price;
+                    UserDB.UpdateWalletUser(userCurrent);
+                    SendData(userCurrent.Wallet+"");
+                }
+              
                 isDataSending = false;
             }
             catch (Exception E)

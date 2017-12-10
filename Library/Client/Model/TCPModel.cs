@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Threading;
 using Server.Common;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace Server
 {
@@ -27,6 +28,7 @@ namespace Server
         private bool isDataSending;
         public String bookCurrent;
         private ProgressBar progressBar;
+        private Label wallet;
         private ViewFile viewFile;
         internal byte typeCurrent;
 
@@ -53,6 +55,11 @@ namespace Server
                 Console.WriteLine("Error..... " + e.StackTrace);
             }
             return str;
+        }
+
+        internal void setWallet(Label tbWallet)
+        {
+            this.wallet = tbWallet;
         }
 
         internal void setProgressBar(ProgressBar progressBar)
@@ -164,18 +171,13 @@ namespace Server
                     Directory.CreateDirectory(receivedPath);
 
                 byte[] clientData = new byte[100];
-                //if(typeCurrent== ClientManager.TYPE_PREVIEW)
-                //{
-                //    tcpclnt.ReceiveTimeout = Timeout.Infinite;
-                //    stm.ReadTimeout = Timeout.Infinite;
-                //}
 
                 int byteReceive = stm.Read(clientData, 0, 4);
                 int fileNameLen = BitConverter.ToInt32(clientData, 0);
                 byteReceive = stm.Read(clientData, 0, 4);
                 fileLenght = BitConverter.ToInt32(clientData, 0);
 
-                progressBar.Maximum = fileLenght;
+                progressBar.Maximum = 100;
 
                 originalLength = fileLenght;
                 Console.WriteLine("fileNameLen = {0}", fileNameLen);
@@ -211,7 +213,7 @@ namespace Server
                         bWrite.Write(buffer, 0, byteRead);
                         byteReadAll += byteRead;
                     }
-                    progressBar.Value = (Int32)byteReadAll;
+                    progressBar.Value = (Int32)byteReadAll * 100 / originalLength;
                     progressBar.Update();
                     if (byteReadAll == originalLength)
                     {
@@ -228,6 +230,7 @@ namespace Server
                             viewFile.bookCurrent = f.FullName;
                             viewFile.Show();
                         }
+                        DownloadSuccess();
 
                         return;
                     }
@@ -259,15 +262,29 @@ namespace Server
                             viewFile.Show();
                         }
                     }
-                    //
-
+                    else
+                        DownloadSuccess();
                 }
                 else
                     Console.Write("Download Fail");
 
                 Console.Write("Recieved all :" + byteReadAll);
+                return;
 
             }
+        }
+
+        private void DownloadSuccess()
+        {
+            DialogResult d = MessageBox.Show("Open folder Download", "Info", MessageBoxButtons.YesNo);
+            if (d == DialogResult.Yes)
+                OpenFolderDownload();
+            return;
+        }
+
+        private void OpenFolderDownload()
+        {
+            Process.Start("explorer.exe", ClientManager.FOLDER_DOWLOAD);
         }
 
         internal void setFormDetail(ViewFile frmViewBook)
@@ -307,7 +324,9 @@ namespace Server
 
                 byte[] fileNameLen = BitConverter.GetBytes(fileNameByte.Length);
                 byte[] fileLength = BitConverter.GetBytes(tempfile.Length);
-                progressBar.Maximum = (Int32)tempfile.Length;
+
+                progressBar.Maximum = 100;
+
 
                 fileNameLen.CopyTo(clientData, 0);
                 fileLength.CopyTo(clientData, 4);
@@ -321,7 +340,8 @@ namespace Server
                 int bufferLength = ClientManager.BUFFER_SIZE;
                 byte[] buffer = new byte[bufferLength];
 
-                int len = (Int32)tempfile.Length;
+                int orginalLength = (Int32)tempfile.Length;
+                int len = orginalLength;
                 int byteRead;
                 int byteAllRead = 0;
                 while ((byteRead = tempfile.Read(buffer, 0, bufferLength)) > 0)
@@ -336,7 +356,8 @@ namespace Server
                         else
                             byteAllRead += byteRead;
                         Console.WriteLine("Reading : " + byteAllRead);
-                        progressBar.Value = byteAllRead;
+                        int vl = byteAllRead * 100 / orginalLength;
+                        progressBar.Value =vl;
                         progressBar.Update();
                     }
                     catch (Exception E)
@@ -349,6 +370,17 @@ namespace Server
                 byteAllRead += bufferLength;
                 Console.WriteLine("Read all : " + byteAllRead);
                 isDataSending = false;
+                try
+                {
+                    int price = Int32.Parse(ReadData());
+                    ClientManager.myWallet += price;
+                    wallet.Text = ClientManager.myWallet.ToString();
+                    MessageBox.Show("You given " + price + "", "Admin", MessageBoxButtons.OK);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Changed book faild " + e.StackTrace);
+                };
             }
             catch (Exception E)
             {

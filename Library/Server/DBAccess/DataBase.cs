@@ -22,7 +22,7 @@ namespace Server
         public const String PATH_DB_DIR = PATH_CONFIG + "\\Data";
         public const String PATH_CACHE = PATH_CONFIG + "\\Preview";
         public const String PATH_DB_USER_XML = PATH_CONFIG + "\\UsersDB.xml";
-        public static string[] EXTENSIONS = new[] { ".doc", ".pdf", ".docx", ".xls", ".xlsm", ".txt" };
+        public static string[] EXTENSIONS = new[] { ".doc", ".pdf", ".docx", ".xls", ".xlsm", ".txt",".ppt",".pptx" };
         public static List<Book> books;
         public DataBase() { }
         public static ApiManager apiManager = new ApiManager();

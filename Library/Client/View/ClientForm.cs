@@ -48,25 +48,19 @@ namespace Server
             {
                 this.Text = client.UpdateInformation();
                 client.setProgressBar(this.progressBar);
+                client.setWallet(this.tbWallet);
                 lbConnected.Visible = true;
                 loginToolStripMenuItem.Enabled = true;
+                btnConnect.Enabled = false;
             }
         }
 
         public void ChangeBook(string name)
         {
-
             client.SendData(ClientManager.TYPE_CHANGE + "");
             Book b = new Book.Builder().Path(name).Build();
             client.SendBook(b);
-            try
-            {
-                int price = Int32.Parse(client.ReadData());
-                ClientManager.myWallet += price;
-                tbWallet.Text = ClientManager.myWallet.ToString();
-                MessageBox.Show("You given " + price + "", "Admin", MessageBoxButtons.OK);
-            }
-            catch (Exception e) { };
+           
 
         }
 
@@ -87,11 +81,11 @@ namespace Server
                 MessageBox.Show("Connected to Server!", "Info", MessageBoxButtons.OK);
             else
                 Connect();
+            loginToolStripMenuItem.PerformClick();
         }
 
         private void Search_Click(object sender, EventArgs e)
         {
-
             if (tbSearch.Text.ToString().Trim().Equals(""))
             {
                 MessageBox.Show("Input can't be blank", "Client", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -116,9 +110,16 @@ namespace Server
                 }
                 String id = dgvBooks.Rows[e.RowIndex].Cells[0].Value.ToString();
                 String name = dgvBooks.Rows[e.RowIndex].Cells[1].Value.ToString();
+                String type = dgvBooks.Rows[e.RowIndex].Cells[2].Value.ToString();
                 String price = dgvBooks.Rows[e.RowIndex].Cells[3].Value.ToString();
                 String size = dgvBooks.Rows[e.RowIndex].Cells[4].Value.ToString();
 
+                //File extension is not supported
+                if (type.Length<4)
+                {
+                    MessageBox.Show("File extension is not supported", "Client", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
                 using (frmShowInfo = new ShowInfoForm()
                 {
                     book = new Book.Builder()
@@ -137,7 +138,6 @@ namespace Server
                                 break;
                             }
                             client.typeCurrent = ClientManager.TYPE_DOWNLOAD;
-                            tbWallet.Text = (ClientManager.myWallet - Double.Parse(price)).ToString();
                             client.SendData(ClientManager.TYPE_DOWNLOAD.ToString() + ClientManager.SIGN + id);
                             break;
                         case DialogResult.No:
@@ -157,6 +157,11 @@ namespace Server
             client.setFormDetail(frmViewBook);
             //if()
             client.ReceiveBook();
+            if (client.typeCurrent == ClientManager.TYPE_DOWNLOAD)
+            {
+                ClientManager.myWallet= Int32.Parse(client.ReadData());
+                tbWallet.Text = ClientManager.myWallet+"";
+            }
 
         }
 
@@ -193,7 +198,7 @@ namespace Server
                     if (rcs[0].Equals("LOGIN_SUCCESS"))
                     {
                         ClientManager.myWallet = Int32.Parse(rcs[2]);
-                        MessageBox.Show("LOGIN SUCCESS");
+                        MessageBox.Show("Login success");
 
                         tbWallet.Text = ClientManager.myWallet.ToString();
                         changeBookToolStripMenuItem.Enabled = true;

@@ -14,7 +14,7 @@ namespace Server.Common
     public class FileUtils
     {
 
-        public String ConvertPdfPreview(String path)
+        public String ConvertPdfPreview(string path)
         {
             string output = "";
             string fileFormat = path.Substring(path.LastIndexOf(".") + 1);
@@ -24,41 +24,6 @@ namespace Server.Common
                 output = Split(path);
             return output;
         }
-
-        //private string GetTxtForPreview(string path)
-        //{
-        //    String nameFile = path.Substring(path.LastIndexOf("\\") + 1);
-
-        //    String output = DataBase.PATH_CACHE + "\\" + nameFile + ".pdf";
-        //    if (File.Exists(output))
-        //        return output;
-        //    StreamReader rdr = new StreamReader(path);
-
-        //    //Create a New instance on Document Class
-
-        //    Document doc = new Document();
-
-        //    //Create a New instance of PDFWriter Class for Output File
-
-        //    PdfWriter.GetInstance(doc, new FileStream(path, FileMode.Create));
-
-        //    //Open the Document
-
-        //    doc.Open();
-
-        //    //Add the content of Text File to PDF File
-
-        //    doc.Add(new Paragraph(rdr.ReadToEnd()));
-
-        //    //Close the Document
-
-        //    doc.Close();
-
-        //    //Open the Converted PDF File
-
-        //    System.Diagnostics.Process.Start(path);
-        //    return output;
-        //}
 
         public String GetWordForPreview(string path)
         {

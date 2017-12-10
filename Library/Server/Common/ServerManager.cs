@@ -16,6 +16,7 @@ namespace Server.Common
         public const String EXCEL = "mimeType = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'";
         public const String MSWORD = "mimeType = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'";
         public const String OFFICE_DOC = "mimeType = 'application/vnd.oasis.opendocument.text'";
+        public const String OFFICE_POWERPOINT = "mimeType = 'application/vnd.openxmlformats-officedocument.presentationml.presentation'";
 
         public const char SIGN = '#';
         public const byte TYPE = 1;
@@ -34,6 +35,7 @@ namespace Server.Common
         public const byte TYPE_FILE_RICH_TEXT = TYPE_FILE << 4;
         public const byte TYPE_FILE_EXCEL = TYPE_FILE << 5;
         public const byte TYPE_FILE_OFFICE_DOC = TYPE_FILE << 6;
+        public const byte TYPE_FILE_POWERPOINT = TYPE_FILE << 7;
 
         public static int BUFFER_SIZE = 1024;
         public static string PREVIEW = "PREVIEW";
@@ -66,8 +68,9 @@ namespace Server.Common
             {
                 double p = 0;
                 if (!file.Extension.ToUpper().Contains("TXT")
-                    && !file.Extension.ToUpper().Contains("XLS"))
-                    p = (r.Next(1, 99) * 10000);
+                    && !file.Extension.ToUpper().Contains("XLS")
+                    && !file.Extension.ToUpper().Contains("PPT"))
+                    p = (r.Next(1, 99) * 10);
 
                 Book b = new Book.Builder()
                       .Id(CreateId(file))
@@ -110,7 +113,7 @@ namespace Server.Common
                             l.Add(b.ToString());
                     }
                 }
-                if (type.Equals("Exel"))
+                if (type.Equals("Excel"))
                 {
                     foreach (Book b in DataBase.GetListBook())
                     {
@@ -136,6 +139,16 @@ namespace Server.Common
                     {
                         if (b.Name.ToUpper().Contains(name.ToUpper())
                            && b.Type.ToUpper().Equals(".TXT"))
+                            l.Add(b.ToString());
+                    }
+                }
+                if (type.Equals("PowerPoint"))
+                {
+                    foreach (Book b in DataBase.GetListBook())
+                    {
+                        if (b.Name.ToUpper().Contains(name.ToUpper())
+                           && (b.Type.ToUpper().Equals(".PPT")
+                                || b.Type.ToUpper().Equals(".PPTX")))
                             l.Add(b.ToString());
                     }
                 }
@@ -176,9 +189,9 @@ namespace Server.Common
             User u = new User.Builder()
                                .Name(name)
                                .Pass(pass)
-                               .Wallet(10000000)
+                               .Wallet(100000)
                                .Build();
-             UserDB.AddNewUser(u);
+            UserDB.AddNewUser(u);
             return true;
         }
 

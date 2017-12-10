@@ -30,6 +30,7 @@ namespace Server.DBAccess
             catch (Exception E)
             {
                 Console.Write("DB User ERROR :" + E.StackTrace);
+
             }
         }
         public static void WriteNewUserDB()
@@ -107,6 +108,16 @@ namespace Server.DBAccess
                     return true;
             }
             return false;
+        }
+        public static void UpdateWalletUser(User b)
+        {
+            //Remove book in xml
+            XmlDocument doc = new XmlDocument();
+            doc.Load(DataBase.PATH_DB_USER_XML);
+            foreach (XmlNode xNode in doc.SelectNodes("ArrayOfUser/User"))
+                if (xNode.SelectSingleNode("Name").InnerText.Equals( b.Name))
+                    xNode.SelectSingleNode("Wallet").InnerText = b.Wallet+"";
+            doc.Save(DataBase.PATH_DB_USER_XML);
         }
     }
 }
