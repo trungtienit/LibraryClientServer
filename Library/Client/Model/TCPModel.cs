@@ -246,6 +246,7 @@ namespace Server
                     Console.WriteLine("Recieveding :" + byteReadAll);
 
                 };
+                progressBar.Value = 0;
             }
             catch (Exception ex)
             {
@@ -274,8 +275,9 @@ namespace Server
                     Console.Write("Download Fail");
 
                 Console.Write("Recieved all :" + byteReadAll);
+        
+                progressBar.Value = 0;
                 return;
-
             }
         }
 
@@ -381,6 +383,7 @@ namespace Server
                     ClientManager.myWallet += price;
                     wallet.Text = ClientManager.myWallet.ToString();
                     MessageBox.Show("You given " + price + "", "Admin", MessageBoxButtons.OK);
+                    progressBar.Value = 0;
                 }
                 catch (Exception e)
                 {

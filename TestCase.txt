@@ -17,13 +17,3 @@ TestCase
 Nâng cao
   5.Sever: search book-> download đổ vào database,
   6. Đổi sách.
-
-
-Thuận : Đọc+ ghi dữ liệu từ file xml  gồm
-Num
-ID
-Name
-Type
-Size
-Price
-path file

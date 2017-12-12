@@ -96,11 +96,6 @@ namespace Server
             return str;
         }
 
-        internal void SendBook(object bookCurrent)
-        {
-            throw new NotImplementedException();
-        }
-
         //send data to client
         public void SendData(string str)
         {

@@ -188,7 +188,7 @@ namespace Server
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Size = new System.Drawing.Size(500, 377);
+            this.groupBox1.Size = new System.Drawing.Size(500, 289);
             this.groupBox1.TabIndex = 17;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Communications";
@@ -197,7 +197,7 @@ namespace Server
             // 
             this.tbWallet.Font = new System.Drawing.Font("Century Gothic", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbWallet.ForeColor = System.Drawing.Color.DarkGreen;
-            this.tbWallet.Location = new System.Drawing.Point(162, 294);
+            this.tbWallet.Location = new System.Drawing.Point(162, 200);
             this.tbWallet.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.tbWallet.Name = "tbWallet";
             this.tbWallet.Size = new System.Drawing.Size(316, 38);
@@ -206,7 +206,7 @@ namespace Server
             // 
             // progressBar
             // 
-            this.progressBar.Location = new System.Drawing.Point(7, 350);
+            this.progressBar.Location = new System.Drawing.Point(7, 262);
             this.progressBar.Margin = new System.Windows.Forms.Padding(4);
             this.progressBar.Name = "progressBar";
             this.progressBar.Size = new System.Drawing.Size(489, 19);
@@ -215,7 +215,7 @@ namespace Server
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("Constantia", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(4, 294);
+            this.label1.Location = new System.Drawing.Point(4, 200);
             this.label1.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(148, 46);
@@ -266,7 +266,7 @@ namespace Server
             this.dgvBooks.RowHeadersVisible = false;
             this.dgvBooks.RowHeadersWidth = 50;
             this.dgvBooks.RowTemplate.Height = 33;
-            this.dgvBooks.Size = new System.Drawing.Size(1304, 675);
+            this.dgvBooks.Size = new System.Drawing.Size(1304, 587);
             this.dgvBooks.TabIndex = 21;
             this.dgvBooks.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvBooks_CellMouseClick);
             // 
@@ -281,19 +281,19 @@ namespace Server
             this.loginToolStripMenuItem,
             this.changeBookToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(245, 120);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(234, 76);
             // 
             // loginToolStripMenuItem
             // 
             this.loginToolStripMenuItem.Name = "loginToolStripMenuItem";
-            this.loginToolStripMenuItem.Size = new System.Drawing.Size(244, 36);
+            this.loginToolStripMenuItem.Size = new System.Drawing.Size(233, 36);
             this.loginToolStripMenuItem.Text = "Login";
             this.loginToolStripMenuItem.Click += new System.EventHandler(this.loginToolStripMenuItem_Click);
             // 
             // changeBookToolStripMenuItem
             // 
             this.changeBookToolStripMenuItem.Name = "changeBookToolStripMenuItem";
-            this.changeBookToolStripMenuItem.Size = new System.Drawing.Size(244, 36);
+            this.changeBookToolStripMenuItem.Size = new System.Drawing.Size(233, 36);
             this.changeBookToolStripMenuItem.Text = "Change book";
             this.changeBookToolStripMenuItem.Click += new System.EventHandler(this.changeBookToolStripMenuItem_Click);
             // 
@@ -364,7 +364,7 @@ namespace Server
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(1840, 700);
+            this.ClientSize = new System.Drawing.Size(1840, 604);
             this.ContextMenuStrip = this.contextMenuStrip1;
             this.Controls.Add(this.lbUserName);
             this.Controls.Add(this.label2);
