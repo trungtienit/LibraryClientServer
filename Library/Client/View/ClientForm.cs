@@ -47,8 +47,8 @@ namespace Server
             if (client.ConnectToServer() == 1)
             {
                 this.Text = client.UpdateInformation();
-                client.setProgressBar(this.progressBar);
-                client.setWallet(this.tbWallet);
+                TCPModel.progressBar= this.progressBar;
+                TCPModel.wallet = this.tbWallet;
                 lbConnected.Visible = true;
                 loginToolStripMenuItem.Enabled = true;
                 btnConnect.Enabled = false;
@@ -137,11 +137,11 @@ namespace Server
                                 MessageBox.Show("Your balance is not enough to pay", "Error", MessageBoxButtons.OK);
                                 break;
                             }
-                            client.typeCurrent = ClientManager.TYPE_DOWNLOAD;
+                            TCPModel.typeCurrent = ClientManager.TYPE_DOWNLOAD;
                             client.SendData(ClientManager.TYPE_DOWNLOAD.ToString() + ClientManager.SIGN + id);
                             break;
                         case DialogResult.No:
-                            client.typeCurrent = ClientManager.TYPE_PREVIEW;
+                            TCPModel.typeCurrent = ClientManager.TYPE_PREVIEW;
                             client.SendData(ClientManager.TYPE_PREVIEW.ToString() + ClientManager.SIGN + id);
                             break;
                         default:
@@ -157,11 +157,6 @@ namespace Server
             client.setFormDetail(frmViewBook);
             //if()
             client.ReceiveBook();
-            if (client.typeCurrent == ClientManager.TYPE_DOWNLOAD)
-            {
-                ClientManager.myWallet= Int32.Parse(client.ReadData());
-                tbWallet.Text = ClientManager.myWallet+"";
-            }
 
         }
 

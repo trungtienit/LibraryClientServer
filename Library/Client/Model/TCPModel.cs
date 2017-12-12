@@ -1,23 +1,25 @@
 ﻿
-using System;
-using System.Net;
-using System.Net.Sockets;
-using System.IO;
-using System.Text;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Collections.Generic;
-using System.Threading;
 using Server.Common;
-using System.Windows.Forms;
+using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
+using System.Net.Sockets;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Text;
+using System.Threading;
+using System.Windows.Forms;
 
 namespace Server
 {
     /// <summary>
     /// Description of TCPModel.
     /// </summary>
+    /// 
+
     public class TCPModel
     {
+
         public static Boolean isDownloading = false;
         private TcpClient tcpclnt;
         private Stream stm;
@@ -25,12 +27,40 @@ namespace Server
         private byte[] byteReceive;
         private string IPofServer;
         private int port;
-       // private bool isDataSending;
-        public String bookCurrent;
-        private ProgressBar progressBar;
-        private Label wallet;
-        private ViewFile viewFile;
-        internal byte typeCurrent;
+
+        public static String bookCurrent;
+        public static ProgressBar progressBar;
+        public static Label wallet;
+        private static ViewFile viewFile;
+        internal static byte typeCurrent;
+        private static Boolean status = false;
+        public Action onCompleted = () =>
+         {
+             //On complete action
+             if (status)
+             {
+                 FileInfo f = new FileInfo(bookCurrent);
+                 if (typeCurrent == ClientManager.TYPE_PREVIEW)
+                 {
+                     viewFile.bookCurrent = f.FullName;
+                     viewFile.Show();
+                     viewFile.UpdateBookCurrent();
+                 }
+                 else
+                 {
+
+                     if (TCPModel.typeCurrent == ClientManager.TYPE_DOWNLOAD)
+                     {
+
+                         wallet.Text = ClientManager.myWallet + "";
+                     }
+                     DownloadSuccess();
+                 }
+
+             }
+             progressBar.Value = 0;
+         };
+
 
         public TCPModel(string ip, int p)
         {
@@ -55,16 +85,6 @@ namespace Server
                 Console.WriteLine("Error..... " + e.StackTrace);
             }
             return str;
-        }
-
-        internal void setWallet(Label tbWallet)
-        {
-            this.wallet = tbWallet;
-        }
-
-        internal void setProgressBar(ProgressBar progressBar)
-        {
-            this.progressBar = progressBar;
         }
 
         //Set up a connection to server and get stream for communication
@@ -148,22 +168,27 @@ namespace Server
 
         internal void ReceiveBook()
         {
+            viewFile.Show();
+            viewFile.Hide();
             bookCurrent = "";
-            ReceiveBookByThread();
-            //  Thread t = new Thread(ReceiveBookByThread);
-            //  t.Start();
+            Thread _thread = new Thread(ReceiveBookByThread) { IsBackground = true };
+            _thread.Start();
 
         }
 
         private void ReceiveBookByThread()
         {
+            status = false;
             isDownloading = true;
             BinaryWriter bWrite = null;
+
             int fileLenght = 0;
             int originalLength = 0;
             decimal byteReadAll = 0;
+
             progressBar.Value = 0;
             progressBar.Update();
+
             try
             {
                 String receivedPath = ClientManager.FOLDER_DOWLOAD;
@@ -228,15 +253,9 @@ namespace Server
                         bookCurrent = receivedPath + "/" + fileName;
 
                         bWrite.Close();
-
-                        //
-                        FileInfo f = new FileInfo(bookCurrent);
-                        if (typeCurrent == ClientManager.TYPE_PREVIEW)
-                        {
-                            viewFile.bookCurrent = f.FullName;
-                            viewFile.Show();
-                        }else
-                            DownloadSuccess();
+                        status = true;
+                        if (typeCurrent == ClientManager.TYPE_DOWNLOAD)
+                            ClientManager.myWallet = Int32.Parse(ReadData());
                         return;
                     }
 
@@ -261,27 +280,28 @@ namespace Server
                         //Wait Convert Pdf
                         if (byteReadAll == 0)
                             ReceiveBookByThread();
-                        else
-                        {
-                            FileInfo f = new FileInfo(bookCurrent);
-                            viewFile.bookCurrent = f.Name;
-                            viewFile.Show();
-                        }
+
+                        return;
                     }
                     else
-                        DownloadSuccess();
+                        ClientManager.myWallet = Int32.Parse(ReadData());
+                    status = true;
                 }
                 else
                     Console.Write("Download Fail");
 
                 Console.Write("Recieved all :" + byteReadAll);
-        
+
                 progressBar.Value = 0;
                 return;
             }
+            finally
+            {
+                onCompleted();
+            }
         }
 
-        private void DownloadSuccess()
+        private static void DownloadSuccess()
         {
             DialogResult d = MessageBox.Show("Open folder Download", "Info", MessageBoxButtons.YesNo);
             if (d == DialogResult.Yes)
@@ -289,14 +309,14 @@ namespace Server
             return;
         }
 
-        private void OpenFolderDownload()
+        private static void OpenFolderDownload()
         {
             Process.Start("explorer.exe", ClientManager.FOLDER_DOWLOAD);
         }
 
         internal void setFormDetail(ViewFile frmViewBook)
         {
-            this.viewFile = frmViewBook;
+            viewFile = frmViewBook;
 
         }
 
@@ -334,7 +354,6 @@ namespace Server
 
                 progressBar.Maximum = 100;
 
-
                 fileNameLen.CopyTo(clientData, 0);
                 fileLength.CopyTo(clientData, 4);
                 fileNameByte.CopyTo(clientData, 8);
@@ -364,13 +383,13 @@ namespace Server
                             byteAllRead += byteRead;
                         Console.WriteLine("Reading : " + byteAllRead);
                         int vl = byteAllRead * 100 / orginalLength;
-                        progressBar.Value =vl;
+                        progressBar.Value = vl;
                         progressBar.Update();
                     }
                     catch (Exception E)
                     {
                         Console.Write("Send failed" + E.StackTrace);
-                       // isDataSending = false;
+                        // isDataSending = false;
                     }
 
                 }

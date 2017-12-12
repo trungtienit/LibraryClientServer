@@ -17,13 +17,6 @@ namespace Server
 
     internal sealed class Program
     {
-        public static bool ContainsUnicodeCharacter(string input)
-        {
-            const int MaxAnsiCode = 255;
-
-
-            return input.ToCharArray().Any(c => c > MaxAnsiCode);
-        }
 
         [STAThread]
         private static void Main(string[] args)

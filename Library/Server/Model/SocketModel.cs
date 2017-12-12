@@ -243,7 +243,7 @@ namespace Server
 
                 byte[] fileNameByte = Encoding.ASCII.GetBytes(fileName);
 
-                FileStream tempfile = File.OpenRead(filePath + fileName);
+                FileStream tempfile = File.Open(filePath + fileName, FileMode.Open, FileAccess.Read, FileShare.Read);
                 byte[] clientData = new byte[4 + 4 + fileName.Length];
 
                 byte[] fileNameLen = BitConverter.GetBytes(fileNameByte.Length);
@@ -291,8 +291,9 @@ namespace Server
                     UserDB.UpdateWalletUser(userCurrent);
                     SendData(userCurrent.Wallet+"");
                 }
-              
+                tempfile.Close();
                 isDataSending = false;
+                
             }
             catch (Exception E)
             {

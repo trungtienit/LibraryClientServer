@@ -20,8 +20,12 @@ namespace Server
 
         private void ViewFile_Load(object sender, EventArgs e)
         {
-            webBrowser1.Navigate(bookCurrent);
+          
         }
-
+        public void UpdateBookCurrent()
+        {
+            webBrowser1.Navigate(bookCurrent);
+            Update();
+        }
     }
 }

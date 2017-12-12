@@ -134,18 +134,20 @@ namespace Server
         internal static Book GetFilePreview(string id)
         {
             Book b = GetFile(id);
+
             if (b == null)
                 return null;
-            if (b.Id.StartsWith("GD") )
+            Book tmp = new Book(b);
+            if (tmp.Id.StartsWith("GD") )
             {
                 apiManager = new ApiManager();
-                b.Path = apiManager.DownloadGoogleFile(b.Path);
-                b.OnDrive = false;
+                tmp.Path = apiManager.DownloadGoogleFile(tmp.Path);
+                tmp.OnDrive = false;
             }
             FileUtils f = new FileUtils();
-            String rs = f.ConvertPdfPreview(b.Path);
-            b.Path = rs;
-            return b;
+            String rs = f.ConvertPdfPreview(tmp.Path);
+            tmp.Path = rs;
+            return tmp;
         }
 
         internal static Book GetFile(string id)
