@@ -49,7 +49,6 @@ namespace Server
             server = new ServerModel().GetInstance();
             serverManager = new ServerManager();
             btnAddUser.Enabled = false;
-            btnUpdateDataBase.Enabled = false;
         }
         void StartClick(object sender, EventArgs e)
         {
@@ -68,7 +67,6 @@ namespace Server
             tcp.Listen();
             btnStart.Enabled = false;
             btnAddUser.Enabled = true;
-            btnUpdateDataBase.Enabled = true;
             UserDB.LoadUsersDB();
         }
         public void Communication(object obj)
@@ -165,11 +163,6 @@ namespace Server
         private void LoadData()
         {
             //DataBase.GetListBook();
-            DataBase.WriteNewDB();
-        }
-
-        private void btnUpdateDataBase_Click(object sender, EventArgs e)
-        {
             DataBase.WriteNewDB();
         }
 

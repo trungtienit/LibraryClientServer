@@ -7,7 +7,9 @@ namespace Server.Common
 {
     public class ClientManager
     {
-        public const String FOLDER_DOWLOAD = "..\\..\\Download";
+        public const String FOLDER_CONFIG= "..\\..\\Config";
+        public const String FOLDER_DOWLOAD = FOLDER_CONFIG+ "\\Download";
+        public const String FOLDER_PREVIEW = FOLDER_CONFIG+"\\Preview";
 
         public const char SIGN = '#';
         public const byte TYPE = 1;

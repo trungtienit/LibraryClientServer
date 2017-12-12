@@ -25,7 +25,7 @@ namespace Server
         private byte[] byteReceive;
         private string IPofServer;
         private int port;
-        private bool isDataSending;
+       // private bool isDataSending;
         public String bookCurrent;
         private ProgressBar progressBar;
         private Label wallet;
@@ -167,6 +167,12 @@ namespace Server
             try
             {
                 String receivedPath = ClientManager.FOLDER_DOWLOAD;
+                if (typeCurrent == ClientManager.TYPE_PREVIEW)
+                    receivedPath = ClientManager.FOLDER_PREVIEW;
+
+                if (!Directory.Exists(ClientManager.FOLDER_CONFIG))
+                    Directory.CreateDirectory(ClientManager.FOLDER_CONFIG);
+
                 if (!Directory.Exists(receivedPath))
                     Directory.CreateDirectory(receivedPath);
 
@@ -229,9 +235,8 @@ namespace Server
                         {
                             viewFile.bookCurrent = f.FullName;
                             viewFile.Show();
-                        }
-                        DownloadSuccess();
-
+                        }else
+                            DownloadSuccess();
                         return;
                     }
 
@@ -301,7 +306,7 @@ namespace Server
 
         private void SendBookByThread(Object o)
         {
-            isDataSending = true;
+            //isDataSending = true;
             Book b = (Book)o;
             progressBar.Value = 0;
             progressBar.Update();
@@ -363,13 +368,13 @@ namespace Server
                     catch (Exception E)
                     {
                         Console.Write("Send failed" + E.StackTrace);
-                        isDataSending = false;
+                       // isDataSending = false;
                     }
 
                 }
                 byteAllRead += bufferLength;
                 Console.WriteLine("Read all : " + byteAllRead);
-                isDataSending = false;
+                //isDataSending = false;
                 try
                 {
                     int price = Int32.Parse(ReadData());
@@ -385,7 +390,7 @@ namespace Server
             catch (Exception E)
             {
                 Console.Write(E.StackTrace);
-                isDataSending = false;
+                //isDataSending = false;
             }
         }
     }

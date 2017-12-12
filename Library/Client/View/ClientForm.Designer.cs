@@ -60,7 +60,6 @@ namespace Server
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.loginToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changeBookToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.label2 = new System.Windows.Forms.Label();
             this.lbUserName = new System.Windows.Forms.Label();
@@ -280,30 +279,23 @@ namespace Server
             this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.loginToolStripMenuItem,
-            this.changeBookToolStripMenuItem,
-            this.aboutToolStripMenuItem});
+            this.changeBookToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(234, 112);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(245, 120);
             // 
             // loginToolStripMenuItem
             // 
             this.loginToolStripMenuItem.Name = "loginToolStripMenuItem";
-            this.loginToolStripMenuItem.Size = new System.Drawing.Size(233, 36);
+            this.loginToolStripMenuItem.Size = new System.Drawing.Size(244, 36);
             this.loginToolStripMenuItem.Text = "Login";
             this.loginToolStripMenuItem.Click += new System.EventHandler(this.loginToolStripMenuItem_Click);
             // 
             // changeBookToolStripMenuItem
             // 
             this.changeBookToolStripMenuItem.Name = "changeBookToolStripMenuItem";
-            this.changeBookToolStripMenuItem.Size = new System.Drawing.Size(233, 36);
+            this.changeBookToolStripMenuItem.Size = new System.Drawing.Size(244, 36);
             this.changeBookToolStripMenuItem.Text = "Change book";
             this.changeBookToolStripMenuItem.Click += new System.EventHandler(this.changeBookToolStripMenuItem_Click);
-            // 
-            // aboutToolStripMenuItem
-            // 
-            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(233, 36);
-            this.aboutToolStripMenuItem.Text = "About";
             // 
             // errorProvider1
             // 
@@ -416,7 +408,6 @@ namespace Server
         private OpenFileDialog openFileDialog1;
         private ContextMenuStrip contextMenuStrip1;
         private ToolStripMenuItem changeBookToolStripMenuItem;
-        private ToolStripMenuItem aboutToolStripMenuItem;
         private BindingSource bookBindingSource;
         private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;

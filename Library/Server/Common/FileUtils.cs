@@ -54,7 +54,7 @@ namespace Server.Common
 
             int interval = 0;
 
-            if (reader.NumberOfPages < 2) interval = 0;
+            if (reader.NumberOfPages < 2) interval = 1;
             else if (reader.NumberOfPages < 10) interval = reader.NumberOfPages / 3;
             else interval = 5;
 

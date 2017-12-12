@@ -46,7 +46,6 @@ namespace Server
             this.panel1 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.lbNumberClient = new System.Windows.Forms.Label();
-            this.btnUpdateDataBase = new System.Windows.Forms.Button();
             this.tbLogConnect = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -147,22 +146,6 @@ namespace Server
             this.lbNumberClient.TabIndex = 10;
             this.lbNumberClient.Text = "0";
             // 
-            // btnUpdateDataBase
-            // 
-            this.btnUpdateDataBase.BackColor = System.Drawing.Color.Crimson;
-            this.btnUpdateDataBase.FlatAppearance.BorderColor = System.Drawing.Color.Salmon;
-            this.btnUpdateDataBase.FlatAppearance.BorderSize = 2;
-            this.btnUpdateDataBase.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUpdateDataBase.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnUpdateDataBase.Location = new System.Drawing.Point(142, 156);
-            this.btnUpdateDataBase.Margin = new System.Windows.Forms.Padding(6);
-            this.btnUpdateDataBase.Name = "btnUpdateDataBase";
-            this.btnUpdateDataBase.Size = new System.Drawing.Size(144, 106);
-            this.btnUpdateDataBase.TabIndex = 11;
-            this.btnUpdateDataBase.Text = "Update Database";
-            this.btnUpdateDataBase.UseVisualStyleBackColor = false;
-            this.btnUpdateDataBase.Click += new System.EventHandler(this.btnUpdateDataBase_Click);
-            // 
             // tbLogConnect
             // 
             this.tbLogConnect.BackColor = System.Drawing.SystemColors.Window;
@@ -189,12 +172,12 @@ namespace Server
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Candara", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(482, 227);
+            this.label5.Location = new System.Drawing.Point(390, 227);
             this.label5.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(96, 32);
+            this.label5.Size = new System.Drawing.Size(222, 32);
             this.label5.TabIndex = 13;
-            this.label5.Text = "Clients:";
+            this.label5.Text = "Number of Clients:";
             // 
             // btnAddUser
             // 
@@ -203,7 +186,7 @@ namespace Server
             this.btnAddUser.FlatAppearance.BorderSize = 2;
             this.btnAddUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddUser.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnAddUser.Location = new System.Drawing.Point(298, 156);
+            this.btnAddUser.Location = new System.Drawing.Point(142, 156);
             this.btnAddUser.Margin = new System.Windows.Forms.Padding(6);
             this.btnAddUser.Name = "btnAddUser";
             this.btnAddUser.Size = new System.Drawing.Size(96, 106);
@@ -223,7 +206,6 @@ namespace Server
             this.Controls.Add(this.label4);
             this.Controls.Add(this.tbLogConnect);
             this.Controls.Add(this.btnStart);
-            this.Controls.Add(this.btnUpdateDataBase);
             this.Controls.Add(this.lbNumberClient);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.panel1);
@@ -245,7 +227,6 @@ namespace Server
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lbNumberClient;
-        private System.Windows.Forms.Button btnUpdateDataBase;
         private System.Windows.Forms.TextBox tbLogConnect;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
