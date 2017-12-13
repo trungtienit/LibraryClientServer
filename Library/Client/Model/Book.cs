@@ -15,12 +15,36 @@ namespace Server
         String size;
         String path;
 
-        public string Id { get => id; set => id = value; }
-        public string Name { get => name; set => name = value; }
-        public string Type { get => type; set => type = value; }
-        public double Price { get => price; set => price = value; }
-        public string Size { get => size; set => size = value; }
-        public string Path { get => path; set => path = value; }
+         public string Id
+        {
+            get { return id; }
+            set { id = value; }
+        }
+        public string Type
+        {
+            get { return type; }
+            set { type = value; }
+        }
+        public double Price
+        {
+            get { return price; }
+            set { price = value; }
+        }
+        public string Size
+        {
+            get { return size; }
+            set { size = value; }
+        }
+        public string Path
+        {
+            get { return path; }
+            set { path = value; }
+        }
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }
   
         public Book()
         {
