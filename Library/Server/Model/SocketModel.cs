@@ -37,6 +37,7 @@ namespace Server
             socket = s;
             array_to_receive_data = new byte[100];
             stream = new NetworkStream(socket);
+            s.ReceiveTimeout = 0;
         }
         public SocketModel(Socket s, int length)
         {
@@ -119,6 +120,18 @@ namespace Server
             catch (Exception e)
             {
                 Console.WriteLine("Send List String Error..... " + e.StackTrace);
+            }
+        }
+        public void SendStringSerialize(String str)
+        {
+            try
+            {
+                var bin = new BinaryFormatter();
+                bin.Serialize(stream, str);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Send String Serialize Error..... " + e.StackTrace);
             }
         }
 
@@ -218,10 +231,13 @@ namespace Server
         {
             Thread t = new Thread(SendBookByThread);
             t.Start(book);
+            
         }
 
         public void SendBookByThread(Object o)
         {
+            //run after thread main communicaton
+            Thread.Sleep(100);
             isDataSending = true;
             bookCurrent = (Book)o;
             try
@@ -241,21 +257,32 @@ namespace Server
                     fileName = fileName.Substring(fileName.IndexOf("/") + 1);
                 }
 
-                byte[] fileNameByte = Encoding.ASCII.GetBytes(fileName);
+
+                //ASCIIEncoding asen = new ASCIIEncoding();
+                //byte[] fileNameByte = asen.GetBytes(fileName);
 
                 FileStream tempfile = File.Open(filePath + fileName, FileMode.Open, FileAccess.Read, FileShare.Read);
-                byte[] clientData = new byte[4 + 4 + fileName.Length];
+                //byte[] clientData = new byte[4 + 4 + fileName.Length];
 
-                byte[] fileNameLen = BitConverter.GetBytes(fileNameByte.Length);
-                byte[] fileLength = BitConverter.GetBytes(tempfile.Length);
-                fileNameLen.CopyTo(clientData, 0);
-                fileLength.CopyTo(clientData, 4);
-                fileNameByte.CopyTo(clientData, 8);
+                //byte[] fileNameLen = BitConverter.GetBytes(fileNameByte.Length);
+                //byte[] fileLength = BitConverter.GetBytes(tempfile.Length);
+                //fileNameLen.CopyTo(clientData, 0);
+                //fileLength.CopyTo(clientData, 4);
+                //fileNameByte.CopyTo(clientData, 8);
+
                 //[FILE NAME LENGHT] [LENGTH FILE ] [NAME FILE] 
                 //[   4            ] [   4        ] [  name   ]
+                SendStringSerialize(fileName.Length.ToString()
+                    + ServerManager.SIGN
+                    + tempfile.Length.ToString()
+                    + ServerManager.SIGN
+                    + fileName
+                    );
 
+                if (!ReceiveData().Contains("RECEIVED_INFO_SUCCESS")) { return; };
+                   
                 //SEND INFO
-                stream.Write(clientData, 0, clientData.Length);
+              //  stream.Write(clientData, 0, clientData.Length);
 
                 int bufferLength = ServerManager.BUFFER_SIZE;
                 byte[] buffer = new byte[bufferLength];

@@ -89,7 +89,17 @@ namespace Server
                     return;
                 }
                 string[] receive = str.Split(ServerManager.SIGN);
-                switch (Int32.Parse(receive[0]))
+                int typerc;
+                try
+                {
+                    typerc = (Int32.Parse(receive[0]));
+                }
+                catch
+                {
+                    continue;
+                }
+
+                switch (typerc)
                 {
                     case ServerManager.TYPE_LOGIN:
 

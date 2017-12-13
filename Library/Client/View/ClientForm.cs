@@ -60,7 +60,6 @@ namespace Server
             client.SendData(ClientManager.TYPE_CHANGE + "");
             Book b = new Book.Builder().Path(name).Build();
             client.SendBook(b);
-           
 
         }
 
@@ -86,16 +85,24 @@ namespace Server
 
         private void Search_Click(object sender, EventArgs e)
         {
+            if (TCPModel.isDownloading)
+            {
+                MessageBox.Show("Please wait...");
+                return;
+            }
             if (tbSearch.Text.ToString().Trim().Equals(""))
             {
                 MessageBox.Show("Input can't be blank", "Client", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
                 return;
             }
             if (cbType.Text.Equals(""))
             {
                 MessageBox.Show("Type is invalid", "Client", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
                 return;
             }
+            btnSearch.Enabled = false;
             client.SendData(ClientManager.TYPE_SEARCH.ToString() + ClientManager.SIGN + tbSearch.Text + ClientManager.SIGN + cbType.Text);
             updateView();
         }
@@ -108,6 +115,7 @@ namespace Server
                     MessageBox.Show("Please wait...");
                     return;
                 }
+
                 String id = dgvBooks.Rows[e.RowIndex].Cells[0].Value.ToString();
                 String name = dgvBooks.Rows[e.RowIndex].Cells[1].Value.ToString();
                 String type = dgvBooks.Rows[e.RowIndex].Cells[2].Value.ToString();
@@ -232,6 +240,7 @@ namespace Server
                 dgvBooks.RowsDefaultCellStyle.BackColor = Color.LightBlue;
                 dgvBooks.AlternatingRowsDefaultCellStyle.BackColor = Color.LightSkyBlue;
             }
+            btnSearch.Enabled = true;
         }
 
         

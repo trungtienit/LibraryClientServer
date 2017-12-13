@@ -66,7 +66,7 @@ namespace Server
             // label2
             // 
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(20, 85);
+            this.label2.Location = new System.Drawing.Point(21, 63);
             this.label2.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(70, 44);
@@ -86,7 +86,7 @@ namespace Server
             // tbPort
             // 
             this.tbPort.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.tbPort.Location = new System.Drawing.Point(104, 81);
+            this.tbPort.Location = new System.Drawing.Point(103, 66);
             this.tbPort.Margin = new System.Windows.Forms.Padding(6);
             this.tbPort.Name = "tbPort";
             this.tbPort.Size = new System.Drawing.Size(206, 31);
@@ -116,10 +116,10 @@ namespace Server
             this.panel1.Controls.Add(this.tbIpAddress);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.label2);
-            this.panel1.Location = new System.Drawing.Point(448, 21);
+            this.panel1.Location = new System.Drawing.Point(341, 17);
             this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(324, 129);
+            this.panel1.Size = new System.Drawing.Size(324, 115);
             this.panel1.TabIndex = 7;
             // 
             // label3
@@ -127,7 +127,7 @@ namespace Server
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Century Gothic", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Firebrick;
-            this.label3.Location = new System.Drawing.Point(20, 17);
+            this.label3.Location = new System.Drawing.Point(1, 17);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(332, 115);
@@ -139,7 +139,7 @@ namespace Server
             this.lbNumberClient.AutoSize = true;
             this.lbNumberClient.Font = new System.Drawing.Font("Century Gothic", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbNumberClient.ForeColor = System.Drawing.Color.Red;
-            this.lbNumberClient.Location = new System.Drawing.Point(712, 187);
+            this.lbNumberClient.Location = new System.Drawing.Point(584, 187);
             this.lbNumberClient.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbNumberClient.Name = "lbNumberClient";
             this.lbNumberClient.Size = new System.Drawing.Size(68, 78);
@@ -154,7 +154,7 @@ namespace Server
             this.tbLogConnect.Margin = new System.Windows.Forms.Padding(6);
             this.tbLogConnect.Multiline = true;
             this.tbLogConnect.Name = "tbLogConnect";
-            this.tbLogConnect.Size = new System.Drawing.Size(734, 388);
+            this.tbLogConnect.Size = new System.Drawing.Size(638, 238);
             this.tbLogConnect.TabIndex = 0;
             // 
             // label4
@@ -172,7 +172,7 @@ namespace Server
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Candara", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(390, 227);
+            this.label5.Location = new System.Drawing.Point(286, 227);
             this.label5.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(222, 32);
@@ -200,7 +200,7 @@ namespace Server
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(804, 733);
+            this.ClientSize = new System.Drawing.Size(698, 575);
             this.Controls.Add(this.btnAddUser);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);

@@ -61,7 +61,6 @@ namespace Server
              progressBar.Value = 0;
          };
 
-
         public TCPModel(string ip, int p)
         {
             IPofServer = ip;
@@ -159,6 +158,20 @@ namespace Server
             }
             return list;
         }
+        internal String ReadStringSerialize()
+        {
+            var bin = new BinaryFormatter();
+            String str = "";
+            try
+            {
+                str = (string)bin.Deserialize(stm);
+            }
+            catch
+            {
+                return str;
+            }
+            return str;
+        }
 
         //close connection
         public void CloseConnection()
@@ -203,20 +216,23 @@ namespace Server
 
                 byte[] clientData = new byte[100];
 
-                int byteReceive = stm.Read(clientData, 0, 4);
-                int fileNameLen = BitConverter.ToInt32(clientData, 0);
-                byteReceive = stm.Read(clientData, 0, 4);
-                fileLenght = BitConverter.ToInt32(clientData, 0);
+                String s = ReadStringSerialize();
+                String[] tmp = s.Split(ClientManager.SIGN);
+
+                int fileNameLen = Int32.Parse(tmp[0]);
+                fileLenght = Int32.Parse(tmp[1]);
+         
+                Console.WriteLine("fileNameLen = {0}", fileNameLen);
+                String fileName = tmp[2];
+                Console.WriteLine("fileName = {0}", fileName);
+
+
+                //Setup by server, 
+                SendData("RECEIVED_INFO_SUCCESS");
+                SendData("RECEIVED_INFO_SUCCESS");
 
                 progressBar.Maximum = 100;
-
                 originalLength = fileLenght;
-                Console.WriteLine("fileNameLen = {0}", fileNameLen);
-
-                stm.Read(clientData, 0, fileNameLen);
-
-                String fileName = Encoding.ASCII.GetString(clientData, 0, fileNameLen);
-                Console.WriteLine("fileName = {0}", fileName);
                 int k = 1;
                 while (File.Exists(receivedPath + "/" + fileName))
                 {
