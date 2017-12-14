@@ -27,5 +27,9 @@ namespace Server
             webBrowser1.Navigate(bookCurrent);
             Update();
         }
+        private void btnReload_Click(object sender, EventArgs e)
+        {
+            webBrowser1.Navigate(bookCurrent);
+        }
     }
 }

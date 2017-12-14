@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading;
 using Google.Apis.Drive.v3.Data;
 using Google.Apis.Download;
+using System.Windows.Forms;
 
 namespace Server.Api
 {
@@ -105,7 +106,7 @@ namespace Server.Api
                      .Path(file.Id)
                      .OnDrive()
                      .Build();
-                    DataBase.AddNewBook(b);
+                    BookDB.AddNewBook(b);
                     results.Add(b.ToString());
                     Console.WriteLine(String.Format(
                             "Found file: {0} ({1})", file.Name, file.Id));
@@ -162,7 +163,7 @@ namespace Server.Api
             FilesResource.GetRequest request = service.Files.Get(fileId);
 
             string fileName = request.Execute().Name;
-            String filePath = DataBase.PATH_DB_DIR + "/" + fileName;
+            String filePath = BookDB.PATH_DB_DIR + "/" + fileName;
             if (System.IO.File.Exists(filePath))
             {
                 return filePath;
@@ -203,7 +204,7 @@ namespace Server.Api
         }
         public UserCredential GetUserCredential()
         {
-            using (var stream = new FileStream("..\\..\\client_secret.json", FileMode.Open, FileAccess.Read))
+            using (var stream = new FileStream(Application.StartupPath+"\\client_secret.json", FileMode.Open, FileAccess.Read))
             {
                 string credPath = System.Environment.GetFolderPath(
                     System.Environment.SpecialFolder.Personal);

@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 
 namespace Server.Common
 {
     public class ClientManager
     {
-        public const String FOLDER_CONFIG= "..\\..\\Config";
-        public const String FOLDER_DOWLOAD = FOLDER_CONFIG+ "\\Download";
-        public const String FOLDER_PREVIEW = FOLDER_CONFIG+"\\Preview";
+        public static String FOLDER_CONFIG = Application.StartupPath + "\\Config";
+        public static String FOLDER_DOWLOAD = FOLDER_CONFIG+ "\\Download";
+        public static String FOLDER_PREVIEW = FOLDER_CONFIG+"\\Preview";
 
         public const char SIGN = '#';
         public const byte TYPE = 1;
@@ -21,6 +22,6 @@ namespace Server.Common
         public const byte TYPE_LOGIN = TYPE << 6;
         public const int BUFFER_SIZE = 1024;
 
-        public static int myWallet = 50000000;
+        public static int myWallet ;
     }
 }

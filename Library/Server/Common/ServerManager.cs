@@ -45,11 +45,11 @@ namespace Server.Common
 
             List<Book> mList = new List<Book>();
 
-            if (!System.IO.Directory.Exists(DataBase.PATH_CONFIG))
-                System.IO.Directory.CreateDirectory(DataBase.PATH_CONFIG);
+            if (!System.IO.Directory.Exists(BookDB.PATH_CONFIG))
+                System.IO.Directory.CreateDirectory(BookDB.PATH_CONFIG);
 
-            if (!System.IO.Directory.Exists(DataBase.PATH_DB_DIR))
-                System.IO.Directory.CreateDirectory(DataBase.PATH_DB_DIR);
+            if (!System.IO.Directory.Exists(BookDB.PATH_DB_DIR))
+                System.IO.Directory.CreateDirectory(BookDB.PATH_DB_DIR);
 
             DirectoryInfo dinfo = new DirectoryInfo(pathFolder);
 
@@ -95,7 +95,7 @@ namespace Server.Common
             List<String> l = new List<string>();
             if (type.Equals("All"))
             {
-                foreach (Book b in DataBase.GetListBook())
+                foreach (Book b in BookDB.GetListBook())
                 {
                     if (b.Name.ToUpper().Contains(name.ToUpper()))
                         l.Add(b.ToString());
@@ -105,7 +105,7 @@ namespace Server.Common
             {
                 if (type.Equals("Word"))
                 {
-                    foreach (Book b in DataBase.GetListBook())
+                    foreach (Book b in BookDB.GetListBook())
                     {
                         if (b.Name.ToUpper().Contains(name.ToUpper())
                                   && (b.Type.ToUpper().Equals(".DOC")
@@ -115,7 +115,7 @@ namespace Server.Common
                 }
                 if (type.Equals("Excel"))
                 {
-                    foreach (Book b in DataBase.GetListBook())
+                    foreach (Book b in BookDB.GetListBook())
                     {
                         if (b.Name.ToUpper().Contains(name.ToUpper())
                             && (b.Type.ToUpper().Equals(".XLSX")
@@ -126,7 +126,7 @@ namespace Server.Common
                 }
                 if (type.Equals("Pdf"))
                 {
-                    foreach (Book b in DataBase.GetListBook())
+                    foreach (Book b in BookDB.GetListBook())
                     {
                         if (b.Name.ToUpper().Contains(name.ToUpper())
                              && b.Type.ToUpper().Equals(".PDF"))
@@ -135,7 +135,7 @@ namespace Server.Common
                 }
                 if (type.Equals("Text"))
                 {
-                    foreach (Book b in DataBase.GetListBook())
+                    foreach (Book b in BookDB.GetListBook())
                     {
                         if (b.Name.ToUpper().Contains(name.ToUpper())
                            && b.Type.ToUpper().Equals(".TXT"))
@@ -144,7 +144,7 @@ namespace Server.Common
                 }
                 if (type.Equals("PowerPoint"))
                 {
-                    foreach (Book b in DataBase.GetListBook())
+                    foreach (Book b in BookDB.GetListBook())
                     {
                         if (b.Name.ToUpper().Contains(name.ToUpper())
                            && (b.Type.ToUpper().Equals(".PPT")

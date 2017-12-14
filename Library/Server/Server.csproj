@@ -137,7 +137,7 @@
     <Compile Include="DBAccess\UserDB.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Model\Book.cs" />
-    <Compile Include="DBAccess\DataBase.cs" />
+    <Compile Include="DBAccess\BookDB.cs" />
     <Compile Include="DBAccess\DataTest.cs" />
     <Compile Include="Model\ServerModel.cs" />
     <Compile Include="View\AddUserForm.cs">

@@ -29,7 +29,7 @@ namespace Server.Common
         {
             String nameFile = path.Substring(path.LastIndexOf("\\") + 1);
              nameFile = nameFile.Substring(0, nameFile.LastIndexOf("."));
-            String output = DataBase.PATH_CACHE + "\\" + nameFile + ".pdf";
+            String output = BookDB.PATH_CACHE + "\\" + nameFile + ".pdf";
             if (File.Exists(output))
                 return output;
             Spire.Doc.Document document = new Spire.Doc.Document();
@@ -44,10 +44,10 @@ namespace Server.Common
 
         public string Split(string pdfFilePath)
         {
-            if (!System.IO.Directory.Exists(DataBase.PATH_CACHE))
-                System.IO.Directory.CreateDirectory(DataBase.PATH_CACHE);
+            if (!System.IO.Directory.Exists(BookDB.PATH_CACHE))
+                System.IO.Directory.CreateDirectory(BookDB.PATH_CACHE);
 
-            string outputPath = DataBase.PATH_CACHE;
+            string outputPath = BookDB.PATH_CACHE;
 
             // Intialize a new PdfReader instance with the contents of the source Pdf file:  
             PdfReader reader = new PdfReader(pdfFilePath);

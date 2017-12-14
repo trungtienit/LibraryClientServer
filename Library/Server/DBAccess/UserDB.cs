@@ -20,7 +20,7 @@ namespace Server.DBAccess
             try
             {
                 XmlSerializer serializer = new XmlSerializer(typeof(List<User>));
-                using (FileStream fs = new FileStream(DataBase.PATH_DB_USER_XML, FileMode.Open, FileAccess.Read))
+                using (FileStream fs = new FileStream(BookDB.PATH_DB_USER_XML, FileMode.Open, FileAccess.Read))
                 {
                     users = serializer.Deserialize(fs) as List<User>;
                     Console.Write("Users load");
@@ -40,7 +40,7 @@ namespace Server.DBAccess
             try
             {
                 XmlSerializer serializer = new XmlSerializer(typeof(List<User>));
-                using (FileStream fs = new FileStream(DataBase.PATH_DB_USER_XML, FileMode.Create, FileAccess.Write))
+                using (FileStream fs = new FileStream(BookDB.PATH_DB_USER_XML, FileMode.Create, FileAccess.Write))
                 {
                     serializer.Serialize(fs, users);
                     Console.Write("Users updated");
@@ -57,12 +57,12 @@ namespace Server.DBAccess
             XmlDocument doc = new XmlDocument();
             try
             {
-                doc.Load(DataBase.PATH_DB_USER_XML);
+                doc.Load(BookDB.PATH_DB_USER_XML);
             }
             catch (Exception E)
             {
                 WriteNewUserDB();
-                doc.Load(DataBase.PATH_DB_USER_XML);
+                doc.Load(BookDB.PATH_DB_USER_XML);
             }
             XmlNode user = doc.CreateElement("User");
             XmlNode name = doc.CreateElement("Name");
@@ -78,7 +78,7 @@ namespace Server.DBAccess
             user.AppendChild(wallet);
 
             doc.DocumentElement.AppendChild(user);
-            doc.Save(DataBase.PATH_DB_USER_XML);
+            doc.Save(BookDB.PATH_DB_USER_XML);
 
             //Save to listbooks
             if (users == null)
@@ -113,11 +113,11 @@ namespace Server.DBAccess
         {
             //Remove book in xml
             XmlDocument doc = new XmlDocument();
-            doc.Load(DataBase.PATH_DB_USER_XML);
+            doc.Load(BookDB.PATH_DB_USER_XML);
             foreach (XmlNode xNode in doc.SelectNodes("ArrayOfUser/User"))
                 if (xNode.SelectSingleNode("Name").InnerText.Equals( b.Name))
                     xNode.SelectSingleNode("Wallet").InnerText = b.Wallet+"";
-            doc.Save(DataBase.PATH_DB_USER_XML);
+            doc.Save(BookDB.PATH_DB_USER_XML);
         }
     }
 }

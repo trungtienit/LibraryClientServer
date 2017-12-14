@@ -83,7 +83,14 @@ namespace Server
                 //Remove socket fail : disconnect
                 if (str.Equals(SocketModel.CLIENT_DISSCONECT + socket.GetRemoteEndpoint()))
                 {
-                    tbLogConnect.AppendText(str + "\r\n");
+                    try
+                    {
+                        tbLogConnect.AppendText(str + "\r\n");
+                    }
+                    catch (Exception e)
+                    {
+                        return;
+                    }
                     Console.WriteLine(str);
                     server.Remove(socket);
                     return;
@@ -127,10 +134,10 @@ namespace Server
                     //Send File book
                     case ServerManager.TYPE_DOWNLOAD:
                         socket.typeCurrent = ServerManager.TYPE_DOWNLOAD;
-                        socket.SendBook(DataBase.GetFile(receive[1]));
+                        socket.SendBook(BookDB.GetFile(receive[1]));
                         break;
                     case ServerManager.TYPE_PREVIEW:
-                        socket.SendBook(DataBase.GetFilePreview(receive[1]));
+                        socket.SendBook(BookDB.GetFilePreview(receive[1]));
                         socket.typeCurrent = ServerManager.TYPE_PREVIEW;
                         break;
                     case ServerManager.TYPE_CHANGE:
@@ -173,7 +180,7 @@ namespace Server
         private void LoadData()
         {
             //DataBase.GetListBook();
-            DataBase.WriteNewDB();
+            BookDB.WriteNewDB();
         }
 
         private void button1_Click(object sender, EventArgs e)
