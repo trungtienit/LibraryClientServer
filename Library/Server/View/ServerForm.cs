@@ -86,13 +86,15 @@ namespace Server
                     try
                     {
                         tbLogConnect.AppendText(str + "\r\n");
+                        server.Remove(socket);
+                        lbNumberClient.Text = server.GetSocketCounts().ToString();
                     }
                     catch (Exception e)
                     {
                         return;
                     }
-                    Console.WriteLine(str);
-                    server.Remove(socket);
+                   // Console.WriteLine(str);
+                 //   server.Remove(socket);
                     return;
                 }
                 string[] receive = str.Split(ServerManager.SIGN);
@@ -147,15 +149,6 @@ namespace Server
             }
         }
 
-        private void BroadcastResult(SocketModel socket, List<string> results)
-        {
-            socket.SendData(results);
-        }
-
-        public void BroadcastResult(SocketModel socket, string result)
-        {
-            socket.SendData(result);
-        }
         public void ServeClients()
         {
             while (true)

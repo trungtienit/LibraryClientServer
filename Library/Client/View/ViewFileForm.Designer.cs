@@ -30,8 +30,8 @@
         {
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.label1 = new System.Windows.Forms.Label();
-            this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.btnReload = new System.Windows.Forms.Button();
+            this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.SuspendLayout();
             // 
             // openFileDialog1
@@ -50,14 +50,6 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Preview";
             // 
-            // webBrowser1
-            // 
-            this.webBrowser1.Location = new System.Drawing.Point(12, 9);
-            this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
-            this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.Size = new System.Drawing.Size(1299, 956);
-            this.webBrowser1.TabIndex = 2;
-            // 
             // btnReload
             // 
             this.btnReload.Location = new System.Drawing.Point(518, 450);
@@ -67,6 +59,14 @@
             this.btnReload.Text = "Reload";
             this.btnReload.UseVisualStyleBackColor = true;
             this.btnReload.Click += new System.EventHandler(this.btnReload_Click);
+            // 
+            // webBrowser1
+            // 
+            this.webBrowser1.Location = new System.Drawing.Point(12, 9);
+            this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
+            this.webBrowser1.Name = "webBrowser1";
+            this.webBrowser1.Size = new System.Drawing.Size(1300, 956);
+            this.webBrowser1.TabIndex = 4;
             // 
             // ViewFile
             // 
@@ -87,7 +87,7 @@
         #endregion
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.WebBrowser webBrowser1;
         private System.Windows.Forms.Button btnReload;
+        private System.Windows.Forms.WebBrowser webBrowser1;
     }
 }

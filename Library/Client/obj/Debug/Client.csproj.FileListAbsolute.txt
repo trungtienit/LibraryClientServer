@@ -43,7 +43,6 @@ Y:\Skill\Code\C#\BooksApp\Library\Client\obj\Debug\Client.pdb
 \\Mac\Home\Skill\Code\C#\BooksApp\Library\Client\bin\Debug\Client.pdb
 \\Mac\Home\Skill\Code\C#\BooksApp\Library\Client\bin\Debug\Interop.AcroPDFLib.dll
 \\Mac\Home\Skill\Code\C#\BooksApp\Library\Client\bin\Debug\AxInterop.AcroPDFLib.dll
-\\Mac\Home\Skill\Code\C#\BooksApp\Library\Client\obj\Debug\Client.csprojResolveAssemblyReference.cache
 \\Mac\Home\Skill\Code\C#\BooksApp\Library\Client\obj\Debug\Interop.AcroPDFLib.dll
 \\Mac\Home\Skill\Code\C#\BooksApp\Library\Client\obj\Debug\AxInterop.AcroPDFLib.dll
 \\Mac\Home\Skill\Code\C#\BooksApp\Library\Client\obj\Debug\Client.csproj.ResolveComReference.cache
@@ -56,3 +55,4 @@ Y:\Skill\Code\C#\BooksApp\Library\Client\obj\Debug\Client.pdb
 \\Mac\Home\Skill\Code\C#\BooksApp\Library\Client\obj\Debug\Client.csproj.CoreCompileInputs.cache
 \\Mac\Home\Skill\Code\C#\BooksApp\Library\Client\obj\Debug\Client.exe
 \\Mac\Home\Skill\Code\C#\BooksApp\Library\Client\obj\Debug\Client.pdb
+\\Mac\Home\Skill\Code\C#\BooksApp\Library\Client\obj\Debug\Client.csprojResolveAssemblyReference.cache

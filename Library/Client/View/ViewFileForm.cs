@@ -11,7 +11,7 @@ namespace Server
 {
     public partial class ViewFile : Form
     {
-        internal string bookCurrent;
+        internal string bookCurrent=null;
 
         public ViewFile()
         {
@@ -24,12 +24,16 @@ namespace Server
         }
         public void UpdateBookCurrent()
         {
-            webBrowser1.Navigate(bookCurrent);
-            Update();
+           webBrowser1.Navigate(bookCurrent);
+            if (bookCurrent != null)
+                btnReload.Visible = false;
+
         }
         private void btnReload_Click(object sender, EventArgs e)
         {
-            webBrowser1.Navigate(bookCurrent);
+             webBrowser1.Navigate(bookCurrent);
+            if (bookCurrent != null)
+                btnReload.Visible = false;
         }
     }
 }

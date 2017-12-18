@@ -42,7 +42,7 @@ namespace Server.Api
             if (v2.ToUpper().Equals("POWERPOINT"))
                 mType = ServerManager.TYPE_FILE_POWERPOINT;
             if (v2.ToUpper().Equals("ALL"))
-                mType = ServerManager.TYPE_FILE_PLAIN_TEXT | ServerManager.TYPE_FILE_EXCEL | ServerManager.TYPE_FILE_MSWORD | ServerManager.TYPE_FILE_PDF| ServerManager.TYPE_FILE_POWERPOINT;
+                mType = ServerManager.TYPE_FILE_PLAIN_TEXT | ServerManager.TYPE_FILE_EXCEL | ServerManager.TYPE_FILE_MSWORD | ServerManager.TYPE_FILE_PDF | ServerManager.TYPE_FILE_POWERPOINT;
             return FindBookByTitleAndTypeOnDrive(v1, mType);
         }
         public List<String> FindBookByTitleAndTypeOnDrive(String title, byte types)
@@ -96,7 +96,7 @@ namespace Server.Api
                     int p = 0;
                     if (!file.FullFileExtension.ToUpper().Contains("TXT")
                    && !file.FullFileExtension.ToUpper().Contains("XLS"))
-                        p = (r.Next(1, 99) * 100);        
+                        p = (r.Next(1, 99) * 100);
                     Book b = new Book.Builder()
                      .Id(CreateId(file))
                      .Name(file.Name)
@@ -182,7 +182,8 @@ namespace Server.Api
                     case DownloadStatus.Completed:
                         {
                             //Console.WriteLine("Download complete.");
-                            SaveStream(stream1, filePath);
+                            if (!System.IO.File.Exists(filePath))
+                                SaveStream(stream1, filePath);
                             break;
                         }
                     case DownloadStatus.Failed:
@@ -204,7 +205,7 @@ namespace Server.Api
         }
         public UserCredential GetUserCredential()
         {
-            using (var stream = new FileStream(Application.StartupPath+"\\client_secret.json", FileMode.Open, FileAccess.Read))
+            using (var stream = new FileStream(Application.StartupPath + "\\client_secret.json", FileMode.Open, FileAccess.Read))
             {
                 string credPath = System.Environment.GetFolderPath(
                     System.Environment.SpecialFolder.Personal);

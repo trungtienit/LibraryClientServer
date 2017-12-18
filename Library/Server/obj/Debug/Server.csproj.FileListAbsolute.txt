@@ -189,12 +189,6 @@ Y:\Skill\Code\C#\BooksApp\Library\Server\obj\Debug\Server.csproj.GenerateResourc
 Y:\Skill\Code\C#\BooksApp\Library\Server\obj\Debug\Server.csproj.CoreCompileInputs.cache
 Y:\Skill\Code\C#\BooksApp\Library\Server\obj\Debug\Server.exe
 Y:\Skill\Code\C#\BooksApp\Library\Server\obj\Debug\Server.pdb
-\\Mac\Home\Skill\Code\C#\BooksApp\Library\Server\obj\Debug\Server.csprojResolveAssemblyReference.cache
-\\Mac\Home\Skill\Code\C#\BooksApp\Library\Server\obj\Debug\Server.View.AddUserForm.resources
-\\Mac\Home\Skill\Code\C#\BooksApp\Library\Server\obj\Debug\Server.ServerForm.resources
-\\Mac\Home\Skill\Code\C#\BooksApp\Library\Server\obj\Debug\Server.Properties.Resources.resources
-\\Mac\Home\Skill\Code\C#\BooksApp\Library\Server\obj\Debug\Server.csproj.GenerateResource.Cache
-\\Mac\Home\Skill\Code\C#\BooksApp\Library\Server\obj\Debug\Server.csproj.CoreCompileInputs.cache
 \\Mac\Home\Skill\Code\C#\BooksApp\Library\Server\bin\Debug\Server.exe.config
 \\Mac\Home\Skill\Code\C#\BooksApp\Library\Server\bin\Debug\Server.exe
 \\Mac\Home\Skill\Code\C#\BooksApp\Library\Server\bin\Debug\Server.pdb
@@ -249,5 +243,11 @@ Y:\Skill\Code\C#\BooksApp\Library\Server\obj\Debug\Server.pdb
 \\Mac\Home\Skill\Code\C#\BooksApp\Library\Server\bin\Debug\System.Runtime.xml
 \\Mac\Home\Skill\Code\C#\BooksApp\Library\Server\bin\Debug\System.Threading.Tasks.xml
 \\Mac\Home\Skill\Code\C#\BooksApp\Library\Server\bin\Debug\Zlib.Portable.xml
+\\Mac\Home\Skill\Code\C#\BooksApp\Library\Server\obj\Debug\Server.csprojResolveAssemblyReference.cache
+\\Mac\Home\Skill\Code\C#\BooksApp\Library\Server\obj\Debug\Server.View.AddUserForm.resources
+\\Mac\Home\Skill\Code\C#\BooksApp\Library\Server\obj\Debug\Server.ServerForm.resources
+\\Mac\Home\Skill\Code\C#\BooksApp\Library\Server\obj\Debug\Server.Properties.Resources.resources
+\\Mac\Home\Skill\Code\C#\BooksApp\Library\Server\obj\Debug\Server.csproj.GenerateResource.Cache
+\\Mac\Home\Skill\Code\C#\BooksApp\Library\Server\obj\Debug\Server.csproj.CoreCompileInputs.cache
 \\Mac\Home\Skill\Code\C#\BooksApp\Library\Server\obj\Debug\Server.exe
 \\Mac\Home\Skill\Code\C#\BooksApp\Library\Server\obj\Debug\Server.pdb
