@@ -18,7 +18,11 @@ namespace Server.View
          public Book book;
         private void ShowInfoForm_Load(object sender, EventArgs e)
         {
-            if (book.Name.ToUpper().EndsWith("TXT") || book.Name.ToUpper().EndsWith("XLS") || book.Name.ToUpper().EndsWith("PPT"))
+            if (book.Name.ToUpper().EndsWith("TXT") 
+                || book.Name.ToUpper().EndsWith("XLS") 
+                || book.Name.ToUpper().EndsWith("PPT")
+                || book.Name.ToUpper().EndsWith("XLSX")
+                || book.Name.ToUpper().EndsWith("PPTX"))
                 btnPreview.Enabled = false;
             else btnPreview.Enabled = true;
 

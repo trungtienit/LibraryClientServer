@@ -143,7 +143,7 @@ namespace Server
                             if (Double.Parse(price) > ClientManager.myWallet)
                             {
                                 MessageBox.Show("Your balance is not enough to pay", "Error", MessageBoxButtons.OK);
-                                break;
+                                return;
                             }
                             TCPModel.typeCurrent = ClientManager.TYPE_DOWNLOAD;
                             client.SendData(ClientManager.TYPE_DOWNLOAD.ToString() + ClientManager.SIGN + id);

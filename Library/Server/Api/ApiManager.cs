@@ -54,7 +54,8 @@ namespace Server.Api
             if (types != 0)
             {
                 if ((types & ServerManager.TYPE_FILE_MSWORD) == ServerManager.TYPE_FILE_MSWORD)
-                    mTypes = mTypes + " or " + ServerManager.MSWORD + " or " + ServerManager.OFFICE_DOC;
+
+                    mTypes = mTypes + " or " + ServerManager.MSWORD + " or " + ServerManager.OFFICE_DOC+ " or " +ServerManager.DOC_GOOGLE;
                 if ((types & ServerManager.TYPE_FILE_PDF) == ServerManager.TYPE_FILE_PDF)
                     mTypes = mTypes + " or " + ServerManager.PDF;
                 if ((types & ServerManager.TYPE_FILE_EXCEL) == ServerManager.TYPE_FILE_EXCEL)
@@ -69,13 +70,18 @@ namespace Server.Api
             do
             {
                 var request = service.Files.List();
+
                 if (mTypes.Length > 0)
                 {
+
                     mTypes = mTypes.Substring(3);
                     request.Q = "name contains '"
                    + title
                    + "' and ( " + mTypes + " )";
                 }
+                else
+                    request.Q = "name contains '" + title + "'"; 
+
                 Random r = new Random();
                 request.Spaces = "drive";
                 request.Fields = "nextPageToken, files(id, name, mimeType, size, createdTime, modifiedTime,fullFileExtension)";
@@ -95,7 +101,8 @@ namespace Server.Api
                 {
                     int p = 0;
                     if (!file.FullFileExtension.ToUpper().Contains("TXT")
-                   && !file.FullFileExtension.ToUpper().Contains("XLS"))
+                   && !file.FullFileExtension.ToUpper().Contains("XLS")
+                    &&!file.FullFileExtension.ToUpper().Contains("PPT"))
                         p = (r.Next(1, 99) * 100);
                     Book b = new Book.Builder()
                      .Id(CreateId(file))

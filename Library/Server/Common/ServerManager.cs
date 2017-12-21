@@ -17,7 +17,7 @@ namespace Server.Common
         public const String MSWORD = "mimeType = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'";
         public const String OFFICE_DOC = "mimeType = 'application/vnd.oasis.opendocument.text'";
         public const String OFFICE_POWERPOINT = "mimeType = 'application/vnd.openxmlformats-officedocument.presentationml.presentation'";
-
+        public const String DOC_GOOGLE = "mimeType = 'application/msword'";
         public const char SIGN = '#';
         public const byte TYPE = 1;
         public const byte TYPE_SEARCH = TYPE << 1;
@@ -39,6 +39,8 @@ namespace Server.Common
 
         public static int BUFFER_SIZE = 1024;
         public static string PREVIEW = "PREVIEW";
+
+
 
         public List<Book> GetAllDataLocal(string pathFolder, string[] fileTypes)
         {
